@@ -1,8 +1,8 @@
 {
   "name": "calendar",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "calendar",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,5 +17,13 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.25.6",
     "sequelize-cli": "^6.5.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdt3rdGroupA/calendar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kdt3rdGroupA/calendar/issues"
+  },
+  "homepage": "https://github.com/kdt3rdGroupA/calendar#readme"
 }

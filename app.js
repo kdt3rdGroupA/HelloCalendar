@@ -16,6 +16,9 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+const loginRouter = require('./routes/login');
+app.post('/login', loginRouter);
+
 // app.listen(PORT, (req, res) => {
 //   console.log(`http://localhost:${PORT}`);
 // });

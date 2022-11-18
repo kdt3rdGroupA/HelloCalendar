@@ -49,7 +49,7 @@ const month2num = {
 const weekDay2num = {
   "Sun": 0, "Mon": 1, "Tue": 2, "Wed": 3, "Thu": 4, "Fri": 5, "Sat": 6  
 }
-let days = selectorAll(".calendar td");
+let days = selectorAll(".calendarContents td");
 let endDay;
 let firstWeekDay;
 let today;

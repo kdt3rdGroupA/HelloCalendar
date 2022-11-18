@@ -1,8 +1,8 @@
-.tabs {
+.todoTabs {
   position: absolute;
   top : 20vh;
 }
-.tab {
+.todoTab {
   width: 60vw;
   height: 10vw;
   position: relative;
@@ -11,7 +11,7 @@
   left: 95vw;
   background-color: yellow;
 }
-.tab:hover {
+.todoTab:hover {
   left : 40vw;
   transition: 1s;
 }

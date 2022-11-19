@@ -15,3 +15,5 @@ router.post('/', controller.login);
 
 router.post('/signup', controller.signup);
 // 회원가입 요청
+
+module.exports = router;

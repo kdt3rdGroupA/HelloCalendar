@@ -1,7 +1,9 @@
 
 const models = require("../../models");
 const crypto = require('crypto');
+const googleKeys = require('../../authinfo/emailkey');
 // nodejs의 내장 모듈
+const nodemailer = require('nodemailer');
 
 const salt = crypto.pseudoRandomBytes(128).toString("base64");
 // rand()보다 완벽한 랜덤생성기
@@ -40,9 +42,9 @@ const dbTest2 = () => {
 // dbTest2();
 
 
-// ========================================================
+// =============================================================
 // README
-//  응답
+//  응답(POST)
 //    result:
 //      true: 로그인, 회원가입 성공
 //      false: 로그인, 회원가입 실패
@@ -51,7 +53,10 @@ const dbTest2 = () => {
 //    data:
 //      요청성공(result : true) 이후 보내지는 정보(로그인정보)
 //
-// ========================================================
+//  세션
+//    isLogin:
+//      
+// =============================================================
 
 const login = data => {
   // data-> {userid: ,pw: }
@@ -109,8 +114,37 @@ const signup = data => {
 });  
 }
 
+const logout = () => {
+  req.session.destroy(() => {
+    res.render('/');
+  });
+}
+
+
+
 sighupData = {
   userid : "test3",
   name : "signuptest",
   pw : "1234"
 }
+
+// let transporter = nodemailer.createTransport({
+//   service : 'gmail',
+//   auth : {
+//     user : googleKeys.user,
+//     pass : googleKeys.pass
+//   }
+// });
+// let mailOptions = {
+//   from : googleKeys.user,
+//   to : 'cchs12123@kakao.com',
+//   subject : 'hellocalendar email auth',
+//   html : '<h1>헬로켈린더 인증</h1>'
+// }
+// transporter.sendMail(mailOptions, (err, info) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log('email sent');
+//   }
+// });

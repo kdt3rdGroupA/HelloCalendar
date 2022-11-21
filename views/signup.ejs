@@ -28,7 +28,7 @@
     <div id="loginContainer">
       <div id="loginContents">
         <div id="login">
-          <div id="title">회원가입</div>
+          <div id="titleSignup">회원가입</div>
           <!-- 자체 회원가입 -->
           <form name="form_signup">
             <div id="idSignup">
@@ -40,13 +40,16 @@
                 required
               />
               <div class="warningName warning"></div>
-              <input
-                type="text"
-                id="id"
-                name="userid"
-                placeholder="ID"
-                required
-              />
+              <div>
+                <input
+                  type="text"
+                  id="id"
+                  name="userid"
+                  placeholder="ID"
+                  required
+                />
+                <button type="button" class="idBtn">ID 중복 검사</button>
+              </div>
               <div class="warningId warning"></div>
               <input
                 type="password"
@@ -56,6 +59,27 @@
                 required
               />
               <div class="warningPw warning"></div>
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  name="useremail"
+                  placeholder="email"
+                  required
+                />
+                <button type="button" class="emailBtn" onclick="emailCode()">
+                  이메일 인증
+                </button>
+              </div>
+              <div class="warningEmail warning"></div>
+              <input
+                type="text"
+                id="emailcode"
+                class="noshow"
+                name="userEmailCode"
+                placeholder="이메일 인증 코드"
+                required
+              />
             </div>
           </form>
           <!-- 로그인 버튼 -->
@@ -74,5 +98,6 @@
       </div>
     </div>
     <script src="/static/js/signup.js"></script>
+    <script></script>
   </body>
 </html>

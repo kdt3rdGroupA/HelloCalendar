@@ -30,13 +30,10 @@ app.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-// login, signup 요청과 각 페이지 렌더
-const loginRouter = require("./routes/login");
-app.use("/login", loginRouter);
+// login과 관련된 인증들
+const loginRouter = require('./routes/login');
+app.use('/login', loginRouter);
 
-// app.listen(PORT, (req, res) => {
-//   console.log(`http://localhost:${PORT}`);
-// });
 
 // 404 Page
 app.get("*", (req, res) => {

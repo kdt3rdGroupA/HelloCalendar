@@ -4,6 +4,8 @@ const crypto = require('crypto');
 const googleKeys = require('../../authinfo/emailkey');
 // nodejs의 내장 모듈
 const nodemailer = require('nodemailer');
+const { INTEGER } = require("sequelize");
+
 
 const salt = crypto.pseudoRandomBytes(128).toString("base64");
 // rand()보다 완벽한 랜덤생성기
@@ -83,8 +85,8 @@ const login = data => {
 const signup = data => {
   //TODO 패스워드가 유효한지 검사(프론트에서두 검사해도 서버측에서 검사)
   // 하지만 패스워드 조건이 결정되지않음
-  // data = {name: ,userid: ,pw: }
-  let isIdAvailable = false;
+  // data = {name: ,userid: ,pw: ,email:}
+  let isIdAvailable = false; // 사용되지 않음
   models.Login.findOne({
     where :  {
       userid : data.userid
@@ -103,6 +105,7 @@ const signup = data => {
   models.Login.create({
     userid : data.userid,
     name : data.name,
+    email : data.email,
     salt : salt,
     hash_pw : hashPW
   })
@@ -125,22 +128,41 @@ const logout = () => {
 sighupData = {
   userid : "test3",
   name : "signuptest",
+  email : "test@domain.com",
   pw : "1234"
 }
 
-// let transporter = nodemailer.createTransport({
-//   service : 'gmail',
-//   auth : {
-//     user : googleKeys.user,
-//     pass : googleKeys.pass
-//   }
-// });
-// let mailOptions = {
-//   from : googleKeys.user,
-//   to : 'cchs12123@kakao.com',
-//   subject : 'hellocalendar email auth',
-//   html : '<h1>헬로켈린더 인증</h1>'
-// }
+let transporter = nodemailer.createTransport({
+  service : 'gmail',
+  auth : {
+    user : googleKeys.user,
+    pass : googleKeys.pass
+  }
+});
+let mailOptions = {
+  from : "HELLO.CAL",
+  to : 'cchs12123@kakao.com',
+  subject : '[HelloCalendar] email auth',
+  html : `<h1 style="color: royalblue;
+  text-align: center;
+  font-size: 10vw;
+  margin-top: 10vw;
+  height: 10vw;
+  padding: 0 10vw;">Hello Calendar</h1>
+  <div style="font-weight: 600;
+  text-align: center;
+  padding: 0 10vw;">인증번호로 이메일 인증을 진행하세요</div>
+  <h2 style="width: 50vw;
+  margin: 10vw auto;
+  height: 12vw;
+  font-size: 10vw;
+  line-height: 12vw;
+  background-color: #d4d4d4;
+  border-radius: 4vw;
+  text-align: center;
+  border: 0;
+  font-weight: 500;">123456</h2>`
+}
 // transporter.sendMail(mailOptions, (err, info) => {
 //   if (err) {
 //     console.log(err);
@@ -148,3 +170,41 @@ sighupData = {
 //     console.log('email sent');
 //   }
 // });
+
+const emailAuth = address => {
+  // address -> 유저의 이메일
+  // return: 인증번호
+
+
+}
+// const emailAuthTest = (address) => {
+//   // address : 유저이메일
+//   let authNum = Math.floor(1000000*Math.random());
+//   mailOptions.to = address;
+//   mailOptions.subject = "[HelloCalendar] 이메일 인증"
+//   mailOptions.html = `<h1 style="color: royalblue;
+//     text-align: center;
+//     font-size: 10vw;
+//     margin-top: 10vw;
+//     height: 10vw;
+//     padding: 0 10vw;">Hello Calendar</h1>
+//     <div style="font-weight: 600;
+//     text-align: center;
+//     padding: 0 10vw;">인증번호로 이메일 인증을 진행하세요</div>
+//     <h2 style="width: 50vw;
+//     margin: 10vw auto;
+//     height: 12vw;
+//     font-size: 10vw;
+//     line-height: 12vw;
+//     background-color: #d4d4d4;
+//     border-radius: 4vw;
+//     text-align: center;
+//     border: 0;
+//     font-weight: 500;">${authNum}</h2>`
+//   transporter.sendMail(mailOptions);
+//   return authNum;
+// }
+
+// let authNum = emailAuthTest("cchs12123@kakao.com");
+// console.log(authNum);
+console.log(crypto.pseudoRandomBytes(5).toString('base64'));

@@ -21,13 +21,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-// login, signup 요청과 각 페이지 렌더
+// login과 관련된 인증들
 const loginRouter = require('./routes/login');
 app.use('/login', loginRouter);
 
-// app.listen(PORT, (req, res) => {
-//   console.log(`http://localhost:${PORT}`);
-// });
 
 // 404 Page
 app.get('*', (req,res) => {

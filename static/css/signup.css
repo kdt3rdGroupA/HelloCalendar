@@ -1,0 +1,43 @@
+/* 한글 기본 폰트 : 프리텐다 */
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 한글 포인트용 폰트 : IBM */
+
+@font-face {
+  font-family: "IBMPlexSansKR-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Pretendard-Regular";
+}
+
+#title {
+  margin-top: 30px;
+  font-family: "IBMPlexSansKR-Regular";
+  font-weight: 600;
+}
+
+#idSignup {
+  display: flex;
+  flex-direction: column;
+}
+
+#idSignup input {
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 180px;
+  height: 35px;
+  padding-left: 20px;
+  margin-top: 20px;
+}

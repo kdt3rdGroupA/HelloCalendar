@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HELLO CALENDAR</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="../static/img/favicon.png" />
+    <!-- css: layout -->
+    <link rel="stylesheet" href="../static/css/layout.css" />
+
+    <!-- css: calendar -->
+    <link rel="stylesheet" href="../static/css/calendar.css" />
+
+    <!-- css: todolist -->
+    <link rel="stylesheet" href="../static/css/todolist.css" />
+
+    <!-- 한국어 font: IBM Plex Sans, 프리텐다 -->
+    <!--눈누 폰트는 헤더에 안 들어감-->
+
+    <!-- 영어 font: Maven Pro, Noto Sans, Amiko -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&family=Maven+Pro:wght@400;500;600&family=Noto+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 제이쿼리 CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- header: 로고, 설명서, 로그인-->
+    <header>
+      <nav>
+        <h3 class="headerLogo">HELLO CALENDAR</h3>
+        <div class="headerContent">
+          <h3>설명서</h3>
+          <h3><a href="/login">로그인</a></h3>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 검색바 -->
+      <div class="searchBar">검색바</div>
+
+      <!-- Calendar -->
+      <div class="calendar">
+        <table cellspacing="0" class="calendarContents">
+          <tr>
+            <th class="Sun">일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th class="Sat">토</th>
+          </tr>
+          <tr id="week1">
+            <td class="Sun"></td>
+            <td class="Mon"></td>
+            <td class="Tue"></td>
+            <td class="Web"></td>
+            <td class="Thu"></td>
+            <td class="Fri"></td>
+            <td class="Sat"></td>
+          </tr>
+          <tr id="week2">
+            <td class="Sun"></td>
+            <td class="Mon"></td>
+            <td class="Tue"></td>
+            <td class="Web"></td>
+            <td class="Thu"></td>
+            <td class="Fri"></td>
+            <td class="Sat"></td>
+          </tr>
+          <tr id="week3">
+            <td class="Sun"></td>
+            <td class="Mon"></td>
+            <td class="Tue"></td>
+            <td class="Web"></td>
+            <td class="Thu"></td>
+            <td class="Fri"></td>
+            <td class="Sat"></td>
+          </tr>
+          <tr id="week4">
+            <td class="Sun"></td>
+            <td class="Mon"></td>
+            <td class="Tue"></td>
+            <td class="Web"></td>
+            <td class="Thu"></td>
+            <td class="Fri"></td>
+            <td class="Sat"></td>
+          </tr>
+          <tr id="week5">
+            <td class="Sun"></td>
+            <td class="Mon"></td>
+            <td class="Tue"></td>
+            <td class="Web"></td>
+            <td class="Thu"></td>
+            <td class="Fri"></td>
+            <td class="Sat"></td>
+          </tr>
+          <tr id="week6">
+            <td class="Sun"></td>
+            <td class="Mon"></td>
+            <td class="Tue"></td>
+            <td class="Web"></td>
+            <td class="Thu"></td>
+            <td class="Fri"></td>
+            <td class="Sat"></td>
+          </tr>
+        </table>
+      </div>
+    </main>
+
+    <!-- TodoList -->
+    <div class="todoTabs">
+      <div class="todoTab"></div>
+      <div class="todoTab"></div>
+    </div>
+
+    <!-- JS: calendar -->
+    <script src="../static/js/calendar.js"></script>
+
+    <!-- JS: todolist -->
+    <script src="../static/js/todolist.js"></script>
+  </body>
+</html>

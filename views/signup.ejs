@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="../static/img/favicon.png" />
+    <!-- css: layout -->
+    <link rel="stylesheet" href="/static/css/layout.css" />
+    <link rel="stylesheet" href="/static/css/login.css" />
+    <link rel="stylesheet" href="/static/css/signup.css" />
+    <!-- 영어 font: Maven Pro, Noto Sans, Amiko -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&family=Maven+Pro:wght@400;500;600&family=Noto+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 제이쿼리 CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="loginContainer">
+      <div id="loginContents">
+        <div id="login">
+          <div id="title">회원가입</div>
+          <!-- 자체 회원가입 -->
+          <form name="form_signup">
+            <div id="idSignup">
+              <input
+                type="text"
+                id="name"
+                name="username"
+                placeholder="이름"
+                required
+              />
+              <div class="warningName warning"></div>
+              <input
+                type="text"
+                id="id"
+                name="userid"
+                placeholder="ID"
+                required
+              />
+              <div class="warningId warning"></div>
+              <input
+                type="password"
+                id="pw"
+                name="userpw"
+                placeholder="Password"
+                required
+              />
+              <div class="warningPw warning"></div>
+            </div>
+          </form>
+          <!-- 로그인 버튼 -->
+          <button type="submit" id="loginBtn" onclick="register()">
+            Sign up
+          </button>
+          <p>이미 회원이신가요? <a href="/login">로그인</a></p>
+        </div>
+        <div id="illustration">
+          <img
+            id="treesImg"
+            src="/static/img/ice-rink.jpg"
+            alt="christmas-trees"
+          />
+        </div>
+      </div>
+    </div>
+    <script src="/static/js/signup.js"></script>
+  </body>
+</html>

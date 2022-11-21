@@ -1,0 +1,23 @@
+body {
+  padding: 10vh 20vw 0 20vw;
+  font-weight: 700;
+  font-size: 3em;
+}
+h1,
+h2 {
+  color: #444444;
+}
+a {
+  display: block;
+  width: 16rem;
+  height: 4rem;
+  line-height: 4rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 3rem;
+  text-align: center;
+  color: white;
+  background-color: #444444;
+  text-decoration: none;
+  cursor: pointer;
+}

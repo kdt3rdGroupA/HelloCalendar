@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  /* background-color: blanchedalmond; */
+  /* color: black; */
+  overflow: hidden;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
+.headerLogo {
+  font-family: 'Amiko', sans-serif;
+  font-size: 25px;
+  background: linear-gradient(to right top, #003efa, #00d2fc);
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+.headerContent {
+  display: flex;
+}
+
+.headerContent h3 {
+  font-family: 'Amiko', sans-serif;
+  padding-left: 30px;
+}
+
+.searchBar {
+  text-align: center;
+  margin: 50px 0;
+}

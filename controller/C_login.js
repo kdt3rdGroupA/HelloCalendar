@@ -25,13 +25,15 @@ const emailAuthSend = (address) => {
   mailOptions.subject = "[HelloCalendar] 이메일 인증"
   mailOptions.html = `<h1 style="color: royalblue;
     text-align: center;
-    font-size: 10vw;
+    font-size: 6vw;
     margin-top: 10vw;
     height: 10vw;
-    padding: 0 10vw;">Hello Calendar</h1>
+    padding: 0 10vw;
+    line-height: 10vw">Hello Calendar</h1>
     <div style="font-weight: 600;
     text-align: center;
-    padding: 0 10vw;">인증번호로 이메일 인증을 진행하세요</div>
+    padding: 0 10vw;
+    font-size: 4vw">인증번호로 이메일 인증을 진행하세요</div>
     <h2 style="width: 50vw;
     margin: 10vw auto;
     height: 12vw;
@@ -64,7 +66,7 @@ exports.pwChangePage = (req, res) => {
 }
 exports.login = (req, res) => {
   // data-> {userid: ,pw: }
-  let data = req.data;
+  let data = req.query;
   models.Login.findOne({
     where : {
       userid : data.userid
@@ -89,8 +91,8 @@ exports.login = (req, res) => {
   });
 };
 exports.signup = (req, res) => {
-  // req.data = {name:, userid:, pw:, emailAuthNum:}
-  let data = req.data;
+  // req.query = {name:, userid:, pw:, emailAuthNum:}
+  let data = req.query;
   models.Login.findOne({
     where : {
       userid : data.userid
@@ -125,7 +127,7 @@ exports.signup = (req, res) => {
   })
   .then(result => {
     res.session.destroy();
-    res.send({result : true, msg : "회원가입 완료!", data:null});
+    res.send({result:true, msg:"회원가입 완료!", data:null});
   });
 });
 };
@@ -134,13 +136,14 @@ exports.logout = (req, res) => {
   res.send({result : true, msg : "로그아웃 완료", data:null});
 }
 exports.emailAuth = (req, res) => {
-  let data = req.data;
+  let data = req.query;
   let authNum = emailAuthSend(data.email);
   req.session.emailAuthHash = crypto.createHash('sha512').update(data.email+authNum).digest('hex');
   req.session.emailAuthAddress = data.email;
+  res.send({result:true, msg:"인증메일 발송 완료", data:null});
 }
 exports.idCheck = (req, res) => {
-  let userid = req.data.userid;
+  let userid = req.query.userid;
   models.Login.findOne({
     where : {
       userid : userid
@@ -154,7 +157,7 @@ exports.idCheck = (req, res) => {
   });
 }
 exports.pwReset = (req, res) => {
-  let data = req.data;
+  let data = req.query;
   // data = {emailAuthNum: ,pw:(새 비밀번호)}
   // 프론트에서 이메일 인증 버튼을 누르지 않으면 submit 제한
   let emailAuthAddress = req.session.emailAuthAddress;
@@ -182,7 +185,7 @@ exports.pwReset = (req, res) => {
 
 }
 exports.pwChange = (req, res) => {
-  let data = req.data;
+  let data = req.query;
   // data = {pw: , new_pw:}
   models.Login.findOne({
     where : {

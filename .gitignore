@@ -1,3 +1,4 @@
 /node_modules
 /authinfo
 package-lock.json
+emailkey.js

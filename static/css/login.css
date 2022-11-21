@@ -1,0 +1,153 @@
+/* 한글 기본 폰트 : 프리텐다 */
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 한글 포인트용 폰트 : IBM */
+
+@font-face {
+  font-family: "IBMPlexSansKR-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right top, #436be4, #00d2fc);
+  font-family: "Pretendard-Regular";
+  font-family: "Noto Sans", sans-serif;
+}
+
+#loginContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#loginContents {
+  width: 60%;
+  height: 90%;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 10px 10px 30px #045c6d;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/******* 로그인창 부분 *******/
+
+#login {
+  width: 50%;
+  height: 80%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  font-size: 40px;
+  margin: 0 0 30px 0;
+}
+
+/* 구글 로그인 */
+
+#googleLogin {
+  vertical-align: middle;
+}
+
+img#googleLogo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+button#google {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 200px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+button#google:hover {
+  background-color: rgb(238, 236, 236);
+}
+
+/* 자체 로그인 */
+
+#idLogin {
+  display: flex;
+  flex-direction: column;
+}
+
+#idLogin input {
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 180px;
+  height: 35px;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+/* 자동로그인 체크박스 */
+
+#remeberBox {
+  margin-right: 100px;
+  margin-top: 20px;
+}
+
+/* 로그인 버튼 */
+
+#loginBtn {
+  margin: 20px 0 10px 0;
+  background-color: #00d2fc;
+  border: 2px solid #00d2fc;
+  border-radius: 20px;
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#loginBtn:hover {
+  background-color: #79dcefc1;
+}
+
+/********* 일러스트 부분 ********/
+
+#illustration {
+  width: 50%;
+  height: 90%;
+}
+
+img#treesImg {
+  width: 95%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.divide {
+  margin-top: 20px;
+}
+
+.warning {
+  color: red;
+  font-size: 15px;
+  width: 200px;
+  display: block;
+}

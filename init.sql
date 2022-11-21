@@ -12,6 +12,6 @@ CREATE TABLE user_login_key (
   email VARCHAR(50) NOT NULL,
   salt VARCHAR(200) NOT NULL,
   hash_pw VARCHAR(200) NOT NULL
-  -- salt, hash_pw -> 각각 유저 암호화된 id, pw라고 이해
 );
+  -- salt, hash_pw -> 각각 유저 암호화된 id, pw라고 이해
 

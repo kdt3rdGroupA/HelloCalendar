@@ -2,10 +2,9 @@ const models = require('../models');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const emailKey = require('../authinfo/emailkey');
-const { resolve } = require('path');
-const { rejects } = require('assert');
 
-const transporter = nodemailer.createTestAccount({
+
+const transporter = nodemailer.createTransport({
   service : 'gmail',
   auth : {
     user : emailKey.user,
@@ -50,12 +49,10 @@ const emailAuthSend = (address) => {
 
 
 exports.loginPage = (req, res) => {
-  console.log(null);
-  // res.render("login");
+  res.render("login");
 };
 exports.signupPage = (req, res) => {
-  console.log(null);
-  // res.render("signup");
+  res.render("signup");
 };
 exports.pwResetPage = (req, res) => {
   console.log(null);

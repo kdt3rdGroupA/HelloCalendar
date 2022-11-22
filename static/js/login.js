@@ -4,6 +4,8 @@ function login() {
   const pw = document.querySelector("#pw");
   const warningId = document.querySelector(".warningId");
   const warningPw = document.querySelector(".warningPw");
+
+  // 유효성 검사
   if (!id.checkValidity()) {
     warningId.style.display = "block";
     warningId.textContent = "❗️아이디를 입력해주세요";
@@ -23,6 +25,17 @@ function login() {
   }
 }
 
+// enter 전송
+let inputs = document.querySelectorAll(".input");
+// console.log(inputs);
+for (let i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener("keypress", function (event) {
+    if (event.keyCode === 13) {
+      login();
+      input.value = "";
+    }
+  });
+}
 
 //Google Login API
 function handleCredentialResponse(response) {

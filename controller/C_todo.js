@@ -6,7 +6,7 @@ const fs = require('fs');	// 파일 시스템 모듈
 exports.index = (req, res) => {
   res.render('todo', 
     { 
-      title: 'ToDo 리스트',
+      title: '전체 ToDo 리스트',
       name: '사용자이름(되면)' 
     });
 };

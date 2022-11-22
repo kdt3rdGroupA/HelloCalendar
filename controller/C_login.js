@@ -110,7 +110,7 @@ exports.signup = (req, res) => {
   let emailAuthInputHash = crypto.createHash('sha512').update(emailAuthAddress+emailAuthNum).digest('hex');
   if (req.session.emailAuthHash != emailAuthInputHash) {
     res.send({result:false, msg:"이메일 인증에 문제가 있습니다", data:null});
-    res.session.destroy();
+    req.session.destroy();
     return 0;
   }
   // 이메일 인증
@@ -126,7 +126,7 @@ exports.signup = (req, res) => {
     hash_pw : hashPW
   })
   .then(result => {
-    res.session.destroy();
+    req.session.isLogin = false;
     res.send({result:true, msg:"회원가입 완료!", data:null});
   });
 });
@@ -165,7 +165,7 @@ exports.pwReset = (req, res) => {
   let emailAuthInputHash = crypto.createHash('sha512').update(emailAuthAddress+emailAuthNum).digest('hex');
   if (req.session.emailAuthHash != emailAuthInputHash) {
     res.send({result:false, msg:"이메일 인증에 문제가 있습니다", data:null});
-    res.session.destroy();
+    req.session.destroy();
     return 0;
   }
   let salt = crypto.pseudoRandomBytes(128).toString('base64');
@@ -179,7 +179,7 @@ exports.pwReset = (req, res) => {
     }
   })
   .then(() => {
-    res.session.destroy();
+    req.session.destroy();
     res.send({result : true, msg : "비밀번호 재설정 완료", data:null});
   });
 

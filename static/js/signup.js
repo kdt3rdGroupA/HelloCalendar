@@ -107,7 +107,9 @@ function register() {
     }
   }).then(result => {
     let data = result.data;
+    console.log(data);
     if (data.result == true) {
+      
       location.replace(`${URL}:${PORT}/login`);
     } 
     //나중에할것 오류경우에따라 data에 오류경우 담아서 받고 alert 뛰우기
@@ -173,7 +175,6 @@ document.querySelector("#idSignup .idBtn").addEventListener("click", () => {
   }).then((result) => {
     console.log(result);
     let data = result.data;
-    console.log(result);
     console.log("여기서 CSS, 회원가입 버튼 로직 설정하시면 됩니다");
     //  응답 -> result.data = {result:"", msg="", data={}}
     //    result:

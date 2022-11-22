@@ -182,7 +182,8 @@ exports.signup = (req, res) => {
       res.send({ result: true, msg: "회원가입 완료!", data: null });
     });
   });
-};
+});
+}
 exports.logout = (req, res) => {
   req.session.destroy();
   res.send({ result: true, msg: "로그아웃 완료", data: null });
@@ -263,7 +264,8 @@ exports.pwChange = (req, res) => {
     where: {
       id: req.session.id,
     },
-  }).then((result) => {
+  })
+  .then((result) => {
     let userInfo = result.dataValues;
     let inputPwHash = crypto
       .createHash("sha512")
@@ -292,4 +294,4 @@ exports.pwChange = (req, res) => {
       res.send({ result: true, msg: "비밀번호 업데이트 완료", data: null });
     });
   });
-};
+}

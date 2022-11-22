@@ -8,6 +8,7 @@ body {
 
 nav {
   display: flex;
+  /* position: relative; */
   justify-content: space-between;
   margin: 0 20px;
 }
@@ -28,6 +29,21 @@ nav {
   font-family: 'Amiko', sans-serif;
   padding-left: 30px;
 }
+
+/*구글로그인 성공시 보이는 프로필 div - 위치 보려고 일단 백그라운드 색상 넣어놓았습니다*/
+/*
+.gUserProfile {
+  background-color: wheat;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 8px;
+  right: 23px;
+}
+*/
 
 .searchBar {
   text-align: center;

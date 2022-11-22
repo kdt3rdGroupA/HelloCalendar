@@ -1,5 +1,3 @@
-const { render } = require("ejs");
-
 function login() {
   const form_login = document.forms["form_login"];
   const id = document.querySelector("#id");

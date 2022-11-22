@@ -22,6 +22,9 @@ const Todo = (Sequelize, DataTypes) => {
         type: DataTypes.STRING(20)
       }
     }, {
+      tableName: 'todo',
+      freezeTableName: true,
+      timestamps: false,
       indexes: [{
         name: "key_id",
         using: 'BTREE',
@@ -29,7 +32,7 @@ const Todo = (Sequelize, DataTypes) => {
           name: "key_id",
           collate: 'utf8_general_ci',
           order: 'DESC'
-      }]
+        }]
       }]
     }
   );

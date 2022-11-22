@@ -25,6 +25,9 @@ app.get('/', (req, res) => {
 const loginRouter = require('./routes/login');
 app.use('/login', loginRouter);
 
+// todo관련 정보
+const todoRouter = require('./routes/todo');
+app.use('/todo', todoRouter);
 
 // 404 Page
 app.get('*', (req,res) => {

@@ -141,15 +141,16 @@ for (let i = 0; i < inputs.length; i++) {
 }
 
 // 아이디 중복 검사
-document.querySelector("#idSignup .idBtn").addEventListener('click', () => {
+document.querySelector("#idSignup .idBtn").addEventListener("click", () => {
   if (!id.checkValidity()) {
     return 0;
   }
   axios({
-    method : 'POST',
-    url : '/login/idcheck',
-    params : {userid : id.value}
-  }).then(result => {
+    method: "POST",
+    url: "/login/idcheck",
+    params: { userid: id.value },
+  }).then((result) => {
+    console.log(result);
     let data = result.data;
     console.log("여기서 CSS, 회원가입 버튼 로직 설정하시면 됩니다");
     //  응답 -> result.data = {result:"", msg="", data={}}
@@ -162,20 +163,28 @@ document.querySelector("#idSignup .idBtn").addEventListener('click', () => {
     //      요청성공(result : true) 이후 보내지는 정보(로그인정보)
     //      별다른 데이터 전송이 필요없으면 null
     //      응답이 필요한 data가 있으면 알려주세요
+    if (data.result) {
+      warningId.style.display = "block";
+      warningId.textContent = "✅ 사용가능한 아이디입니다.";
+      warningId.style.color = "black";
+    } else {
+      warningId.style.display = "block";
+      warningId.textContent = "❗️중복된 아이디입니다.";
+    }
   });
 });
 
 // 인증 이메일 받기
-document.querySelector("#idSignup .emailBtn").addEventListener('click', () => {
+document.querySelector("#idSignup .emailBtn").addEventListener("click", () => {
   console.log(email.value);
   if (!email.checkValidity()) {
     return 0;
   }
   axios({
-    method : 'POST',
-    url : '/login/emailAuth',
-    params : {email : email.value}
-  }).then(result => {
+    method: "POST",
+    url: "/login/emailAuth",
+    params: { email: email.value },
+  }).then((result) => {
     //let data = result.data;
     console.log("여기서 CSS, 회원가입 버튼 로직 설정하시면 됩니다");
   });

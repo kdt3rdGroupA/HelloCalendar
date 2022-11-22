@@ -24,7 +24,12 @@ const Todo = (Sequelize, DataTypes) => {
     }, {
       indexes: [{
         name: "key_id",
-        using: 'BTREE'
+        using: 'BTREE',
+        fields: [{
+          name: "key_id",
+          collate: 'utf8_general_ci',
+          order: 'DESC'
+      }]
       }]
     }
   );

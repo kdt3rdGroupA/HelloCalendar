@@ -1,17 +1,31 @@
-.todoTabs {
-  position: absolute;
-  top : 20vh;
-}
+/* 메모가 자유자재로 움직일 수 있도록 position을 'absolute'로 설정 */
+
+/* .todoTabs {
+  top: 30vh;
+} */
 .todoTab {
-  width: 60vw;
-  height: 10vw;
-  position: relative;
+  position: absolute;
   margin: 1rem 0 1rem 0;
-  top: 1rem;
+  top: 3rem;
   left: 95vw;
   background-color: yellow;
 }
+
 .todoTab:hover {
-  left : 40vw;
-  transition: 1s;
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 darkgray;
+}
+
+/* 메모의 크기, 색상 설정 */
+.public {
+  width: 200px;
+  height: 200px;
+  background-color: lightblue;
+}
+.private {
+  position: absolute;
+  top: 300px;
+  width: 200px;
+  height: 200px;
+  background-color: lightpink;
 }

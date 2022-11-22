@@ -2,6 +2,8 @@ const models = require("../models");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const emailKey = require("../authinfo/emailkey");
+const session = require("express-session");
+const { user } = require("../authinfo/emailkey");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -65,6 +67,7 @@ exports.pwChangePage = (req, res) => {
 exports.login = (req, res) => {
   // data-> {userid: ,pw: }
   let data = req.query;
+  sessionTemp = req.session;
   models.Login.findOne({
     where: {
       userid: data.userid,
@@ -81,13 +84,17 @@ exports.login = (req, res) => {
     let userInfo = result.dataValues;
     let inputPwHash = crypto
       .createHash("sha512")
-      .update(data.pw + salt)
+      .update(data.pw + userInfo.salt)
       .digest("hex");
     if (userInfo.hash_pw == inputPwHash) {
-      req.session.isLogin = true;
-      req.session.cookie.expires = new Date(Date.now() + 72 * 3600000);
-      // 72시간동안 세션 유지
-      req.session.id = userInfo.id;
+      sessionTemp.isLogin = true;
+      console.log(userInfo);
+      req.session.data = {
+        id: userInfo.id,
+        name: userInfo.name,
+        email: userInfo.email
+      };
+      sessionTemp.cookie.expires = new Date(Date.now() + 72 * 3600000);
       res.send({
         result: true,
         msg: `${userInfo.name}님 환영합니다`,

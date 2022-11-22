@@ -30,6 +30,22 @@ nav {
   padding-left: 30px;
 }
 
+#nav_user_info {
+  text-align: center;
+}
+#nav_user_info .userName {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+#nav_user_info .userEmail {
+  font-size: 0.6rem;
+  color: gray;
+}
+#logout {
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+
 /*구글로그인 성공시 보이는 프로필 div - 위치 보려고 일단 백그라운드 색상 넣어놓았습니다*/
 /*
 .gUserProfile {
@@ -49,3 +65,4 @@ nav {
   text-align: center;
   margin: 50px 0;
 }
+

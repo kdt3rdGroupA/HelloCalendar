@@ -17,6 +17,10 @@ const Login = (Sequelize, DataTypes) => {
         type: DataTypes.STRING(20),
         allowNull: false,
       },
+      email: {
+        type: DataTypes.STRING(50),
+        allowNull: false
+      },
       salt: {
         type: DataTypes.STRING(200),
         allowNull: false,

@@ -18,7 +18,18 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-  res.render('index');
+  console.log(typeof(req.session.isLogin));
+  if (req.session.isLogin == true) {
+    console.log(1);
+    res.render('index', {
+      isLogin : true,
+      name : req.session.data.name,
+      email : req.session.data.email
+      });
+  } else {
+    console.log(2);
+    res.render('index', {isLogin : false});
+  }
 });
 
 // login과 관련된 인증들

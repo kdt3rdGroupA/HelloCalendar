@@ -114,6 +114,38 @@ exports.signup = (req, res) => {
       });
       return 0;
     }
+  })
+  .then(result => {
+  if (result != null) {
+    res.send({result:false, msg:"사용할 수 없는 아이디입니다", data:null});
+    return 0;
+  }
+  // 아이디 중복 검사
+  // 프론트에서 아이디 검사를 받지 않으면 submit 제한
+  let emailAuthAddress = req.session.emailAuthAddress;
+  let emailAuthNum = data.emailAuthNum;
+  let emailAuthInputHash = crypto.createHash('sha512').update(emailAuthAddress+emailAuthNum).digest('hex');
+  if (req.session.emailAuthHash != emailAuthInputHash) {
+    res.send({result:false, msg:"이메일 인증에 문제가 있습니다", data:null});
+    req.session.destroy();
+    return 0;
+  }
+  // 이메일 인증
+  // 프론트에서 이메일 인증 버튼을 누르지 않으면 submit 제한
+  // 유효성검사 끝, 데이터베이스 입력
+  let salt = crypto.pseudoRandomBytes(128).toString('base64');
+  let hashPW = crypto.createHash('sha512').update(data.pw+salt).digest('hex');
+  models.Login.create({
+    userid : data.userid,
+    name : data.name,
+    email : emailAuthAddress,
+    salt : salt,
+    hash_pw : hashPW
+  })
+  .then(result => {
+    req.session.isLogin = false;
+    res.send({result:true, msg:"회원가입 완료!", data:null});
+
     // 아이디 중복 검사
     // 프론트에서 아이디 검사를 받지 않으면 submit 제한
     let emailAuthAddress = req.session.emailAuthAddress;
@@ -199,12 +231,8 @@ exports.pwReset = (req, res) => {
     .update(emailAuthAddress + emailAuthNum)
     .digest("hex");
   if (req.session.emailAuthHash != emailAuthInputHash) {
-    res.send({
-      result: false,
-      msg: "이메일 인증에 문제가 있습니다",
-      data: null,
-    });
-    res.session.destroy();
+    res.send({result:false, msg:"이메일 인증에 문제가 있습니다", data:null});
+    req.session.destroy();
     return 0;
   }
   let salt = crypto.pseudoRandomBytes(128).toString("base64");
@@ -222,9 +250,10 @@ exports.pwReset = (req, res) => {
         email: emailAuthAddress,
       },
     }
-  ).then(() => {
-    res.session.destroy();
-    res.send({ result: true, msg: "비밀번호 재설정 완료", data: null });
+  )
+  .then(() => {
+    req.session.destroy();
+    res.send({result : true, msg : "비밀번호 재설정 완료", data:null});
   });
 };
 exports.pwChange = (req, res) => {

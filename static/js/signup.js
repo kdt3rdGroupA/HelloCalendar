@@ -1,3 +1,6 @@
+const URL = "http://localhost";
+const PORT = 8000;
+
 const id = document.querySelector("#id");
 const pw = document.querySelector("#pw");
 const name = document.querySelector("#name");
@@ -83,6 +86,7 @@ function register() {
     email.style.borderColor = "black";
   }
 
+  // email 인증코드 유효성 검사
   if (!emailcode.checkValidity() && emailcode.classList.contains("show")) {
     warningEmailcode.style.display = "block";
     warningEmailcode.textContent = "❗️인증코드를 입력해 주세요";
@@ -91,6 +95,23 @@ function register() {
     warningEmailcode.style.display = "none";
     emailcode.style.borderColor = "black";
   }
+
+  axios({
+    method: 'POST',
+    url: '/login/signup',
+    params: {
+      name: name.value,
+      userid: id.value,
+      pw: pw.value,
+      emailAuthNum: emailcode.value
+    }
+  }).then(result => {
+    let data = result.data;
+    if (data.result == true) {
+      location.replace(`${URL}:${PORT}/login`);
+    } 
+    //나중에할것 오류경우에따라 data에 오류경우 담아서 받고 alert 뛰우기
+  });
 }
 
 // 이메일 인증 코드창 띄우기
@@ -152,6 +173,7 @@ document.querySelector("#idSignup .idBtn").addEventListener("click", () => {
   }).then((result) => {
     console.log(result);
     let data = result.data;
+    console.log(result);
     console.log("여기서 CSS, 회원가입 버튼 로직 설정하시면 됩니다");
     //  응답 -> result.data = {result:"", msg="", data={}}
     //    result:

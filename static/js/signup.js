@@ -1,5 +1,5 @@
 const URL = "http://localhost";
-const PORT = 8000;
+const PORT = 8001;
 
 const id = document.querySelector("#id");
 const pw = document.querySelector("#pw");
@@ -107,7 +107,6 @@ function register() {
     }
   }).then(result => {
     let data = result.data;
-    console.log(data);
     if (data.result == true) {
       
       location.replace(`${URL}:${PORT}/login`);

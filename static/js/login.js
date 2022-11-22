@@ -1,4 +1,5 @@
-const { render } = require("ejs");
+const URL = "http://localhost";
+const PORT = 8001;
 
 function login() {
   const form_login = document.forms["form_login"];
@@ -25,6 +26,26 @@ function login() {
     warningPw.style.display = "none";
     pw.style.borderColor = "black";
   }
+
+  // 로그인 요청
+  axios({
+    method: 'POST',
+    url: '/login',
+    params: {
+      userid: id.value,
+      pw: pw.value
+    }
+  })
+  .then(result => {
+    let data = result.data;
+    if (data.result) {
+      location.replace(`${URL}:${PORT}`);
+    } else {
+      id.value = "";
+      pw.value = "";
+      alert("아이디 또는 패스워드가 일치하지 않습니다.");
+    }
+  });
 }
 
 // enter 전송

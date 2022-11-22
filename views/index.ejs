@@ -32,6 +32,9 @@
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"
     ></script>
+
+    <!-- Axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <!-- header: 로고, 설명서, 로그인-->
@@ -39,9 +42,18 @@
       <nav>
         <h3 class="headerLogo">HELLO CALENDAR</h3>
         <div class="headerContent">
-
-          <h3><a href="/manual" target="_blank">설명서</a></h3>
-          <h3 class="headerLogin"><a href="/login">로그인</a></h3>
+          <!-- <h3><a href="/manual" target="_blank">설명서</a></h3> -->
+          <!-- 이걸쓸일이있을까 -->
+          <% if(isLogin){ %>
+            <div id="nav_user_info">
+              <h3 class="userName"><%=name%></h3>
+              <div class="userEmail"><%=email%></div>
+            </div>
+            <h3 id="logout">로그아웃</h3>
+          <% }else{ %>
+            <h3><a href="/login/signup">회원가입</a></h3>
+            <h3 class="headerLogin"><a href="/login">로그인</a></h3>
+          <% } %>
 
         </div>
       </nav>
@@ -49,7 +61,6 @@
 
     <!--구글 로그인 성공시 보이는 구글 계정 프로필: 잘되면 프로필 정보 가져와서 보여줄 예정이었으나 일단 보류-->
     <!-- <div class="gUserProfile"></div> -->
-
 
     <main>
       <!-- 검색바 -->
@@ -145,10 +156,14 @@
       <div class="todoTab"></div>
     </div>
 
+    
+
     <!-- JS: calendar -->
     <script src="../static/js/calendar.js"></script>
 
     <!-- JS: todolist -->
     <script src="../static/js/todolist.js"></script>
+
+    <script src="../static/js/index.js"></script>
   </body>
 </html>

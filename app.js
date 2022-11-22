@@ -1,9 +1,10 @@
 const express = require('express');
 const session = require('express-session');
+const bodyParser = require('body-parser')
 const app = express();
 const http = require('http').Server(app);
 
-const PORT = 8000;
+const PORT = 8001;
 
 app.set('view engine', 'ejs');
 app.use('/views', express.static(__dirname + '/views'));
@@ -16,7 +17,6 @@ app.use(session({
   saveUninitialized : true
 }));
 
-
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -25,6 +25,36 @@ app.get('/', (req, res) => {
 const loginRouter = require('./routes/login');
 app.use('/login', loginRouter);
 
+// todo 관련
+const todoRouter = require('./routes/todo');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
+app.use('/todo', todoRouter); 
+
+// app.use(express.bodyParser());			// 요청 본문 파싱
+// app.use(bodyParser);			// 요청 본문 파싱
+// // app.use('/todo.list', todoRouter.list); //get
+
+// app.use('/', todoRouter.index); // get
+// app.use('/list', todoRouter.list);  // get
+// app.use('/add', todoRouter.add); //  post
+// app.use('/complete', todoRouter.complete); //  post
+// app.use('/del', todoRouter.del); //  post
+
+
+
+
+
+
+// manual 페이지 새창에 랜더
+app.get('/manual', (req, res) => {
+  res.render('manual');
+  // res.render('manual', { title: 'id님 환영' });
+});
 
 // 404 Page
 app.get('*', (req,res) => {

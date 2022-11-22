@@ -4,7 +4,6 @@ const crypto = require('crypto');
 const googleKeys = require('../../authinfo/emailkey');
 // nodejs의 내장 모듈
 const nodemailer = require('nodemailer');
-const { INTEGER } = require("sequelize");
 
 
 const salt = crypto.pseudoRandomBytes(128).toString("base64");
@@ -207,4 +206,12 @@ const emailAuth = address => {
 
 // let authNum = emailAuthTest("cchs12123@kakao.com");
 // console.log(authNum);
-console.log(crypto.pseudoRandomBytes(5).toString('base64'));
+// console.log(crypto.pseudoRandomBytes(5).toString('base64'));
+models.Todo.findOne({
+  where :  {
+    key_id : 3
+  }
+})
+.then(result => {
+  console.log(result);
+});

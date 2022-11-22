@@ -23,39 +23,76 @@
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"
     ></script>
+    <!-- Axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div id="loginContainer">
       <div id="loginContents">
         <div id="login">
-          <div id="title">회원가입</div>
+          <div id="titleSignup">회원가입</div>
           <!-- 자체 회원가입 -->
           <form name="form_signup">
             <div id="idSignup">
+              <!-- 이름 -->
               <input
                 type="text"
                 id="name"
+                class="input"
                 name="username"
                 placeholder="이름"
                 required
               />
               <div class="warningName warning"></div>
-              <input
-                type="text"
-                id="id"
-                name="userid"
-                placeholder="ID"
-                required
-              />
+              <!-- 아이디 -->
+              <div>
+                <input
+                  type="text"
+                  id="id"
+                  class="input"
+                  name="userid"
+                  placeholder="ID"
+                  required
+                />
+                <button type="button" class="idBtn" onclick="idBtn()">
+                  ID 중복 검사
+                </button>
+              </div>
               <div class="warningId warning"></div>
+              <!-- 비밀번호 -->
               <input
                 type="password"
                 id="pw"
+                class="input"
                 name="userpw"
                 placeholder="Password"
                 required
               />
               <div class="warningPw warning"></div>
+              <!-- 이메일 -->
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  class="input"
+                  name="useremail"
+                  placeholder="email"
+                  required
+                />
+                <button type="button" class="emailBtn" onclick="emailCode()">
+                  이메일 인증
+                </button>
+              </div>
+              <div class="warningEmail warning"></div>
+              <input
+                type="text"
+                id="emailcode"
+                class="noshow input"
+                name="userEmailCode"
+                placeholder="이메일 인증 코드"
+                required
+              />
+              <div class="warningEmailcode warning"></div>
             </div>
           </form>
           <!-- 로그인 버튼 -->
@@ -74,5 +111,6 @@
       </div>
     </div>
     <script src="/static/js/signup.js"></script>
+    <script></script>
   </body>
 </html>

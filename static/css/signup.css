@@ -22,8 +22,9 @@ body {
   font-family: "Pretendard-Regular";
 }
 
-#title {
-  margin-top: 30px;
+#titleSignup {
+  margin-bottom: 10px;
+  font-size: 40px;
   font-family: "IBMPlexSansKR-Regular";
   font-weight: 600;
 }
@@ -40,4 +41,19 @@ body {
   height: 35px;
   padding-left: 20px;
   margin-top: 20px;
+}
+
+.idBtn,
+.emailBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.noshow {
+  display: none;
+}
+
+.show {
+  display: block;
 }

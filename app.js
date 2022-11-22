@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 const loginRouter = require('./routes/login');
 app.use('/login', loginRouter);
 
+<<<<<<< dh
 // todo 관련
 const todoRouter = require('./routes/todo');
 app.use('/todo', todoRouter); 

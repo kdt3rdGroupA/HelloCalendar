@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
 
-const PORT = 8001;
+const PORT = 8000;
 
 app.set('view engine', 'ejs');
 app.use('/views', express.static(__dirname + '/views'));

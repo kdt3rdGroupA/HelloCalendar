@@ -14,7 +14,7 @@ exports.index = (req, res) => {
 exports.list = (req, res) => {	// ToDo 목록 가져오기
   console.log('돌아?'); //안돌아 ㅅㅂ
 
-	fs.exists('./todo_list.json', (exists) => {	// ToDo 목록 존재 확인
+	fs.exists('./todo_list.json', (exists) => {	// ToDo 목록 존재 확인 (fs 모듈에서 제공하는)
 		if(exists) {
 			fs.readFile('./todo_list.json', {
 				'encoding': 'utf8'

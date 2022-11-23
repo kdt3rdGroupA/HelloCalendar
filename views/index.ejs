@@ -41,22 +41,20 @@
     <header>
       <nav>
         <div class="headerShortcut">바로가기 추가예정</div>
-        <h3 class="headerLogo">HELLO CALENDAR
-        </h3>
+        <h3 class="headerLogo">HELLO CALENDAR</h3>
         <div class="headerContent">
           <!-- <h3><a href="/manual" target="_blank">설명서</a></h3> -->
           <!-- 이걸쓸일이있을까 -->
           <% if(isLogin){ %>
-            <div id="nav_user_info">
-              <h3 class="userName"><%=name%></h3>
-              <div class="userEmail"><%=email%></div>
-            </div>
-            <h3 id="logout">로그아웃</h3>
+          <div id="nav_user_info">
+            <h3 class="userName"><%=name%></h3>
+            <div class="userEmail"><%=email%></div>
+          </div>
+          <h3 id="logout">로그아웃</h3>
           <% }else{ %>
-            <h3><a href="/login/signup">회원가입</a></h3>
-            <h3 class="headerLogin"><a href="/login">로그인</a></h3>
+          <h3><a href="/login/signup">회원가입</a></h3>
+          <h3 class="headerLogin"><a href="/login">로그인</a></h3>
           <% } %>
-
         </div>
       </nav>
     </header>
@@ -67,7 +65,7 @@
     <main>
       <!-- 검색바 -->
       <div class="searchBar">
-        <input type="text" id="search_text" placeholder="Google" autofocus>
+        <input type="text" id="search_text" placeholder="Google" autofocus />
         <button id="search_btn">Search</button>
       </div>
 
@@ -142,6 +140,48 @@
 
       <!-- 캘린더: 새 버전-->
       <div class="calendarRap">
+        <div class="scheduleContent">
+          <div class="dayWrap">
+            <div id="nowDay" class="nowDay"></div>
+            <div id="nowDate" class="nowDate"></div>
+          </div>
+          <div class="scheculeWrap">
+            <div class="scheduleTitle">일정 등록</div>
+            <div class="inputWrap">
+              <input
+                type="text"
+                placeholder="write here"
+                id="input"
+                class="input"
+              />
+              <button type="button" id="inputBtn" class="inputBtn">
+                INPUT
+              </button>
+              <div id="list" class="list"></div>
+            </div>
+          </div>
+        </div>
+        <div class="calendarContent">
+          <div class="calendarHeader">
+            <div class="calendarBtn calPrevDay"></div>
+            <h2 class="dateTitle"></h2>
+            <div class="calendarBtn nextDay"></div>
+          </div>
+
+          <div class="grid dateHead">
+            <div class="dateHeadSun">SUN</div>
+            <div>MON</div>
+            <div>TUE</div>
+            <div>WED</div>
+            <div>THU</div>
+            <div>FRI</div>
+            <div class="dateHeadSat">SAT</div>
+          </div>
+
+          <div class="grid dateBoard"></div>
+        </div>
+      </div>
+      <!-- <div class="calendarRap">
         <div class="calendarHeader">
           <div class="calendarBtn calPrevDay"></div>
           <h2 class='dateTitle'></h2>
@@ -159,15 +199,15 @@
         </div>
     
         <div class="grid dateBoard"></div>
-      </div>
+      </div> -->
     </main>
-
 
     <!-- TodoList -->
     <div class="todoTabs">
       <div class="todoTab">
         <a href="/todo">todo 전체보기</a>
-        <table class="table">	<!-- ToDo 목록 -->
+        <table class="table">
+          <!-- ToDo 목록 -->
           <thead>
             <tr>
               <th>index</th>
@@ -182,8 +222,6 @@
       </div>
       <div class="todoTab"></div>
     </div>
-
-    
 
     <!-- JS: calendar -->
     <script src="../static/js/calendar.js"></script>

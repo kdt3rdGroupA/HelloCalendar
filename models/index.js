@@ -15,5 +15,6 @@ db.Sequelize = Sequelize;
 // db.(모델스파일) = require(경로)(sequelize, Sequelize);
 db.Login = require("./Login")(sequelize, Sequelize);
 db.Todo = require("./Todo")(sequelize, Sequelize);
+db.Calendar = require("./Calendar")(sequelize, Sequelize);
 
 module.exports = db;

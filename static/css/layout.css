@@ -15,10 +15,11 @@ nav {
 
 .headerLogo {
   font-family: 'Amiko', sans-serif;
-  font-size: 25px;
+  font-size: 40px;
   background: linear-gradient(to right top, #003efa, #00d2fc);
   color: transparent;
   -webkit-background-clip: text;
+  margin-top: 50px;
 }
 
 .headerContent {
@@ -44,6 +45,7 @@ nav {
 #logout {
   font-size: 1rem;
   margin-top: 1.5rem;
+  cursor: pointer;
 }
 
 /*구글로그인 성공시 보이는 프로필 div - 위치 보려고 일단 백그라운드 색상 넣어놓았습니다*/

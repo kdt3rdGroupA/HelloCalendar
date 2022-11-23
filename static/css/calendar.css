@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
 /*캘린더 css : 현승님 버전*/
 /* header {
   width: 100vw;
@@ -24,21 +29,66 @@
 }
 .Sat {
   color: blue;
-} */
-
+}
+*/
+}
+/* 여기서 부터 검색바 */
+.searchBar {
+  display: flex;
+  justify-content: center;
+}
+#search_text {
+  width: 55vw;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  border-radius: 1.2rem 0 0 1.2rem;
+  padding: 0 0 0 2rem;
+  background-color: lightgray;
+  border: 0;
+  font-size: 1.2rem;
+}
+#search_btn {
+  width: 5rem;
+  height: 2.4rem;
+  border-radius: 0 1.2rem 1.2rem 0;
+  border: 0;
+  background-color: skyblue;
+  color: white;
+  cursor: pointer;
+}
+#search_btn:hover {
+  background-color: royalblue;
+  transition: 0.5s;
+}
+#search_btn:not(:hover) {
+  transition: 0.5s;
+}
 
 
 /* 달력 css: 새 버전 */
+/* Calendar */
 .calendarRap {
   margin-left: 20rem;
+  font-family: 'Amiko', sans-serif;
 }
 
+/* SUN ~ SAT */
 .dateHead div {
-  background:linear-gradient(to right top, #003efac3, #00d2fcdc);
-  color: rgb(252, 250, 250);
+  /* background:linear-gradient(to right top, #003efac3, #00d2fcdc); */
+  /* color: rgb(252, 250, 250); */
   opacity: 0.8;
   text-align: center;
   border-radius: 5px;
+}
+
+/* SUN font color */
+.dateHeadSun {
+  color: red;
+}
+
+/* SAT font color */
+.dateHeadSat {
+  color: blue;
 }
 
 .grid {
@@ -47,24 +97,31 @@
   grid-gap: 1px;
 }
 
+/* 
 .grid div {
-  font-size: .9rem;
-}
+  font-size: 1rem;
+} */
 
+/* 날짜 */
 .dateBoard div {
   color: #222;
   font-weight: bold;
-  min-height: 6rem;
-  padding: .6rem .8rem;
-  border-radius: 5px;
-  border: 1px solid #eee;
+  height: 5rem;
+  padding: 1rem 1rem;
+  /* border-radius: 5px; */
+  /* border: 1px solid #eee; */
   cursor: pointer;
+
+  text-align: center;
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.728);
 }
 
-.noColor {
+/* .noColor {
   background: #eee;
-}
+} */
 
+/* 버튼 및 xx년 xx월 */
 .calendarHeader {
   display: flex;
   justify-content: space-between;
@@ -81,11 +138,13 @@
  cursor: pointer;
 }
 
+/* 지난 달 보기 */
 .calPrevDay {
   transform: rotate(-135deg);
   margin-top: 5px;
 }
 
+/* 다음 달 보기 */
 .nextDay {
   transform: rotate(45deg);
   margin-top: 5px;
@@ -109,12 +168,14 @@
 }
 
 .dateHead {
-  margin: .4rem 0;
+  margin-top: 2rem;
+  margin-bottom: .5rem;
   height: 20px;
 }
 
 .dateTitle {
   font-size: 20px;
+  color: rgba(0, 0, 0, 0.817);
 }
 
 

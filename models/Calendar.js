@@ -1,38 +1,40 @@
-const Todo = (Sequelize, DataTypes) => {
+
+const Calendar = (Sequelize, DataTypes) => {
   const model = Sequelize.define(
-    "todoex",
+    "calendar",
     {
-      id : {
+      id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
-      key_id : {
+      key_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      task : {
-        type: DataTypes.STRING(50)
+      name: {
+        type: DataTypes.STRING(20),
+        allowNull: false
       },
-      priority : {
-        type: DataTypes.STRING(10)
+      detail: {
+        type: DataTypes.STRING(200),
       },
-      startline: {
+      startDate: {
         type: DataTypes.STRING(20)
       },
-      deadline: {
+      endDate: {
         type: DataTypes.STRING(20)
       }
     }, {
-      tableName: 'todoex',
+      tableName: 'calendar',
       freezeTableName: true,
       timestamps: false,
-      indexes: [{
-        name: "key_id",
+      index: [{
+        name: 'key_id',
         using: 'BTREE',
         fields: [{
-          name: "key_id",
+          name: 'key_id',
           collate: 'utf8_general_ci',
           order: 'DESC'
         }]
@@ -42,4 +44,4 @@ const Todo = (Sequelize, DataTypes) => {
   return model;
 };
 
-module.exports = Todo;
+module.exports = Calendar;

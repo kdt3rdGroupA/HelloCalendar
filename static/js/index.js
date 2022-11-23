@@ -45,3 +45,27 @@ if (logout != null) {
     });
   });
 }
+
+selector(".searchBar").addEventListener('keydown', event => {
+  // print(event, true);
+  if (event.code != "Enter") {
+    return 0;
+  }
+  if (!selector("#search_text").value.length) {
+    return 0;
+  }
+  if (event.isComposing == false) {
+    let target = selector("#search_text").value;
+    window.open(`https://www.google.com/search?q=${target}`, '_blank');
+    return 1;
+  }
+});
+selector("#search_btn").addEventListener("click", () => {
+  if (!selector("#search_text").value.length) {
+    return 0;
+  }
+  let target = selector("#search_text").value;
+  window.open(`https://www.google.com/search?q=${target}`, '_blank');
+  return 1;
+
+});

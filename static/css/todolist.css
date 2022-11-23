@@ -1,6 +1,9 @@
 .todoTabs {
   position: absolute;
   top : 20vh;
+
+  width: 10px;
+  height: 10px;
 }
 .todoTab {
   width: 60vw;

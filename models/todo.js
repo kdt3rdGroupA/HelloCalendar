@@ -1,6 +1,6 @@
 const Todo = (Sequelize, DataTypes) => {
   const model = Sequelize.define(
-    "todo",
+    "todoex",
     {
       id : {
         type: DataTypes.INTEGER,
@@ -12,17 +12,20 @@ const Todo = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      text : {
+      task : {
         type: DataTypes.STRING(50)
       },
       priority : {
         type: DataTypes.STRING(10)
       },
+      startline: {
+        type: DataTypes.STRING(20)
+      },
       deadline: {
         type: DataTypes.STRING(20)
       }
     }, {
-      tableName: 'todo',
+      tableName: 'todoex',
       freezeTableName: true,
       timestamps: false,
       indexes: [{

@@ -1,34 +1,34 @@
 // 캘린더 js : 현승님 버전
-// const d = document;
-// const print = (target, dir=false) => {
-// dir ? console.dir(target) : console.log(target);
-// }
-// const selector = (target, from=d) => {
-//   return from.querySelector(target);
-// }
-// const selectorAll = (target, from=d) => {
-//   return from.querySelectorAll(target);
-// }
-// const addClass = function (element, classStr) {
-//   element.classList.add(classStr);
-// };
-// const removeClass = function (element, classStr) {
-//   element.classList.remove(classStr);
-// };
-// const toggleClass = function (element, classStr) {
-//   element.classList.toggle(classStr);
-// };
-// const hasClass = function (element, className) {
-//   return element.classList.contains(className);
-// };
-// const clearClass = function (element) {
-//   while (element.classList.length > 0) {
-//     removeClass(element, element.classList.item(0));
-//   }
-// };
-// const create = function (tagStr) {
-//   return d.createElement(tagStr);
-// };
+const d = document;
+const print = (target, dir=false) => {
+dir ? console.dir(target) : console.log(target);
+}
+const selector = (target, from=d) => {
+  return from.querySelector(target);
+}
+const selectorAll = (target, from=d) => {
+  return from.querySelectorAll(target);
+}
+const addClass = function (element, classStr) {
+  element.classList.add(classStr);
+};
+const removeClass = function (element, classStr) {
+  element.classList.remove(classStr);
+};
+const toggleClass = function (element, classStr) {
+  element.classList.toggle(classStr);
+};
+const hasClass = function (element, className) {
+  return element.classList.contains(className);
+};
+const clearClass = function (element) {
+  while (element.classList.length > 0) {
+    removeClass(element, element.classList.item(0));
+  }
+};
+const create = function (tagStr) {
+  return d.createElement(tagStr);
+};
 // const monthDays = {
 //   "01" : 31, 1 : 31, "Jan": 31,
 //   "02" : 28, 2 : 28, "Feb": 28,

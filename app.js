@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
 
@@ -9,7 +9,7 @@ const PORT = 8001;
 app.set('view engine', 'ejs');
 app.use('/views', express.static(__dirname + '/views'));
 app.use('/static', express.static(__dirname + '/static'));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // body-parser post 요청 할 때 body로 받게해줌 
 app.use(express.json());
 app.use(session({
   secret : "\(^Д^)/\(^Д^)/\(^Д^)/\(^Д^)/",
@@ -45,21 +45,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-
-// app.use(express.bodyParser());			// 요청 본문 파싱
-// app.use(bodyParser);			// 요청 본문 파싱
-// // app.use('/todo.list', todoRouter.list); //get
-
-// app.use('/', todoRouter.index); // get
-// app.use('/list', todoRouter.list);  // get
-// app.use('/add', todoRouter.add); //  post
-// app.use('/complete', todoRouter.complete); //  post
-// app.use('/del', todoRouter.del); //  post
-
-
-
-
-
+app.use(bodyParser());			// 요청 본문 파싱
 
 // manual 페이지 새창에 랜더
 app.get('/manual', (req, res) => {

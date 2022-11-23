@@ -39,11 +39,13 @@ CREATE TABLE todoex (
 -- 일단 이대로 
 
 CREATE USER 'user1'@'%' IDENTIFIED BY '$user1*';
-
 GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;
+  -- 유저 생성, 권한부여
 
 FLUSH PRIVILEGES;
+  -- 유저생성, 권한 작업하고 해주는것을 권장
 
 DESC user_login_key;
 DESC todo;
 SHOW tables;
+

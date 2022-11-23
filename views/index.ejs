@@ -41,7 +41,11 @@
     <header>
       <nav>
         <div class="headerShortcut">바로가기 추가예정</div>
-        <h3 class="headerLogo">HELLO CALENDAR</h3>
+          <% if(isLogin){ %>
+            <h3 class="headerLogo">HELLO <%=name%>!</h3>
+          <% }else{ %>
+            <h3 class="headerLogo">HELLO CALENDAR</h3>
+          <% } %>
         <div class="headerContent">
           <!-- <h3><a href="/manual" target="_blank">설명서</a></h3> -->
           <!-- 이걸쓸일이있을까 -->

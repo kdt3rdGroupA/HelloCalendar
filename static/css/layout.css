@@ -3,7 +3,7 @@ body {
   /* background-color: blanchedalmond; */
   /* color: black; */
   overflow: hidden;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 nav {
@@ -14,7 +14,7 @@ nav {
 }
 
 .headerLogo {
-  font-family: 'Amiko', sans-serif;
+  font-family: "Amiko", sans-serif;
   font-size: 40px;
   background: linear-gradient(to right top, #003efa, #00d2fc);
   color: transparent;
@@ -27,7 +27,7 @@ nav {
 }
 
 .headerContent h3 {
-  font-family: 'Amiko', sans-serif;
+  font-family: "Amiko", sans-serif;
   padding-left: 30px;
 }
 
@@ -67,4 +67,3 @@ nav {
   text-align: center;
   margin: 50px 0;
 }
-

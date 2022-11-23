@@ -2,7 +2,7 @@ body {
   margin: 0;
   /* background-color: blanchedalmond; */
   /* color: black; */
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: "Noto Sans", sans-serif;
 }
 

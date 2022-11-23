@@ -29,6 +29,10 @@ const clearClass = function (element) {
 const create = function (tagStr) {
   return d.createElement(tagStr);
 };
+
+
+// 다른 파일에서 사용되는 함수여서 const d ~ const create 까지는 주석처리 하지 말아주세요
+
 // const monthDays = {
 //   "01" : 31, 1 : 31, "Jan": 31,
 //   "02" : 28, 2 : 28, "Feb": 28,

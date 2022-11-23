@@ -97,9 +97,14 @@ exports.todoList = (req, res) => {
     res.send({result:false, msg:"로그인 되지 않았습니다", data:null});
       return 0;
   }
-  // models.Todo.findAll({
-  //   where: {
-      
-  //   }
-  // })
+	let data = req.session.data;
+  models.Todo.findAll({
+    where: {
+			key_id: data.id
+    }
+  })
+	.then(result => {
+		console.log(result);
+		console.log(result.dataValue);
+	});
 }

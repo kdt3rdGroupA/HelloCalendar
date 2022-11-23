@@ -57,8 +57,7 @@ exports.signupPage = (req, res) => {
   res.render("signup");
 };
 exports.pwResetPage = (req, res) => {
-  console.log(null);
-  // res.render("pwreset");
+  res.render("pwreset");
 };
 exports.pwChangePage = (req, res) => {
   console.log(null);
@@ -88,7 +87,6 @@ exports.login = (req, res) => {
       .digest("hex");
     if (userInfo.hash_pw == inputPwHash) {
       sessionTemp.isLogin = true;
-      console.log(userInfo);
       req.session.data = {
         id: userInfo.id,
         name: userInfo.name,
@@ -161,7 +159,6 @@ exports.emailAuth = (req, res) => {
   res.send({ result: true, msg: "인증메일 발송 완료", data: null });
 };
 exports.idCheck = (req, res) => {
-  console.log(req.query);
   let userid = req.query.userid;
   models.Login.findOne({
     where: {
@@ -215,8 +212,15 @@ exports.pwReset = (req, res) => {
     }
   )
   .then(() => {
-    req.session.destroy();
-    res.send({result : true, msg : "비밀번호 재설정 완료", data:null});
+  models.Login.findOne({
+    where: {
+      email: req.session.emailAuthAddress
+    }
+  })
+  .then(result => {
+    let userInfo = result.dataValues;
+    res.send({result : true, msg : "비밀번호 재설정 완료", data:{id: userInfo.userid}});
+  })
   });
 };
 exports.pwChange = (req, res) => {

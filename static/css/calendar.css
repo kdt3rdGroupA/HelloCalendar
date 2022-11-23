@@ -106,9 +106,9 @@ header {
 .dateBoard div {
   color: #222;
   font-weight: bold;
-  min-height: 6rem;
-  padding: .6rem .8rem;
-  border-radius: 5px;
+  height: 5rem;
+  padding: 1rem 1rem;
+  /* border-radius: 5px; */
   /* border: 1px solid #eee; */
   cursor: pointer;
 

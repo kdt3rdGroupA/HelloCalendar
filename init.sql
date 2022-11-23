@@ -28,8 +28,8 @@ CREATE TABLE todo (
   -- 데이터가 많을시 검색성능 저하방지를 위해 INDEX설정
 
 CREATE USER 'user1'@'%' IDENTIFIED BY '$user1*';
-
 GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;
+  -- 유저 생성, 권한부여
 
 FLUSH PRIVILEGES;
-
+  -- 유저생성, 권한 작업하고 해주는것을 권장

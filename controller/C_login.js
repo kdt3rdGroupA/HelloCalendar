@@ -2,8 +2,8 @@ const models = require("../models");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const emailKey = require("../authinfo/emailkey");
-const session = require("express-session");
-const { user } = require("../authinfo/emailkey");
+// const session = require("express-session");
+// const { user } = require("../authinfo/emailkey");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",

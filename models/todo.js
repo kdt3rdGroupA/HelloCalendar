@@ -12,14 +12,23 @@ const Todo = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      text : {
+      task : {
         type: DataTypes.STRING(50)
       },
       priority : {
-        type: DataTypes.STRING(10)
+        type: DataTypes.INTEGER
+      },
+      startline: {
+        type: DataTypes.STRING(20)
       },
       deadline: {
         type: DataTypes.STRING(20)
+      },
+      complete: {
+        type: DataTypes.BOOLEAN
+      },
+      business: {
+        type: DataTypes.BOOLEAN
       }
     }, {
       tableName: 'todo',

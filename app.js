@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const http = require("http").Server(app);
 
-const PORT = 8001;
+const PORT = 8000;
 
 app.set("view engine", "ejs");
 app.use("/views", express.static(__dirname + "/views"));
@@ -20,16 +20,13 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  console.log(typeof req.session.isLogin);
   if (req.session.isLogin == true) {
-    console.log(1);
     res.render("index", {
       isLogin: true,
       name: req.session.data.name,
       email: req.session.data.email,
     });
   } else {
-    console.log(2);
     res.render("index", { isLogin: false });
   }
 });
@@ -42,12 +39,13 @@ app.use("/login", loginRouter);
 const todoRouter = require("./routes/todo");
 app.use("/todo", todoRouter);
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+const calendarRouter = require("./routes/calendar");
+app.use("/calendar", calendarRouter);
 
 // parse application/json
-app.use(bodyParser.json());
-app.use(bodyParser()); // 요청 본문 파싱
+app.use(express.json());
+// app.use(express.bodyParser()); // bodyparser 더이상 못씀
+// app.use(bodyParser());			// 요청 본문 파싱
 
 // manual 페이지 새창에 랜더
 app.get("/manual", (req, res) => {

@@ -7,7 +7,6 @@
 		<title>todo페이지</title>
 		<style>
 			.complete{
-				/* color: blue; */
 				text-decoration: line-through;
 				opacity: 0.5;
 			}
@@ -34,29 +33,37 @@
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"
     ></script>
+
+		<!-- Axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
 		<h1><%= title %></h1>
 		<fieldset>
 		<legend>Welcome <%= name %></legend>
-		<form class="todoForm">
+		<form class="todoForm" name="todoForm">
 			<div class="inputGroup">
 				<div class="priorityBox">우선순위
-					<input type="radio"  id="priority" value="1" checked>1</input>
-					<input type="radio"  id="priority" value="2">2</input>
-					<input type="radio"  id="priority" value="3">3</input>
+					<input type="radio" name="'priority" id="priority" value="1" checked>1</input>
+					<input type="radio" name="'priority" id="priority" value="2">2</input>
+					<input type="radio" name="'priority" id="priority" value="3">3</input>
 				</div>
-				시작<input type="date" class="form-control" id="startdate" placeholder="초기날짜">
-				~끝<input type="date" class="form-control" id="enddate" placeholder="초기날짜">
+				<!-- <div class="business"> -->
+					<input type="checkbox" name="'business" id="business">공적인 일</input>
+
+				<!-- </div> -->
+				시작<input type="date" class="form-control" id="startline" placeholder="초기날짜">
+				~끝<input type="date" class="form-control" id="deadline" placeholder="초기날짜">
 				<input type="text" class="formElement" id="task" name="task" placeholder="새로운 할 일">
-				<button type="button" class="todoSubmit">등록</button>
+				<button type="button" class="todoSubmit" onclick="todoSubmit()">등록</button>
 			</div>
 		</form>
 		</fieldset>
-		<table class="table">	<!-- ToDo 목록 -->
+		<table class="table" border="1">	<!-- ToDo 목록 -->
 			<thead>
 				<tr>
-					<th>index</th>
+					<th>사적/공적</th>
+					<th>우선순위</th>
 					<th>시작날짜</th>
 					<th>마감날짜</th>
 					<th>내용</th>
@@ -64,10 +71,30 @@
 					<th>삭제</th>
 				</tr>
 			</thead>
-			<tbody>
-				
+			<tbody name="">
+					<% for (let i = 0; i < data.length; i++) { %>
+						<tr id="tr_<%= data[i].id %>">
+							
+							<!-- 1번 -->
+							<% if(!data[i].business){ %><td>사적</td>
+								<% }else {%> <td>공적</td>
+							<% } %>
+
+							<td><%= data[i].priority %></td>
+							<td><%= data[i].startline %></td>
+							<td><%= data[i].deadline %></td>
+							<td><%= data[i].task %></td>
+							<td><button type="button" class="btnComplete" onclick="complete('<%= data[i].id %>')">완료</button></td> 
+							<td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
+						</tr>
+					<% } %>
+					<!-- tr에 complete class 넣으면 투명도 0.5+삭선 -->
+					<!-- <td class="'(list[i].complete ? 'complete' : 'notcomplete') + '">' + list[i].startdate + '</td>-->
+					
 			</tbody>
 		</table>
+		<a href="/">home</a>
 	</body>
-	<script src="../static/js/todo.js"></script>	<!-- ToDo 기능 구현 내용 -->
+	<!-- ToDo 기능 구현 내용 -->
+	<script src="../static/js/todo.js"></script>	
 </html>

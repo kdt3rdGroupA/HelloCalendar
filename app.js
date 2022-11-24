@@ -21,11 +21,13 @@ app.use(
 
 app.get("/", (req, res) => {
   if (req.session.isLogin == true) {
+
     res.render("index", {
       isLogin: true,
       name: req.session.data.name,
       email: req.session.data.email,
     });
+
   } else {
     res.render("index", { isLogin: false });
   }
@@ -36,11 +38,20 @@ const loginRouter = require("./routes/login");
 app.use("/login", loginRouter);
 
 // todo 관련
-const todoRouter = require("./routes/todo");
-app.use("/todo", todoRouter);
 
-const calendarRouter = require("./routes/calendar");
-app.use("/calendar", calendarRouter);
+const todoRouter = require('./routes/todo');
+app.use('/todo', todoRouter); 
+
+// 일정 관련
+const calendarRouter = require('./routes/calendar');
+app.use('/calendar', calendarRouter);
+
+// 바로가기 관련
+const shortcutRouter = require('./routes/shortcut');
+app.use('/shortcut', shortcutRouter);
+
+// parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(express.json());

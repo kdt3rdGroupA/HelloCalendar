@@ -34,8 +34,8 @@ const URL = "http://localhost";
 const PORT = 8001;
 let logout = selector("#logout");
 if (logout != null) {
-  selector("#logout").addEventListener("click", () => {
-    console.log(1);
+
+  selector("#logout").addEventListener('click', () => {
     axios({
       method: "POST",
       url: "/login/logout",
@@ -69,3 +69,4 @@ selector("#search_btn").addEventListener("click", () => {
   document.querySelector("#search_text").value = "";
   return 1;
 });
+

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
 
-const PORT = 8001;
+const PORT = 8000;
 
 app.set('view engine', 'ejs');
 app.use('/views', express.static(__dirname + '/views'));
@@ -35,17 +35,18 @@ app.use('/login', loginRouter);
 
 // todo 관련
 const todoRouter = require('./routes/todo');
-app.use('/todo', todoRouter); 
+app.use('/todo', todoRouter);
+
 
 const calendarRouter = require('./routes/calendar');
 app.use('/calendar', calendarRouter);
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+
 
 // parse application/json
-app.use(bodyParser.json())
-app.use(bodyParser());			// 요청 본문 파싱
+app.use(express.json());
+// app.use(express.bodyParser()); // bodyparser 더이상 못씀
+// app.use(bodyParser());			// 요청 본문 파싱
 
 // manual 페이지 새창에 랜더
 app.get('/manual', (req, res) => {

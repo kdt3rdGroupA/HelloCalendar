@@ -44,19 +44,25 @@
     <!-- header: 바로가기, 로고, 설명서, 로그인-->
     <header>
       <nav>
-        <!-- 바로가기 -->
-        <% if(isLogin){ %>
-          <div class="shortcuts" onclick="shortcuts()"    id="naver">
-            <img src="https://www.naver.com/favicon.ico"  alt="">
-            <div>NAVER</div>
-          </div>
-        
-        <% }else{ %>
-          <div class="shortcuts" id="">
-            <img src="../static/img/add.png" alt="">
-            <div>바로가기</div>
-          </div>
-        <% } %>
+        <div id="shortcut">
+          <!-- <div class="link">
+            <div class="shortcuts" onclick="shortcuts()">
+              <img src="https://www.naver.com/favicon.ico"  alt="">
+              <div>NAVER</div>
+            </div>
+          </div> -->
+          <!-- 바로가기 -->
+          <% if(isLogin){ %>
+          <%  %>
+          
+          <% }else{ %>
+            <div class="shortcuts" id="">
+              <img src="../static/img/add.png" alt="">
+              <div>바로가기</div>
+            </div>
+          <% } %>
+
+        </div>
 
         <!-- Logo + change username-->
           <% if(isLogin){ %>
@@ -91,75 +97,6 @@
         <input type="text" id="search_text" placeholder="Google" autofocus />
         <button id="search_btn">Search</button>
       </div>
-
-      <!-- Calendar : 현승님 버전-->
-      <!-- <div class="calendar">
-        <table cellspacing="0" class="calendarContents">
-          <tr>
-            <th class="Sun">일</th>
-            <th>월</th>
-            <th>화</th>
-            <th>수</th>
-            <th>목</th>
-            <th>금</th>
-            <th class="Sat">토</th>
-          </tr>
-          <tr id="week1">
-            <td class="Sun"></td>
-            <td class="Mon"></td>
-            <td class="Tue"></td>
-            <td class="Web"></td>
-            <td class="Thu"></td>
-            <td class="Fri"></td>
-            <td class="Sat"></td>
-          </tr>
-          <tr id="week2">
-            <td class="Sun"></td>
-            <td class="Mon"></td>
-            <td class="Tue"></td>
-            <td class="Web"></td>
-            <td class="Thu"></td>
-            <td class="Fri"></td>
-            <td class="Sat"></td>
-          </tr>
-          <tr id="week3">
-            <td class="Sun"></td>
-            <td class="Mon"></td>
-            <td class="Tue"></td>
-            <td class="Web"></td>
-            <td class="Thu"></td>
-            <td class="Fri"></td>
-            <td class="Sat"></td>
-          </tr>
-          <tr id="week4">
-            <td class="Sun"></td>
-            <td class="Mon"></td>
-            <td class="Tue"></td>
-            <td class="Web"></td>
-            <td class="Thu"></td>
-            <td class="Fri"></td>
-            <td class="Sat"></td>
-          </tr>
-          <tr id="week5">
-            <td class="Sun"></td>
-            <td class="Mon"></td>
-            <td class="Tue"></td>
-            <td class="Web"></td>
-            <td class="Thu"></td>
-            <td class="Fri"></td>
-            <td class="Sat"></td>
-          </tr>
-          <tr id="week6">
-            <td class="Sun"></td>
-            <td class="Mon"></td>
-            <td class="Tue"></td>
-            <td class="Web"></td>
-            <td class="Thu"></td>
-            <td class="Fri"></td>
-            <td class="Sat"></td>
-          </tr>
-        </table>
-      </div> -->
 
       <!-- 캘린더: 새 버전-->
       <div class="calendarRap">

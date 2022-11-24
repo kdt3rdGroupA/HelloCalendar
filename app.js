@@ -18,16 +18,13 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-  console.log(typeof(req.session.isLogin));
   if (req.session.isLogin == true) {
-    console.log(1);
     res.render('index', {
       isLogin : true,
       name : req.session.data.name,
       email : req.session.data.email
       });
   } else {
-    console.log(2);
     res.render('index', {isLogin : false});
   }
 });
@@ -39,6 +36,12 @@ app.use('/login', loginRouter);
 // todo 관련
 const todoRouter = require('./routes/todo');
 app.use('/todo', todoRouter);
+
+
+const calendarRouter = require('./routes/calendar');
+app.use('/calendar', calendarRouter);
+
+
 
 // parse application/json
 app.use(express.json());

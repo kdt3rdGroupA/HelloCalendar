@@ -1,14 +1,14 @@
 // 캘린더 js : 현승님 버전
 const d = document;
-const print = (target, dir=false) => {
-dir ? console.dir(target) : console.log(target);
-}
-const selector = (target, from=d) => {
+const print = (target, dir = false) => {
+  dir ? console.dir(target) : console.log(target);
+};
+const selector = (target, from = d) => {
   return from.querySelector(target);
-}
-const selectorAll = (target, from=d) => {
+};
+const selectorAll = (target, from = d) => {
   return from.querySelectorAll(target);
-}
+};
 const addClass = function (element, classStr) {
   element.classList.add(classStr);
 };
@@ -30,7 +30,6 @@ const create = function (tagStr) {
   return d.createElement(tagStr);
 };
 
-
 // 다른 파일에서 사용되는 함수여서 const d ~ const create 까지는 주석처리 하지 말아주세요
 
 // const monthDays = {
@@ -48,11 +47,11 @@ const create = function (tagStr) {
 //   "12" : 31, 12: 31, "Dec": 31
 // }
 // const month2num = {
-//   "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6, 
+//   "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
 //   "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12
 // }
 // const weekDay2num = {
-//   "Sun": 0, "Mon": 1, "Tue": 2, "Wed": 3, "Thu": 4, "Fri": 5, "Sat": 6  
+//   "Sun": 0, "Mon": 1, "Tue": 2, "Wed": 3, "Thu": 4, "Fri": 5, "Sat": 6
 // }
 // let days = selectorAll(".calendarContents td");
 // let endDay;
@@ -103,12 +102,38 @@ const create = function (tagStr) {
 // //   displayCalendar(target=`${year}-${month}-01`);
 // // })
 
-
-
-
 ////////////////////////////////////////////
 //캘린더 js: 새 버전
 // 달력 생성
+
+// 변수 선언
+
+var currentTitle = document.getElementById("current-year-month");
+var calendarBody = document.getElementById("calendar-body");
+var today = new Date();
+var first = new Date(today.getFullYear(), today.getMonth(), 1);
+var dayList = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+var leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var notLeapYear = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var pageFirst = first;
+var pageYear;
+if (first.getFullYear() % 4 === 0) {
+  pageYear = leapYear;
+} else {
+  pageYear = notLeapYear;
+}
+
+var tdGroup = [];
+
 const makeCalendar = (date) => {
   // 현재 년도와 월 받아오기
   const currentYear = new Date(date).getFullYear();
@@ -123,7 +148,7 @@ const makeCalendar = (date) => {
   const limitDay = firstDay + lastDay;
   const nextDay = Math.ceil(limitDay / 7) * 7;
 
-  let htmlDummy = '';
+  let htmlDummy = "";
 
   // 한달전 날짜 표시하기
   for (let i = 0; i < firstDay; i++) {
@@ -131,8 +156,8 @@ const makeCalendar = (date) => {
   }
 
   // 이번달 날짜 표시하기
-  for (let i = 1; i <= lastDay; i++) {    
-    htmlDummy += `<div>${i}</div>`;
+  for (let i = 1; i <= lastDay; i++) {
+    htmlDummy += `<div class-"date" id="${i}">${i}</div>`;
   }
 
   // 다음달 날짜 표시하기
@@ -140,10 +165,15 @@ const makeCalendar = (date) => {
     htmlDummy += `<div class="noColor"></div>`;
   }
 
-  document.querySelector(`.dateBoard`).innerHTML = htmlDummy;
-  document.querySelector(`.dateTitle`).innerText = `${currentYear}년 ${currentMonth}월`;
-}
-
+  document.querySelector(".dateBoard").innerHTML = htmlDummy;
+  document.querySelector(
+    ".dateTitle"
+  ).innerText = `${currentYear}년 ${currentMonth}월`;
+  showDay(); // 일정등록 부분에 날짜 띄우기
+  var clickedDate1 = document.getElementById(today.getDate()); // 날짜 클릭시 클래스 추가
+  clickedDate1.classList.add("active");
+  clickStart(); // 날짜 클릭
+};
 
 const date = new Date();
 
@@ -151,12 +181,44 @@ makeCalendar(date);
 
 // 이전달 이동
 document.querySelector(`.calPrevDay`).onclick = () => {
-makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
-}
+  makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
+  today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()); // 이번 달이 이전달에 영향을 주지 않도록 month - 1
+  showDay();
+};
 
 // 다음달 이동
 document.querySelector(`.nextDay`).onclick = () => {
-makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
+  makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
+  today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate()); // 이번달이 다음달에 영향을 주지 않도록 month + 1
+  showDay();
+};
+
+// 일정 등록 부분에 오늘 요일, 날짜 띄우기
+function showDay() {
+  var mainTodayDay = document.querySelector(".nowDay");
+  var mainTodayDate = document.querySelector(".nowDate");
+  mainTodayDay.innerHTML = dayList[today.getDay()];
+  console.log(today.getDay());
+  mainTodayDate.innerHTML = today.getDate();
 }
 
+function clickStart() {
+  for (let i = 1; i <= pageYear[first.getMonth()]; i++) {
+    tdGroup[i] = document.getElementById(i);
+    tdGroup[i].addEventListener("click", changeToday);
+  }
+}
 
+// 날짜 클릭시 css 변경하기 위한 함수
+function changeToday(e) {
+  for (let i = 1; i <= pageYear[first.getMonth()]; i++) {
+    if (tdGroup[i].classList.contains("active")) {
+      tdGroup[i].classList.remove("active");
+    }
+  }
+  clickedDate1 = e.currentTarget;
+  clickedDate1.classList.add("active");
+  today = new Date(today.getFullYear(), today.getMonth(), clickedDate1.id);
+  showDay();
+  keyValue = today.getFullYear() + "" + today.getMonth() + "" + today.getDate();
+}

@@ -3,6 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
+const models = require('./models');
 
 const PORT = 8001;
 
@@ -19,6 +20,11 @@ app.use(session({
 
 app.get('/', (req, res) => {
   if (req.session.isLogin == true) {
+    // models.Shortcut.findAll({
+    //   key_id: req.session.data.id
+    // }).then(result => {
+
+    // });
     res.render('index', {
       isLogin : true,
       name : req.session.data.name,
@@ -37,11 +43,16 @@ app.use('/login', loginRouter);
 const todoRouter = require('./routes/todo');
 app.use('/todo', todoRouter); 
 
+// 일정 관련
 const calendarRouter = require('./routes/calendar');
 app.use('/calendar', calendarRouter);
 
+// 바로가기 관련
+const shortcutRouter = require('./routes/shortcut');
+app.use('/shortcut', shortcutRouter);
+
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())

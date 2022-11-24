@@ -35,7 +35,6 @@ const PORT = 8001;
 let logout = selector("#logout");
 if (logout != null) {
   selector("#logout").addEventListener('click', () => {
-    console.log(1);
     axios({
       method: 'POST',
       url: '/login/logout',
@@ -67,5 +66,5 @@ selector("#search_btn").addEventListener("click", () => {
   let target = selector("#search_text").value;
   window.open(`https://www.google.com/search?q=${target}`, '_blank');
   return 1;
-
 });
+

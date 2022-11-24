@@ -51,6 +51,9 @@ CREATE TABLE calendar (
   -- id -> user_login_key.id
   -- 데이터가 많을시 검색성능 저하방지를 위해 INDEX설정
 
+CREATE TABLE shortcut (
+  
+)
 
 CREATE USER 'user1'@'%' IDENTIFIED BY '$user1*';
 GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;

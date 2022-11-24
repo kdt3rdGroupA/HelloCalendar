@@ -263,8 +263,8 @@ function reshow() {
     listdiv.classList.add("list");
     listdiv.append(removeBtn);
     removeBtn.classList.add("removeBtn");
+    del();
   }
-  del();
 }
 
 let input = document.querySelector("#input");
@@ -298,7 +298,6 @@ function addSchedule() {
 function del() {
   const listdiv = document.querySelectorAll(".list");
   const removeBtn = document.querySelectorAll(".removeBtn");
-  console.log(removeBtn);
   // const delBtn = removeBtn.lastChild;
   removeBtn[removeBtn.length - 1].addEventListener("click", function () {
     listdiv[listdiv.length - 1].remove();

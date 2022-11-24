@@ -26,18 +26,22 @@ CREATE TABLE user_login_key (
 -- );
   -- 예전버전의 todo테이블
 
-CREATE TABLE todoex (
+CREATE TABLE todo (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   key_id INT NOT NULL,
   task VARCHAR(50),
   priority INT,
   startline VARCHAR(20),
   deadline VARCHAR(20),
+  complete BOOLEAN,
+  business BOOLEAN,
   INDEX key_id (key_id)
 );
+
   -- 일단 이대로 
   -- key_id -> user_login_key.id (서버에서 req.session.data.id로접근)
   -- 데이터가 많을시 검색성능 저하방지를 위해 INDEX설정
+  -- mysql은 boolean 타입 지원 안함 -> TYNYINT(1) 로 사용 근데 BOOLEA이라 써도 저거로 인식해줌
 
 CREATE TABLE calendar (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -50,6 +54,7 @@ CREATE TABLE calendar (
 );
   -- key_id -> user_login_key.id (서버에서 req.session.data.id로접근)
   -- 데이터가 많을시 검색성능 저하방지를 위해 INDEX설정
+
 
 CREATE TABLE shortcut (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -67,16 +72,22 @@ GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
   -- 유저생성, 권한 작업하고 해주는것을 권장
 
-INSERT INTO todoex(key_id, task, priority) VALUES (3, "충분히 멍때리기", 3);
-INSERT INTO shortcut(key_id, name, link) VALUES (3, "충분히 멍때리기", "대충링크");
+
+INSERT INTO todo(key_id, task, priority) VALUES (3, "충분히 멍때리기", 3);
+INSERT INTO todo(key_id, task, priority, startline, deadline) VALUES (4, "충분히 잠자기", 2, "2022-11-11", "2022-12-12");
+INSERT INTO todo(key_id, task, priority, startline, deadline, complete, business) VALUES (4, "출근", 2, "2022-11-11", "2022-12-12", 1, 1);
 
 -- 테스트를 위한 데이터 추가
 
 
 
 DESC user_login_key;
-DESC todoex;
+DESC todo;
 
+SELECT * FROM todo;
+DELETE FROM todo WHERE id > 2;
+
+DROP TABLE todo;
 SHOW tables;
   -- 테이블 확인코드
 

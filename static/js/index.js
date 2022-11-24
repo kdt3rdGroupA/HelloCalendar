@@ -34,19 +34,18 @@ const URL = "http://localhost";
 const PORT = 8001;
 let logout = selector("#logout");
 if (logout != null) {
-  selector("#logout").addEventListener('click', () => {
+  selector("#logout").addEventListener("click", () => {
     console.log(1);
     axios({
-      method: 'POST',
-      url: '/login/logout',
-    })
-    .then(() => {
+      method: "POST",
+      url: "/login/logout",
+    }).then(() => {
       location.replace(`${URL}:${PORT}`);
     });
   });
 }
 
-selector(".searchBar").addEventListener('keydown', event => {
+selector(".searchBar").addEventListener("keydown", (event) => {
   // print(event, true);
   if (event.code != "Enter") {
     return 0;
@@ -56,7 +55,8 @@ selector(".searchBar").addEventListener('keydown', event => {
   }
   if (event.isComposing == false) {
     let target = selector("#search_text").value;
-    window.open(`https://www.google.com/search?q=${target}`, '_blank');
+    window.open(`https://www.google.com/search?q=${target}`, "_blank");
+    document.querySelector("#search_text").value = "";
     return 1;
   }
 });
@@ -65,7 +65,7 @@ selector("#search_btn").addEventListener("click", () => {
     return 0;
   }
   let target = selector("#search_text").value;
-  window.open(`https://www.google.com/search?q=${target}`, '_blank');
+  window.open(`https://www.google.com/search?q=${target}`, "_blank");
+  document.querySelector("#search_text").value = "";
   return 1;
-
 });

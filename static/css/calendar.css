@@ -74,7 +74,6 @@
   font-family: "Amiko", sans-serif;
   padding: 0 1.4rem;
   margin-top: 1.4rem;
-  justify-content: center;
 }
 
 /* SUN ~ SAT */
@@ -82,6 +81,7 @@
   opacity: 0.8;
   text-align: center;
   border-radius: 5px;
+  font-weight: 700;
 }
 
 /* SUN font color */
@@ -115,6 +115,9 @@
   cursor: pointer;
   text-align: center;
   font-size: 2rem;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
 
 /* .noColor {

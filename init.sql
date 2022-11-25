@@ -89,8 +89,13 @@ DESC user_login_key;
 DESC todo;
 
 SELECT * FROM todo;
+SELECT * FROM todo WHERE key_id = 1;
 SELECT * FROM user_login_key;
 DELETE FROM todo WHERE id > 2;
+DELETE FROM user_login_key WHERE id > 4;
+
+UPDATE user_login_key SET id = 2 WHERE id=5;
+
 
 
 DROP TABLE todo;

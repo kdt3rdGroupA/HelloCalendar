@@ -26,7 +26,6 @@
       href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&family=Maven+Pro:wght@400;500;600&family=Noto+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-
     <!-- 제이쿼리 CDN -->
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -49,12 +48,11 @@
 					<input type="radio" name="'priority" id="priority" value="3">3</input>
 				</div>
 					<input type="checkbox" name="'business" id="business">공적인 일</input>
-
 				
 				시작<input type="date" class="form-control" id="startline" max="<%= nowDate %>">
 				~끝<input type="date" class="form-control" id="deadline" min="<%= nowDate %>">
 				<input type="text" class="formElement" id="task" name="task" placeholder="새로운 할 일">
-				<button type="button" class="todoSubmit" onclick="todoSubmit()">등록</button>
+				<button type="button" class="todoSubmit" onclick="todoSubmit(); location.reload(true)">등록</button>
 			</div>
 		</form>
 		</fieldset>
@@ -72,18 +70,19 @@
 			</thead>
 			<tbody name="">
 					<% for (let i = 0; i < data.length; i++) { %>
-						<tr id="tr_<%= data[i].id %>">
+						<tr id="tr_<%= data[i].id %>" 
+							class="<%= (data[i].complete ? 'complete' : '')%> row">
 							
 							<!-- 1번 -->
 							<% if(!data[i].business){ %><td>사적</td>
 								<% }else {%> <td>공적</td>
 							<% } %>
-
 							<td><%= data[i].priority %></td>
 							<td><%= data[i].startline %></td>
 							<td><%= data[i].deadline %></td>
 							<td><%= data[i].task %></td>
-							<td><button type="button" class="btnComplete" onclick="complete('<%= data[i].id %>')">완료</button></td> 
+							<td><button type="button" class="btnComplete 
+								" onclick="complete('<%= data[i].id %>')"><%= data[i].complete ? '취소' : '완료' %></button></td> 
 							<td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
 						</tr>
 					<% } %>

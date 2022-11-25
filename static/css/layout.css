@@ -21,6 +21,20 @@ nav {
   justify-content: space-between;
   margin: 0 20px;
 }
+
+.btn-toggle {
+  /* height: 50px;
+  width: 50px;
+  border-radius: 100%; */
+  border:none;
+  background-color:transparent;
+  }
+
+  .btn-toggle > img {
+    height: 40px;
+    width: 40px;
+  }
+
 .headerLogo {
   font-family: "Amiko", sans-serif;
   font-size: 40px;
@@ -28,6 +42,7 @@ nav {
   color: transparent;
   -webkit-background-clip: text;
   margin-top: 30px;
+  margin-left: -20%;
 }
 .headerContent {
   display: flex;

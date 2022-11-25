@@ -61,7 +61,7 @@ exports.editSchedule = (req, res) => {
   
 };
 exports.removeSchedule = (req, res) => {
-  let targetKey = req.query.calendarKey
+  let targetKey = req.query.calendarKey;
   models.Calendar.findOne({
     where: {
       id: targetKey

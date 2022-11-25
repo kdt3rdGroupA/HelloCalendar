@@ -184,6 +184,7 @@ document.querySelector(`.calPrevDay`).onclick = () => {
   makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
   today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()); // 이번 달이 이전달에 영향을 주지 않도록 month - 1
   showDay();
+  reshow();
 };
 
 // 다음달 이동
@@ -191,6 +192,7 @@ document.querySelector(`.nextDay`).onclick = () => {
   makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
   today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate()); // 이번달이 다음달에 영향을 주지 않도록 month + 1
   showDay();
+  reshow();
 };
 
 // 일정 등록 부분에 오늘 요일, 날짜 띄우기
@@ -198,7 +200,7 @@ function showDay() {
   var mainTodayDay = document.querySelector(".nowDay");
   var mainTodayDate = document.querySelector(".nowDate");
   mainTodayDay.innerHTML = dayList[today.getDay()];
-  console.log(today.getDay());
+  // console.log(today.getDay());
   mainTodayDate.innerHTML = today.getDate();
 }
 
@@ -206,6 +208,7 @@ function clickStart() {
   for (let i = 1; i <= pageYear[first.getMonth()]; i++) {
     tdGroup[i] = document.getElementById(i);
     tdGroup[i].addEventListener("click", changeToday);
+    // console.log(keyValue);
   }
 }
 
@@ -220,5 +223,86 @@ function changeToday(e) {
   clickedDate1.classList.add("active");
   today = new Date(today.getFullYear(), today.getMonth(), clickedDate1.id);
   showDay();
-  keyValue = today.getFullYear() + "" + today.getMonth() + "" + today.getDate();
+  let nowMonth = today.getMonth() + 1;
+  keyValue = today.getFullYear() + "" + nowMonth + "" + today.getDate();
+  reshow();
+}
+
+// 일정 등록
+
+// 날짜 클릭해서 변경시 새로운 일정 등록 화면 띄워주기
+function reshow() {
+  let nowMonth = today.getMonth() + 1;
+  keyValue = today.getFullYear() + "" + nowMonth + "" + today.getDate();
+  console.log(scheduleList[keyValue]);
+  const list = document.querySelectorAll("#listcontents > div");
+  if (scheduleList[keyValue] === undefined) {
+    inputlists.textContent = "";
+    scheduleList[keyValue] = [];
+    list.forEach((i) => {
+      i.remove();
+    });
+  } else if (scheduleList[keyValue].length === 0) {
+    inputlists.textContent = "";
+    list.forEach((i) => {
+      i.remove();
+    });
+  } else {
+    inputlists.textContent = "";
+    list.forEach((i) => {
+      i.remove();
+    });
+  }
+
+  for (var i = 0; i < scheduleList[keyValue].length; i++) {
+    var listdiv = document.createElement("div");
+    var removeBtn = document.createElement("button");
+    listdiv.textContent = "-" + scheduleList[keyValue][i];
+    removeBtn.textContent = removeText;
+    inputlists.appendChild(listdiv);
+    listdiv.classList.add("list");
+    listdiv.append(removeBtn);
+    removeBtn.classList.add("removeBtn");
+    del();
+  }
+}
+
+let input = document.querySelector("#input");
+let inputBtn = document.querySelector("#inputBtn");
+let inputlists = document.querySelector("#listcontents");
+const removeText = "삭제";
+let nowMonth = today.getMonth() + 1;
+let keyValue = today.getFullYear() + "" + nowMonth + "" + today.getDate();
+let scheduleList = [];
+scheduleList[keyValue] = []; // 리스트를 배열에 저장
+
+inputBtn.addEventListener("click", addSchedule);
+
+function addSchedule() {
+  var listdiv = document.createElement("div");
+  var removeBtn = document.createElement("button");
+  listdiv.textContent = " - " + input.value;
+  removeBtn.textContent = removeText;
+  inputlists.appendChild(listdiv);
+  listdiv.classList.add("list");
+  listdiv.append(removeBtn);
+  removeBtn.classList.add("removeBtn");
+  scheduleList[keyValue].push(input.value);
+
+  console.log(scheduleList[keyValue]);
+  input.value = "";
+  del();
+}
+
+// 리스트 삭제 함수
+function del() {
+  const listdiv = document.querySelectorAll(".list");
+  const removeBtn = document.querySelectorAll(".removeBtn");
+  // const delBtn = removeBtn.lastChild;
+  removeBtn[removeBtn.length - 1].addEventListener("click", function () {
+    listdiv[listdiv.length - 1].remove();
+    removeBtn[removeBtn.length - 1].remove();
+    scheduleList[keyValue].pop(input.value);
+    console.log(scheduleList[keyValue]);
+  });
 }

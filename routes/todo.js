@@ -10,19 +10,12 @@ router.post('/', controller.todoList);
 // GET todo
 router.get('/', controller.index); // get
 
-
-router.get('/list', controller.list);  // get
+// router.get('/list', controller.list);  // get todo/list
 
 router.post('/add', controller.add); //  post
 
-router.post('/complete', controller.complete); //  post
+router.patch('/complete', controller.complete); //  patch
 
-router.post('/del', controller.del); //  post
-
-module.exports = router;
-
-
-
-
+router.delete('/del', controller.del); //  delete
 
 module.exports = router;

@@ -40,7 +40,9 @@ CREATE TABLE todo (
   business BOOLEAN,
   INDEX key_id (key_id)
 );
-  -- id -> user_login_key.id
+
+  -- 일단 이대로 
+  -- key_id -> user_login_key.id (서버에서 req.session.data.id로접근)
   -- 데이터가 많을시 검색성능 저하방지를 위해 INDEX설정
   -- mysql은 boolean 타입 지원 안함 -> TYNYINT(1) 로 사용 근데 BOOLEA이라 써도 저거로 인식해줌
 
@@ -53,13 +55,18 @@ CREATE TABLE calendar (
   endDate VARCHAR(20),
   INDEX key_id (key_id)
 );
-  -- id -> user_login_key.id
+  -- key_id -> user_login_key.id (서버에서 req.session.data.id로접근)
   -- 데이터가 많을시 검색성능 저하방지를 위해 INDEX설정
 
 
 CREATE TABLE shortcut (
-  
-)
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  key_id INT NOT NULL,
+  name VARCHAR(20) NOT NULL,
+  link VARCHAR(200) NOT NULL,
+  INDEX key_id (key_id)
+);
+  -- key_id -> user_login_key.id (서버에서 req.session.data.id로접근)
 
 CREATE USER 'user1'@'%' IDENTIFIED BY '$user1*';
 GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;
@@ -73,7 +80,10 @@ INSERT INTO todo(key_id, task, priority, startline, deadline) VALUES (4, "충분
 INSERT INTO todo(key_id, task, priority, startline, deadline, complete, business) VALUES (4, "출근", 2, "2022-11-11", "2022-12-12", 1, 1);
 INSERT INTO todo(key_id, task, priority, startline, deadline, complete, business) VALUES (99, "비로그인시 예시 입니다.", 2, "2011-11-11", "2022-12-12", 1, 1);
 INSERT INTO todo(key_id, task, priority, startline, deadline, complete, business) VALUES (99, "두번째 예시 입니다.", 1, "2011-11-11", "2022-12-12", 0, 0);
+
 -- 테스트를 위한 데이터 추가
+
+
 
 DESC user_login_key;
 DESC todo;

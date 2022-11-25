@@ -35,37 +35,6 @@
 }
 */
 /* } */
-/* 여기서 부터 검색바 */
-.searchBar {
-  display: flex;
-  justify-content: center;
-}
-#search_text {
-  width: 50vw;
-  height: 2.4rem;
-  line-height: 2.4rem;
-  border-radius: 1.2rem 0 0 1.2rem;
-  padding: 0 0 0 2rem;
-  background-color: lightgray;
-  border: 0;
-  font-size: 1.2rem;
-}
-#search_btn {
-  width: 5rem;
-  height: 2.4rem;
-  border-radius: 0 1.2rem 1.2rem 0;
-  border: 0;
-  background-color: skyblue;
-  color: white;
-  cursor: pointer;
-}
-#search_btn:hover {
-  background-color: royalblue;
-  transition: 0.5s;
-}
-#search_btn:not(:hover) {
-  transition: 0.5s;
-}
 
 /* 달력 css: 새 버전 */
 /* Calendar */
@@ -74,7 +43,6 @@
   font-family: "Amiko", sans-serif;
   padding: 0 1.4rem;
   margin-top: 1.4rem;
-  justify-content: center;
 }
 
 /* SUN ~ SAT */
@@ -82,6 +50,7 @@
   opacity: 0.8;
   text-align: center;
   border-radius: 5px;
+  font-weight: 700;
 }
 
 /* SUN font color */
@@ -115,6 +84,9 @@
   cursor: pointer;
   text-align: center;
   font-size: 2rem;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
 
 /* .noColor {
@@ -162,7 +134,6 @@
 
 .dateTitle {
   font-size: 20px;
-  color: rgba(0, 0, 0, 0.817);
 }
 
 /* 달력 */
@@ -204,11 +175,10 @@
   width: 50%;
   margin-right: 20px;
   height: auto;
-  /* background: #0b0809; */
-  /* color: #ddaf35; */
   line-height: normal;
   padding: 0.8em 0.5em 0 0;
   font-family: inherit;
+  background-color: transparent;
   border: 0;
   border-bottom: 1px dashed #ddaf35;
   border-radius: 0;
@@ -223,15 +193,15 @@
   font-size: 10px;
   padding: 10px;
   margin: 10px 0 10px 0;
-  background: rgb(70, 210, 217);
+  background-color: skyblue;
   border: none;
-  color: #0b0809;
+  color: #ffffff;
   border-radius: 10px;
 }
 
 .inputBtn:hover {
-  background: #ffffff;
-  color: #0b0809;
+  background-color: royalblue;
+  color: #ffffff;
 }
 
 .list > div {
@@ -247,7 +217,6 @@
 }
 
 .scheduleContent {
-  background: white;
   color: black;
   float: left;
   width: 25vw;

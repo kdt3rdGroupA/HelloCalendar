@@ -92,12 +92,24 @@ exports.login = (req, res) => {
         name: userInfo.name,
         email: userInfo.email
       };
-      sessionTemp.cookie.expires = new Date(Date.now() + 72 * 3600000);
-      res.send({
-        result: true,
-        msg: `${userInfo.name}님 환영합니다`,
-        data: userInfo,
-      });
+    sessionTemp.cookie.expires = new Date(Date.now() + 72 * 3600000);
+    let linkes = [];
+    models.Shortcut.findAll({
+      where: {
+        key_id: userInfo.id
+      }
+    }).then(result => {
+      let resultArray = Array.from(result);
+      resultArray.forEach(element => {
+        linkes.push(element.dataValues);
+      })
+    })
+    res.send({
+      result: true,
+      msg: `${userInfo.name}님 환영합니다`,
+      data: userInfo,
+      link: linkes
+    });
     } else {
       res.send({ result: false, msg: "잘못된 비밀번호", data: null });
     }

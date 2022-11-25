@@ -5,38 +5,43 @@ body {
   overflow-x: hidden;
   font-family: "Noto Sans", sans-serif;
 }
+.hide {
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  z-index: -1 !important;
+}
 
+/* 헤더 */
 nav {
   display: flex;
   /* position: relative; */
   justify-content: space-between;
   margin: 0 20px;
 }
-
 .headerLogo {
   font-family: "Amiko", sans-serif;
   font-size: 40px;
   background: linear-gradient(to right top, #003efa, #00d2fc);
   color: transparent;
   -webkit-background-clip: text;
-  margin-top: 50px;
+  margin-top: 30px;
 }
-
 .headerContent {
   display: flex;
 }
-
 .headerContent h3 {
   font-family: "Amiko", sans-serif;
   padding-left: 30px;
 }
-
 #nav_user_info {
   text-align: center;
 }
 #nav_user_info .userName {
   margin-bottom: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 #nav_user_info .userEmail {
   font-size: 0.6rem;
@@ -44,26 +49,180 @@ nav {
 }
 #logout {
   font-size: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   cursor: pointer;
 }
-
-/*구글로그인 성공시 보이는 프로필 div - 위치 보려고 일단 백그라운드 색상 넣어놓았습니다*/
-/*
-.gUserProfile {
-  background-color: wheat;
-
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-
-  position: absolute;
-  top: 8px;
-  right: 23px;
-}
-*/
 
 .searchBar {
   text-align: center;
   margin: 50px 0;
 }
+
+/*다크모드 실험*/
+
+body {
+  --text-color: #222;
+  --bkg-color: #fff;
+}
+body.dark-theme {
+  --text-color: rgba(238, 238, 238, 0.854);
+  --bkg-color: #121212ce;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212ce;
+  }
+  body.light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212ce;
+  }
+  body.light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+h2,
+h3,
+a,
+div,
+input.input {
+  color: var(--text-color);
+}
+
+/* 홈페이지도구 */
+#home_tools {
+  width: 60vw;
+  margin: 0 auto;
+}
+.searchBar {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 50px 0 10px 0;
+}
+#search_text {
+  width: 50vw;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  border-radius: 1.2rem 0 0 1.2rem;
+  padding: 0 0 0 2rem;
+  background-color: lightgray;
+  border: 0;
+  font-size: 1.2rem;
+}
+#search_btn {
+  width: 5rem;
+  height: 2.4rem;
+  border-radius: 0 1.2rem 1.2rem 0;
+  border: 0;
+  background-color: skyblue;
+  color: white;
+  cursor: pointer;
+}
+#search_btn:hover {
+  background-color: royalblue;
+  transition: 0.5s;
+}
+#search_btn:not(:hover) {
+  transition: 0.5s;
+}
+
+#shortcut {
+  display: flex;
+}
+#shortcut > * {
+  margin: 0 5px;
+}
+#shortcut .link {
+  height: 2rem;
+  border: 0;
+  border-radius: 1rem;
+  background-color: lightgray;
+  padding: 0 8px;
+}
+#shortcut .link .shortcuts {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+#forms {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+#forms > div {
+  position: absolute;
+  width: 40vw;
+  height: 30vh;
+  left: 30vw;
+  right: 30vw;
+  min-width: 300px;
+  z-index: 2;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 1.2rem;
+  padding: 1rem;
+}
+#forms > div input {
+  border-bottom: 3px solid gray;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  margin: 10px 0;
+  height: 2rem;
+  line-height: 2rem;
+  width: 100%;
+  font-size: 1rem;
+}
+#forms .buttons {
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: 10px;
+  width: 87%;
+}
+#forms .submit {
+  height: 2rem;
+  border-radius: 1rem;
+  padding: 0 7px;
+  background-color: skyblue;
+  color: white;
+  border: 0;
+}
+#forms .close {
+  height: 2rem;
+  border-radius: 1rem;
+  padding: 0 7px;
+  background-color: lightgray;
+  color: white;
+  border: 0;
+}
+
+/* #shortcut .link>* {
+  overflow: hidden;
+  height: 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: lightgray;
+} */

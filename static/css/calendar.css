@@ -109,6 +109,10 @@
   border-width: 3px 3px 0 0;
   cursor: pointer;
 }
+.dark-theme .calendarBtn {
+  border: 3px solid #eeeeee;
+  border-width: 3px 3px 0 0;
+}
 
 /* 지난 달 보기 */
 .calPrevDay {

@@ -21,7 +21,7 @@
     <!-- css: shortcut -->
     <link rel="stylesheet" href="../static/css/shortcut.css" />
 
-    <!-- Google icon : setting, add -->
+    <!-- Google icon : setting, add, stop -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
@@ -29,6 +29,10 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" 
     />
 
     <!-- 한국어 font: IBM Plex Sans, 프리텐다 -->
@@ -176,13 +180,20 @@
         <h3>바로가기 추가</h3>
         <hr />
         <input type="text" class="linkName" placeholder="Name" required /><br />
-        <input type="text" class="linkUrl" placeholder="URL" required /><br />
+        <input type="text" class="linkUrl" placeholder="URL" max="199" required /><br />
         <div class="buttons">
           <button type="button" class="submit">추가</button>
           <button type="button" class="close">닫기</button>
         </div>
       </div>
-      <div class="link_setting hide"></div>
+      <div class="link_setting hide">
+        <h3>바로가기링크</h3>
+        <hr />
+        <div class="links"></div>
+        <div class="buttons">
+          <button type="button" class="close">닫기</button>
+        </div>
+      </div>
       <div class="hide"></div>
     </div>
 
@@ -196,9 +207,8 @@
     <!-- JS: shortcut -->
     <script src="../static/js/shortcut.js"></script>
 
-
     <!-- ToDo 기능 구현 내용 -->
-	<script src="../static/js/todo.js"></script>	
+	  <script src="../static/js/todo.js"></script>	
 
     <!-- JS: darkmode -->
     <script src="../static/js/darkmode.js"></script>

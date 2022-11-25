@@ -1,4 +1,8 @@
-document.getElementById('startline').value = new Date().toISOString().substring(0, 10);;
+// 초기 입력값 당일 날짜 되게
+const nowDate = new Date().toISOString().substring(0, 10);
+document.getElementById('startline').value = nowDate;
+document.getElementById('deadline').value = nowDate;
+
 const tbody = document.querySelector('tbody');
 function todoSubmit() { //제출한거 추가
 	console.log('등록 클릭');
@@ -6,8 +10,6 @@ function todoSubmit() { //제출한거 추가
 	const form = document.forms['todoForm'];
 	// console.dir(form);
 	console.log(form);
-  // console.log(form.priority.value); // 
-  // console.log(form.startline.value); // 
   console.log(form.business.checked); // boolean 으로 나옴
   // console.log(typeof(form.business.value)); // -> string -> boolean 변환?
   
@@ -46,8 +48,7 @@ function todoSubmit() { //제출한거 추가
 				</tr>`;
 
 			tbody.insertAdjacentHTML('beforeend', html);
-
-
+			inputReset()
 		});
 }
 
@@ -65,7 +66,6 @@ function complete(id) { // 완료 버튼 누루면 css, db 수정
 	}else {
 		form.complete = false;
 	}
-
 	// const btndis = document.getElementsByClassName('.btnComplete');
 	// btndis.disabled = true; // 버튼 잠그기 왜 안먹혀
 
@@ -86,16 +86,6 @@ function complete(id) { // 완료 버튼 누루면 css, db 수정
       alert(data); // alert(''수정 성공!!!'')
     });
 }
-
-// 	$('tbody').on('click', '.btn-success', function () {	// 선택한 할 일 완료하기
-// 		$.ajax('/complete', {
-// 			'method': 'POST',
-// 			'data': {
-// 				'index': parseInt($(this).parent().siblings(':first').text()) - 1	// 선택한 행의 인덱스
-// 			},
-// 			'success': get_list
-// 		});
-// 	});
 
 function todoDelete(obj, id) {
 	console.log('click 삭제 버튼');
@@ -121,4 +111,10 @@ function todoDelete(obj, id) {
     });
 }
 
-
+function inputReset() {
+	document.getElementById('startline').value = nowDate;
+	document.getElementById('deadline').value = nowDate;
+	// document.getElementById('deadline').value = new Date();
+	document.getElementById('task').value = '';
+	console.log('입력 리셋됨')
+}

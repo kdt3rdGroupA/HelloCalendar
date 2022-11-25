@@ -48,18 +48,17 @@
 					<input type="radio" name="'priority" id="priority" value="2">2</input>
 					<input type="radio" name="'priority" id="priority" value="3">3</input>
 				</div>
-				<!-- <div class="business"> -->
 					<input type="checkbox" name="'business" id="business">공적인 일</input>
 
-				<!-- </div> -->
-				시작<input type="date" class="form-control" id="startline" placeholder="초기날짜">
-				~끝<input type="date" class="form-control" id="deadline" placeholder="초기날짜">
+				
+				시작<input type="date" class="form-control" id="startline" max="<%= nowDate %>">
+				~끝<input type="date" class="form-control" id="deadline" min="<%= nowDate %>">
 				<input type="text" class="formElement" id="task" name="task" placeholder="새로운 할 일">
 				<button type="button" class="todoSubmit" onclick="todoSubmit()">등록</button>
 			</div>
 		</form>
 		</fieldset>
-		<table class="table" border="1">	<!-- ToDo 목록 -->
+		<table class="table" border="0">	<!-- ToDo 목록 -->
 			<thead>
 				<tr>
 					<th>사적/공적</th>
@@ -95,6 +94,14 @@
 		</table>
 		<a href="/">home</a>
 	</body>
+	
+    <!-- JS: index -->
+	<!-- <script src="../static/js/index.js"></script> -->
+	<!-- JS: shortcut -->
+	<!-- <script src="../static/js/shortcut.js"></script> -->
+	<!-- JS: calendar -->
+	<!-- <script src="../static/js/calendar.js"></script> -->
 	<!-- ToDo 기능 구현 내용 -->
 	<script src="../static/js/todo.js"></script>	
+
 </html>

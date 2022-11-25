@@ -16,6 +16,9 @@ CREATE TABLE user_login_key (
 );
   -- salt, hash_pw -> 각각 유저 암호화된 id, pw라고 이해
 
+-- INSERT INTO user_login_key(userid, name, email, salt, hash_pw) VALUES ("test", "test", "test@naver.com", )
+
+
 -- CREATE TABLE todo (
 --   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 --   key_id INT NOT NULL,
@@ -65,16 +68,20 @@ GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
   -- 유저생성, 권한 작업하고 해주는것을 권장
 
-INSERT INTO todo(key_id, task, priority) VALUES (3, "충분히 멍때리기", 3);
+INSERT INTO todo(key_id, task, priority) VALUES (2, "충분히 멍때리기", 3);
 INSERT INTO todo(key_id, task, priority, startline, deadline) VALUES (4, "충분히 잠자기", 2, "2022-11-11", "2022-12-12");
 INSERT INTO todo(key_id, task, priority, startline, deadline, complete, business) VALUES (4, "출근", 2, "2022-11-11", "2022-12-12", 1, 1);
+INSERT INTO todo(key_id, task, priority, startline, deadline, complete, business) VALUES (99, "비로그인시 예시 입니다.", 2, "2011-11-11", "2022-12-12", 1, 1);
+INSERT INTO todo(key_id, task, priority, startline, deadline, complete, business) VALUES (99, "두번째 예시 입니다.", 1, "2011-11-11", "2022-12-12", 0, 0);
 -- 테스트를 위한 데이터 추가
 
 DESC user_login_key;
 DESC todo;
 
 SELECT * FROM todo;
+SELECT * FROM user_login_key;
 DELETE FROM todo WHERE id > 2;
+
 
 DROP TABLE todo;
 SHOW tables;

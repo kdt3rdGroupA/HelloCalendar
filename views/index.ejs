@@ -142,23 +142,31 @@
 
     <!-- TodoList -->
     <div class="todoTabs">
-      <div class="todoTab">
+      <div class="todoTab todoTabBusiness ">
         <a href="/todo">todo 전체보기</a>
         <table class="table">
-          <!-- ToDo 목록 -->
+          
           <thead>
             <tr>
-              <th>index</th>
-              <th>날짜</th>
-              <th>내용</th>
-              <th>완료</th>
-              <th>삭제</th>
+              <th>공적</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          
         </table>
       </div>
-      <div class="todoTab"></div>
+      <div class="todoTab todoTabPrivate">
+        <a href="/todo">todo 전체보기</a>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>사적</th>
+            </tr>
+          </thead>
+
+          
+        </table>
+
+      </div>
     </div>
     <div id="forms">
       <div class="link_add hide">
@@ -181,16 +189,18 @@
     <!-- JS: calendar -->
     <script src="../static/js/calendar.js"></script>
 
-    <!-- JS: todolist -->
-    <script src="../static/js/todolist.js"></script>
-
     <!-- JS: index -->
     <script src="../static/js/index.js"></script>
 
     <!-- JS: shortcut -->
     <script src="../static/js/shortcut.js"></script>
 
+
+    <!-- ToDo 기능 구현 내용 -->
+	<script src="../static/js/todo.js"></script>	
+
     <!-- JS: darkmode -->
     <script src="../static/js/darkmode.js"></script>
+
   </body>
 </html>

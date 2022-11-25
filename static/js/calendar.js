@@ -257,12 +257,19 @@ function reshow() {
   for (var i = 0; i < scheduleList[keyValue].length; i++) {
     var listdiv = document.createElement("div");
     var removeBtn = document.createElement("button");
+    var hide = document.createElement("div");
+
     listdiv.textContent = "-" + scheduleList[keyValue][i];
     removeBtn.textContent = removeText;
+    // 요소 추가
     inputlists.appendChild(listdiv);
-    listdiv.classList.add("list");
     listdiv.append(removeBtn);
+    removeBtn.append(hide);
+    // 만들어진 요소들에 클래스 추가
+    listdiv.classList.add("list");
     removeBtn.classList.add("removeBtn");
+    hide.classList.add("hide");
+
     del();
   }
 }
@@ -278,15 +285,23 @@ scheduleList[keyValue] = []; // 리스트를 배열에 저장
 
 inputBtn.addEventListener("click", addSchedule);
 
+// 일정 등록 함수
 function addSchedule() {
   var listdiv = document.createElement("div");
   var removeBtn = document.createElement("button");
+  var hide = document.createElement("div");
+
   listdiv.textContent = " - " + input.value;
   removeBtn.textContent = removeText;
+  // 요소 추가
   inputlists.appendChild(listdiv);
-  listdiv.classList.add("list");
   listdiv.append(removeBtn);
+  removeBtn.append(hide);
+  // 만들어진 요소들에 클래스 추가
+  listdiv.classList.add("list");
   removeBtn.classList.add("removeBtn");
+  hide.classList.add("hide");
+  // 일정 배열에 값 넣어주기
   scheduleList[keyValue].push(input.value);
 
   console.log(scheduleList[keyValue]);
@@ -302,7 +317,10 @@ function del() {
   removeBtn[removeBtn.length - 1].addEventListener("click", function () {
     listdiv[listdiv.length - 1].remove();
     removeBtn[removeBtn.length - 1].remove();
+    // 배열에서 값 뽑아내기
     scheduleList[keyValue].pop(input.value);
     console.log(scheduleList[keyValue]);
   });
 }
+
+// 리스트 수정 함수

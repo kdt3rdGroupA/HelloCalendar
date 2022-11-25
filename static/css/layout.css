@@ -59,6 +59,7 @@ nav {
 }
 
 
+
 /*다크모드 실험*/
 
 body {
@@ -68,6 +69,26 @@ body {
 body.dark-theme {
   --text-color: rgba(238, 238, 238, 0.854);
   --bkg-color: #121212ce;
+
+}
+
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212ce;
+  }
+  body.light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -92,6 +113,8 @@ a,
 div {
   color: var(--text-color);
 }
+
+
 
 
 

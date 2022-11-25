@@ -88,9 +88,6 @@ body {
   background: var(--bkg-color);
 }
 
-
-}
-
 @media (prefers-color-scheme: dark) {
   /* defaults to dark theme */
   body {
@@ -122,7 +119,7 @@ div {
 #home_tools {
   width: 60vw;
   margin: 0 auto;
- 
+  
   
 }
 .searchBar {

@@ -53,6 +53,47 @@ nav {
   cursor: pointer;
 }
 
+
+.searchBar {
+  text-align: center;
+  margin: 50px 0;
+}
+
+
+/*다크모드 실험*/
+
+body {
+  --text-color: #222;
+  --bkg-color: #fff;
+}
+body.dark-theme {
+  --text-color: rgba(238, 238, 238, 0.854);
+  --bkg-color: #121212ce;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212ce;
+  }
+  body.light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+h2,
+h3,
+a,
+div {
+  color: var(--text-color);
+}
+
 /* 홈페이지도구 */
 #home_tools {
   width: 60vw;
@@ -173,3 +214,4 @@ nav {
   border-radius: 0.5rem;
   background-color: lightgray;
 } */
+

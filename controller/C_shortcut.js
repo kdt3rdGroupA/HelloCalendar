@@ -1,7 +1,7 @@
 const models = require("../models");
 
 exports.getShortcut = (req, res) => {
-  if (!req.session.isLogin) {
+  if (req.session.isLogin != true) {
     res.send({result:false, msg:"로그인 되지 않음", data:null});
     return 0;
   }
@@ -19,6 +19,10 @@ exports.getShortcut = (req, res) => {
   });
 };
 exports.addShortcut = (req, res) => {
+  if (req.session.isLogin != true) {
+    res.send({result:false, msg:"로그인 되지 않음", data:null});
+    return 0;
+  }
   let data = req.query;
   // data -> {name: ,link:}
   models.Shortcut.create({
@@ -30,6 +34,10 @@ exports.addShortcut = (req, res) => {
   });
 };
 exports.removeShortcut = (req, res) => {
+  if (req.session.isLogin != true) {
+    res.send({result:false, msg:"로그인 되지 않음", data:null});
+    return 0;
+  }
   let targetKey = req.query.linkKey;
   models.Shortcut.destroy({
     where: {

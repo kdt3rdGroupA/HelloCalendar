@@ -133,11 +133,11 @@ if (first.getFullYear() % 4 === 0) {
 }
 
 var tdGroup = [];
-
+let currentYear, currentMonth;
 const makeCalendar = (date) => {
   // 현재 년도와 월 받아오기
-  const currentYear = new Date(date).getFullYear();
-  const currentMonth = new Date(date).getMonth() + 1;
+  currentYear = new Date(date).getFullYear();
+  currentMonth = new Date(date).getMonth() + 1;
 
   // 첫날의 요일 구하기 - 초기 시작위치를 위해서
   const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
@@ -207,6 +207,7 @@ function showDay() {
 function clickStart() {
   for (let i = 1; i <= pageYear[first.getMonth()]; i++) {
     tdGroup[i] = document.getElementById(i);
+    print(i);
     tdGroup[i].addEventListener("click", changeToday);
     // console.log(keyValue);
   }
@@ -234,7 +235,7 @@ function changeToday(e) {
 function reshow() {
   let nowMonth = today.getMonth() + 1;
   keyValue = today.getFullYear() + "" + nowMonth + "" + today.getDate();
-  console.log(scheduleList[keyValue]);
+  // console.log(scheduleList[keyValue]);
   const list = document.querySelectorAll("#listcontents > div");
   if (scheduleList[keyValue] === undefined) {
     inputlists.textContent = "";
@@ -290,6 +291,19 @@ function addSchedule() {
   var listdiv = document.createElement("div");
   var removeBtn = document.createElement("button");
   var hide = document.createElement("div");
+  
+  // axios({
+  //   method: 'POST',
+  //   url: '/calendar',
+  //   params: null
+  // }).then(result => {
+  //   if (result.data.data == null) {
+  //     return 0;
+  //   }
+  //   let data = Array.from(result.data.data);
+
+  //   data.forEach
+  // });
 
   listdiv.textContent = " - " + input.value;
   removeBtn.textContent = removeText;
@@ -324,3 +338,4 @@ function del() {
 }
 
 // 리스트 수정 함수
+

@@ -1,6 +1,10 @@
 const models = require("../models");
 
 exports.getSchedule = (req, res) => {
+  if (req.session.isLogin != true) {
+    res.send({result:false, msg:"로그인 되지 않음", data:null});
+    return 0;
+  }
   models.Calendar.findAll({
     where: {
       key_id: req.session.data.id
@@ -15,6 +19,10 @@ exports.getSchedule = (req, res) => {
   });
 };
 exports.addSchedule = (req, res) => {
+  if (req.session.isLogin != true) {
+    res.send({result:false, msg:"로그인 되지 않음", data:null});
+    return 0;
+  }
   let data = req.query;
   // data -> {name: detail: startDate: endDate:}
   models.Calendar.create({
@@ -28,6 +36,10 @@ exports.addSchedule = (req, res) => {
   });
 };
 exports.editSchedule = (req, res) => {
+  if (req.session.isLogin != true) {
+    res.send({result:false, msg:"로그인 되지 않음", data:null});
+    return 0;
+  }
   let targetKey = req.query.calendarKey
   let data = req.query.newData;
   // data: {updateIndex1:, updateIndex2:, ...}
@@ -61,6 +73,10 @@ exports.editSchedule = (req, res) => {
   
 };
 exports.removeSchedule = (req, res) => {
+  if (req.session.isLogin != true) {
+    res.send({result:false, msg:"로그인 되지 않음", data:null});
+    return 0;
+  }
   let targetKey = req.query.calendarKey;
   models.Calendar.findOne({
     where: {

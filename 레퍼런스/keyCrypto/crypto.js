@@ -35,13 +35,22 @@ const hashPW = crypto.createHash('sha512').update("tempPW"+salt).digest('hex');
 //   console.log(112, result[0]);
 // });
 
-models.Todo.destroy({
-  where: {
-    key_id: 4
-  }
-}).then(r => {
-  console.log(114, r);
+// models.Todo.destroy({
+//   where: {
+//     key_id: 4
+//   }
+// }).then(r => {
+//   console.log(114, r);
+// });
+models.Calendar.create({
+  key_id: 1,
+  name: "냐옹",
+  startDate: "2022-11-28",
+  endDate: "2022-11-28"
+}).then(result => {
+  console.log(result);
 });
+console.log("2022-11-2" > "2022-11-12");
 
 const dbTest1 = () => {
   const salt = crypto.pseudoRandomBytes(128).toString("base64");

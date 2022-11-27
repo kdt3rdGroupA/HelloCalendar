@@ -21,7 +21,7 @@
     <!-- css: shortcut -->
     <link rel="stylesheet" href="../static/css/shortcut.css" />
 
-    <!-- Google icon : setting, add, stop -->
+    <!-- Google icon : setting, add, stop, edit -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
@@ -34,7 +34,10 @@
       rel="stylesheet" 
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" 
     />
-
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" 
+    />
     <!-- 한국어 font: IBM Plex Sans, 프리텐다 -->
     <!--눈누 폰트는 헤더에 안 들어감-->
 
@@ -59,7 +62,9 @@
     <header>
       <nav>
         <!-- 다크모드 버튼 -->
-        <button class="btn-toggle"><img src="../static/img/day-and-night.png"></button>
+        <button class="btn-toggle">
+          <img src="../static/img/day-and-night.png" />
+        </button>
 
         <div class="flex_space"></div>
 
@@ -196,7 +201,36 @@
           <button type="button" class="close">닫기</button>
         </div>
       </div>
-      <div class="hide"></div>
+      <div class="calendar_add hide">
+        <h3>일정추가</h3>
+        <hr />
+        시작:
+        <input type="date" max="2099-01-01" min="1970-01-01" class="startDate" /><br />
+        종료:
+        <input type="date" max="2099-01-01" min="1970-01-01" class="endDate" /><br />
+        <input type="text" class="calendarName" required placeholder="Name" /><br />
+        <input type="text" class="calendarDetail" required placeholder="memo" />
+        <div class="buttons">
+          <button type="button" class="submit">추가</button>
+          <button type="button" class="close">닫기</button>
+        </div>
+      </div>
+      <div class="hide editCalendar">
+        <h3>일정 삭제,수정</h3>
+        <hr />
+        시작:
+        <input type="date" max="2099-01-01" min="1970-01-01" class="startDate" /><br />
+        종료:
+        <input type="date" max="2099-01-01" min="1970-01-01" class="endDate" /><br />
+        <input type="text" class="calendarName" required placeholder="Name" /><br />
+        <input type="text" class="calendarDetail" required placeholder="memo" />
+        <div class="hide" id="calendarTargetKey"></div>
+        <div class="buttons">
+          <button type="button" class="edit">수정</button>
+          <button type="button" class="remove">삭제</button>
+          <button type="button" class="close">닫기</button>
+        </div>
+      </div>
     </div>
 
 
@@ -210,7 +244,7 @@
     <script src="../static/js/shortcut.js"></script>
 
     <!-- ToDo 기능 구현 내용 -->
-	  <script src="../static/js/todo.js"></script>	
+	  <!-- <script src="../static/js/todo.js"></script>	 -->
 
     <!-- JS: darkmode -->
     <script src="../static/js/darkmode.js"></script>

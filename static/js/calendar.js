@@ -29,89 +29,9 @@ const clearClass = function (element) {
 const create = function (tagStr) {
   return d.createElement(tagStr);
 };
-
-// 다른 파일에서 사용되는 함수여서 const d ~ const create 까지는 주석처리 하지 말아주세요
-
-// const monthDays = {
-//   "01" : 31, 1 : 31, "Jan": 31,
-//   "02" : 28, 2 : 28, "Feb": 28,
-//   "03" : 31, 3 : 31, "Mar": 31,
-//   "04" : 30, 4 : 30, "Apr": 30,
-//   "05" : 31, 5 : 31, "May": 31,
-//   "06" : 30, 6 : 30, "Jun": 30,
-//   "07" : 31, 7 : 31, "Jul": 31,
-//   "08" : 31, 8 : 31, "Aug": 31,
-//   "09" : 30, 9 : 30, "Sep": 30,
-//   "10" : 31, 10: 31, "Oct": 31,
-//   "11" : 30, 11: 30, "Nov": 30,
-//   "12" : 31, 12: 31, "Dec": 31
-// }
-// const month2num = {
-//   "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
-//   "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12
-// }
-// const weekDay2num = {
-//   "Sun": 0, "Mon": 1, "Tue": 2, "Wed": 3, "Thu": 4, "Fri": 5, "Sat": 6
-// }
-// let days = selectorAll(".calendarContents td");
-// let endDay;
-// let firstWeekDay;
-// let today;
-// const displayCalendar = (target=false) => {
-//   let now;
-//   target ? now=String(new Date(target)) : now=String(new Date());
-//   days.forEach(element => {
-//     element.innerText = "";
-//   });
-//   endDay = monthDays[now.slice(4,7)];
-//   if (now.slice(4,7) == "Feb" && !Number(now.slice(11,15))%4) {
-//     endDay += 1;
-//   }
-//   // firstWeekDay = weekDay2num[now.slice(0,3)];
-//   today = Number(now.slice(8,10));
-//   firstWeekDay = weekDay2num[now.slice(0,3)] - (today%7) + 1;
-//   firstWeekDay<0 ? firstWeekDay+=7 : null;
-//   for (let i=0; i<endDay; i++) {
-//     days[i+firstWeekDay].innerText = `${i+1}`;
-//   }
-//   print(now);
-// }
-// // let now = String(new Date());
-// // let month = month2num[now.slice(4,7)];
-// // let year = Number(now.slice(11,15));
-// // selector(".main h2").innerText = `${year}년 ${month}월`;
-
-// displayCalendar();
-
-// // selector("#next_month").addEventListener("click", () => {
-// //   month += 1
-// //   if (month == 13) {
-// //     month = 1;
-// //     year += 1;
-// //   }
-// //   selector(".main h2").innerText = `${year}년 ${month}월`;
-// //   displayCalendar(target=`${year}-${month}-01`);
-// // });
-// // selector("#prev_month").addEventListener("click", () => {
-// //   month -= 1;
-// //   if (!month) {
-// //     month = 12;
-// //     year -= 1;
-// //   }
-// //   selector(".main h2").innerText = `${year}년 ${month}월`;
-// //   displayCalendar(target=`${year}-${month}-01`);
-// // })
-
-////////////////////////////////////////////
-//캘린더 js: 새 버전
 // 달력 생성
 
 // 변수 선언
-
-var currentTitle = document.getElementById("current-year-month");
-var calendarBody = document.getElementById("calendar-body");
-var today = new Date();
-var first = new Date(today.getFullYear(), today.getMonth(), 1);
 var dayList = [
   "Sunday",
   "Monday",
@@ -121,224 +41,319 @@ var dayList = [
   "Friday",
   "Saturday",
 ];
-
-var leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-var notLeapYear = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-var pageFirst = first;
+var leapYear = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var notLeapYear = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var pageYear;
-if (first.getFullYear() % 4 === 0) {
-  pageYear = leapYear;
-} else {
-  pageYear = notLeapYear;
-}
-
-var tdGroup = [];
-let currentYear, currentMonth;
+let day, month, year, weekday, keyDay;
 const makeCalendar = (date) => {
-  // 현재 년도와 월 받아오기
-  currentYear = new Date(date).getFullYear();
-  currentMonth = new Date(date).getMonth() + 1;
-
-  // 첫날의 요일 구하기 - 초기 시작위치를 위해서
-  const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
-  // 마지막 날짜 구하기
-  const lastDay = new Date(currentYear, currentMonth, 0).getDate();
-
-  // 남은 박스만큼 다음달 날짜 표시
-  const limitDay = firstDay + lastDay;
-  const nextDay = Math.ceil(limitDay / 7) * 7;
-
-  let htmlDummy = "";
-
-  // 한달전 날짜 표시하기
-  for (let i = 0; i < firstDay; i++) {
-    htmlDummy += `<div class="noColor"></div>`;
+  // date: Date()
+  year = date.getFullYear();
+  (year%4 == 0) ? (pageYear=leapYear) : (pageYear=notLeapYear);
+  month = date.getMonth()+1;
+  day = date.getDate();
+  weekday = date.getDay();
+  let dateTemp = new Date(year, month-1, day);
+  selector(".dateTitle").innerText = `${year}년 ${month}월`;
+  
+  // 켈린더 파트
+  let monthFirstWeekday = (weekday - (day%7) + 1) % 7;
+  (monthFirstWeekday < 0) ? (monthFirstWeekday += 7) : null;
+  let dateBoard = selector(".dateBoard");
+  dateBoard.innerHTML = "";
+  for (let i=0; i<monthFirstWeekday; i++) {
+    let dayDiv = create('div');
+    addClass(dayDiv, 'noColor');
+    dateBoard.append(dayDiv);
+  }
+  for (let i=0; i<pageYear[month]; i++) {
+    let dayDiv = create('div');
+    addClass(dayDiv, 'date');
+    let key = String(year) + '-';
+    if (month < 10) {
+      key += ('0' + String(month) + '-');
+    } else {
+      key += (String(month) + '-');
+    }
+    if (i+1 < 10) {
+      key += ('0' + String(i+1));
+    } else {
+      key += String(i+1);
+    }
+    dayDiv.id = key;
+    dayDiv.innerText = i+1;
+    dayDiv.addEventListener('click', () => {
+      dateTemp.setDate(i+1)
+      displaySchedule(dateTemp);
+      day = Number(dayDiv.innerText);
+      let days = selectorAll('.dateBoard div');
+      days.forEach(element => {
+        removeClass(element, 'active');
+      })
+      addClass(dayDiv, 'active');
+    });
+    (i+1 == day) ? addClass(dayDiv, 'active') : null ;
+    dateBoard.append(dayDiv);
+  }
+  let leftSpace = 7 - ((monthFirstWeekday + pageYear[month]) % 7);
+  for (let i=0; i<leftSpace; i++) {
+    let dayDiv = create('div');
+    addClass(dayDiv, 'noColor');
+    dateBoard.append(dayDiv);
   }
 
-  // 이번달 날짜 표시하기
-  for (let i = 1; i <= lastDay; i++) {
-    htmlDummy += `<div class-"date" id="${i}">${i}</div>`;
-  }
-
-  // 다음달 날짜 표시하기
-  for (let i = limitDay; i < nextDay; i++) {
-    htmlDummy += `<div class="noColor"></div>`;
-  }
-
-  document.querySelector(".dateBoard").innerHTML = htmlDummy;
-  document.querySelector(
-    ".dateTitle"
-  ).innerText = `${currentYear}년 ${currentMonth}월`;
-  showDay(); // 일정등록 부분에 날짜 띄우기
-  var clickedDate1 = document.getElementById(today.getDate()); // 날짜 클릭시 클래스 추가
-  clickedDate1.classList.add("active");
-  clickStart(); // 날짜 클릭
+  // 일정파트
+  displaySchedule(date);
+  displayScheduleOnCalendar();
 };
 
-const date = new Date();
+// 일정파트 표시함수
+const displaySchedule = date => {
+  selector("#nowDay").innerText = dayList[date.getDay()];
+  selector("#nowDate").innerText = date.getDate();
 
-makeCalendar(date);
+  keyDay = date2key(date);
+  printSchedule(keyDay);
+}
+const date2key = date => {
+  let month = String(date.getMonth() + 1);
+  month.length == 1 ? month = '0'+month : null;
+  let day = String(date.getDate());
+  day.length == 1 ? day = '0'+day : null;
+  return `${date.getFullYear()}-${month}-${day}`;
+}
 
 // 이전달 이동
 document.querySelector(`.calPrevDay`).onclick = () => {
-  makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
-  today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()); // 이번 달이 이전달에 영향을 주지 않도록 month - 1
-  showDay();
-  reshow();
+  month -= 1;
+  if (!month) {
+    month = 12;
+    year -= 1;
+  }
+  if (day > pageYear[month]) {
+    day = pageYear[month];
+  }
+  makeCalendar(new Date(year, month-1, day));
 };
 
 // 다음달 이동
 document.querySelector(`.nextDay`).onclick = () => {
-  makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
-  today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate()); // 이번달이 다음달에 영향을 주지 않도록 month + 1
-  showDay();
-  reshow();
+  month += 1;
+  if (month > 12) {
+    month = 1;
+    year += 1;
+  }
+  if (day > pageYear[month]) {
+    day = pageYear[month];
+  }
+  makeCalendar(new Date(year, month-1, day));
 };
 
-// 일정 등록 부분에 오늘 요일, 날짜 띄우기
-function showDay() {
-  var mainTodayDay = document.querySelector(".nowDay");
-  var mainTodayDate = document.querySelector(".nowDate");
-  mainTodayDay.innerHTML = dayList[today.getDay()];
-  // console.log(today.getDay());
-  mainTodayDate.innerHTML = today.getDate();
-}
-
-function clickStart() {
-  for (let i = 1; i <= pageYear[first.getMonth()]; i++) {
-    tdGroup[i] = document.getElementById(i);
-    if (tdGroup[i] == null) {
+// 일정칸에 오늘날자에 해당하는 일정 출력
+const printSchedule = (keyDay) => {
+  let scheduleBox = selector("#listcontents");
+  scheduleBox.innerHTML = "";
+  events.forEach(element => {
+    if (element.startDate > keyDay || keyDay > element.endDate) {
       return 0;
     }
-    tdGroup[i].addEventListener("click", changeToday);
-    // console.log(keyValue);
-  }
+    let itemWrap = create('div');
+    let item = create('details');
+    let itemName = create('summary');
+    addClass(itemName, 'item_name');
+    itemName.innerText = element.name;
+    let itemDetail = create('div');
+    addClass(itemDetail, 'item_detail');
+    itemDetail.innerText = element.detail;
+    let calendarKey = create('div');
+    addClass(calendarKey, 'hide');
+    calendarKey.innerText = element.id;
+    let deleteBtn = create('div');
+    addClass(deleteBtn, 'delete_button');
+    deleteBtn.innerHTML = '<span class="material-symbols-outlined">edit</span>';
+    deleteBtn.addEventListener('click', () => {
+      selector('#calendarTargetKey').innerText = element.id;
+      selector('#forms .editCalendar .startDate').value = element.startDate;
+      selector('#forms .editCalendar .endDate').value = element.endDate;
+      selector('#forms .editCalendar .calendarName').value = element.name;
+      selector('#forms .editCalendar .calendarDetail').value = element.detail;
+      removeClass(selector('#forms .editCalendar'), 'hide');
+    });
+    item.append(itemName);
+    item.append(itemDetail);
+    item.append(calendarKey);
+    itemWrap.append(item);
+    itemWrap.append(deleteBtn);
+    scheduleBox.append(itemWrap);
+  })
 }
 
-// 날짜 클릭시 css 변경하기 위한 함수
-function changeToday(e) {
-  for (let i = 1; i <= pageYear[first.getMonth()]; i++) {
-    if (tdGroup[i] == null) {
-      break;
+// 일정을 켈린더에 표시
+const displayScheduleOnCalendar = () => {
+  let days = selectorAll(".dateBoard .date");
+  days.forEach(element => {
+    if (hasClass(element, 'noColor')) {
+      return 0;
     }
-    if (tdGroup[i].classList.contains("active")) {
-      tdGroup[i].classList.remove("active");
+    let time = element.id;
+    for (let i=0; i<events.length; i++) {
+      let e2 = events[i];
+      if (time == e2.startDate || time == e2.endDate) {
+        addClass(element, 'event');
+        break;
+      } else if (e2.startDate < time && time < e2.endDate) {
+        addClass(element, 'in_event');
+      }
     }
-  }
-  clickedDate1 = e.currentTarget;
-  clickedDate1.classList.add("active");
-  today = new Date(today.getFullYear(), today.getMonth(), clickedDate1.id);
-  showDay();
-  let nowMonth = today.getMonth() + 1;
-  keyValue = today.getFullYear() + "" + nowMonth + "" + today.getDate();
-  reshow();
-}
-
-// 일정 등록
-
-// 날짜 클릭해서 변경시 새로운 일정 등록 화면 띄워주기
-function reshow() {
-  let nowMonth = today.getMonth() + 1;
-  keyValue = today.getFullYear() + "" + nowMonth + "" + today.getDate();
-  // console.log(scheduleList[keyValue]);
-  const list = document.querySelectorAll("#listcontents > div");
-  if (scheduleList[keyValue] === undefined) {
-    inputlists.textContent = "";
-    scheduleList[keyValue] = [];
-    list.forEach((i) => {
-      i.remove();
-    });
-  } else if (scheduleList[keyValue].length === 0) {
-    inputlists.textContent = "";
-    list.forEach((i) => {
-      i.remove();
-    });
-  } else {
-    inputlists.textContent = "";
-    list.forEach((i) => {
-      i.remove();
-    });
-  }
-
-  for (var i = 0; i < scheduleList[keyValue].length; i++) {
-    var listdiv = document.createElement("div");
-    var removeBtn = document.createElement("button");
-    var hide = document.createElement("div");
-
-    listdiv.textContent = "-" + scheduleList[keyValue][i];
-    removeBtn.textContent = removeText;
-    // 요소 추가
-    inputlists.appendChild(listdiv);
-    listdiv.append(removeBtn);
-    removeBtn.append(hide);
-    // 만들어진 요소들에 클래스 추가
-    listdiv.classList.add("list");
-    removeBtn.classList.add("removeBtn");
-    hide.classList.add("hide");
-
-    del();
-  }
-}
-
-let input = document.querySelector("#input");
-let inputBtn = document.querySelector("#inputBtn");
-let inputlists = document.querySelector("#listcontents");
-const removeText = "삭제";
-let nowMonth = today.getMonth() + 1;
-let keyValue = today.getFullYear() + "" + nowMonth + "" + today.getDate();
-let scheduleList = [];
-scheduleList[keyValue] = []; // 리스트를 배열에 저장
-
-inputBtn.addEventListener("click", addSchedule);
-
-// 일정 등록 함수
-function addSchedule() {
-  var listdiv = document.createElement("div");
-  var removeBtn = document.createElement("button");
-  var hide = document.createElement("div");
-  
-  // axios({
-  //   method: 'POST',
-  //   url: '/calendar/add',
-  //   params: null
-  // }).then(result => {
-  //   if (result.data.data == null) {
-  //     return 0;
-  //   }
-    
-  // });
-
-  listdiv.textContent = " - " + input.value;
-  removeBtn.textContent = removeText;
-  // 요소 추가
-  inputlists.appendChild(listdiv);
-  listdiv.append(removeBtn);
-  removeBtn.append(hide);
-  // 만들어진 요소들에 클래스 추가
-  listdiv.classList.add("list");
-  removeBtn.classList.add("removeBtn");
-  hide.classList.add("hide");
-  // 일정 배열에 값 넣어주기
-  scheduleList[keyValue].push(input.value);
-
-  console.log(scheduleList[keyValue]);
-  input.value = "";
-  del();
-}
-
-// 리스트 삭제 함수
-function del() {
-  const listdiv = document.querySelectorAll(".list");
-  const removeBtn = document.querySelectorAll(".removeBtn");
-  // const delBtn = removeBtn.lastChild;
-  removeBtn[removeBtn.length - 1].addEventListener("click", function () {
-    listdiv[listdiv.length - 1].remove();
-    removeBtn[removeBtn.length - 1].remove();
-    // 배열에서 값 뽑아내기
-    scheduleList[keyValue].pop(input.value);
-    console.log(scheduleList[keyValue]);
   });
 }
 
-// 리스트 수정 함수
+// 페이지 로드후 일정정보 가져오기
+let events = [];
+
+axios({
+  method: 'POST',
+  url: '/calendar',
+  params: null
+}).then(result => {
+  if (result.data.result == false) {
+    return 0;
+  }
+  events = result.data.data;
+  makeCalendar(new Date());
+  printSchedule(`${year}-${month}-${day}`);
+});
+
+// 연속일정추가 모달
+selector(".scheduleTitle").addEventListener('click', () => {
+  removeClass(selector('#forms .calendar_add'), 'hide');
+  selector('.startDate').value = keyDay;
+  selector('.endDate').value = keyDay;
+});
+selector('#forms .calendar_add .close').addEventListener('click', () => {
+  addClass(selector('#forms .calendar_add'), 'hide');
+});
+selector('#forms .calendar_add .submit').addEventListener('click', () => {
+  addCalendar();
+});
+let addInputs = selectorAll('#forms .calendar_add input');
+addInputs.forEach(element => {
+  element.addEventListener('keydown', event => {
+    if (event.code != 'Enter') {
+      return 0;
+    }
+    addCalendar();
+  })
+})
+const addCalendar = () => {
+  let startDate = selector('#forms .calendar_add .startDate').value;
+  let endDate = selector('#forms .calendar_add .endDate').value;
+  let calendarName = selector('#forms .calendar_add .calendarName').value;
+  let calendarDetail = selector('#forms .calendar_add .calendarDetail').value;
+  if (startDate > endDate) {
+    alert('날자를 확인해 주세요');
+    return 0;
+  }
+  if (!calendarName.length) {
+    return 0;
+  }
+  let addData = {
+    name: calendarName,
+    detail: calendarDetail,
+    startDate: startDate,
+    endDate: endDate
+  };
+  axios({
+    method: 'POST',
+    url: '/calendar/add',
+    params: addData
+  }).then(result => {
+    let data = result.data;
+    if (!data.result) {
+      return 0;
+    }
+    events.push(addData);
+    makeCalendar(new Date(year, month-1, day));
+    addClass(selector('#forms .calendar_add'), 'hide');
+  });
+}
+
+// 일정 삭제, 수정
+selector('#forms .editCalendar .close').addEventListener('click', () => {
+  addClass(selector('#forms .editCalendar'), 'hide');
+});
+selector('#forms .editCalendar .edit').addEventListener('click', () => {
+  editCalendar();
+});
+let edits = selectorAll('#forms .editCalendar input');
+edits.forEach(element => {
+  element.addEventListener('keydown', event => {
+    if (event.code != 'Enter') {
+      return 0;
+    }
+    editCalendar();
+  })
+});
+selector('#forms .editCalendar .remove').addEventListener('click', () => {
+  axios({
+    method: 'POST',
+    url: '/calendar/remove',
+    params: {calendarKey: selector('#forms .editCalendar #calendarTargetKey').innerText}
+  }).then(result => {
+    let data = result.data;
+    if (!data.result) {
+      return 0;
+    }
+    // let eventIndex = 0;
+    for(let i=0; i<events.length; i++) {
+      if (events[i].id == selector('#forms .editCalendar #calendarTargetKey').innerText) {
+        events.splice(i, 1);
+      }
+    }
+    makeCalendar(new Date(year, month-1, day));
+    addClass(selector('#forms .editCalendar'), 'hide');
+  })
+});
+
+const editCalendar = () => {
+  let startDate = selector('#forms .editCalendar .startDate').value;
+  let endDate = selector('#forms .editCalendar .endDate').value;
+  let calendarName = selector('#forms .editCalendar .calendarName').value;
+  let calendarDetail = selector('#forms .editCalendar .calendarDetail').value;
+  if (startDate > endDate) {
+    alert('날자를 확인해 주세요');
+    return 0;
+  }
+  if (!calendarName.length) {
+    return 0;
+  }
+  let editData = {
+    calendarKey: selector('#forms .editCalendar #calendarTargetKey').innerText,
+    newData: {
+      name: calendarName,
+      detail: calendarDetail,
+      startDate: startDate,
+      endDate: endDate  
+    }
+  };
+  axios({
+    method: 'POST',
+    url: '/calendar/edit',
+    params: editData
+  }).then(result => {
+    let data = result.data;
+    if (!data.result) {
+      return 0;
+    }
+    events.forEach(element => {
+      if (element.id == editData.calendarKey) {
+        element.startDate = editData.newData.startDate;
+        element.endDate = editData.newData.endDate;
+        element.name = editData.newData.name;
+        element.detail = editData.newData.detail;
+      }
+    });
+    makeCalendar(new Date(year, month-1, day));
+    addClass(selector('#forms .editCalendar'), 'hide');
+  });
+}
 

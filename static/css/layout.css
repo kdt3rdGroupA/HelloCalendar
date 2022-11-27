@@ -254,8 +254,24 @@ input.input {
   color: white;
   border: 0;
 }
+#forms .remove {
+  height: 2rem;
+  border-radius: 1rem;
+  padding: 0 7px;
+  background-color: #FF00007F;
+  color: white;
+  border: 0;
+}
+#forms .edit {
+  height: 2rem;
+  border-radius: 1rem;
+  padding: 0 7px;
+  background-color: skyblue;
+  color: white;
+  border: 0;
+}
 .dark-theme #forms > div {
-  background-color: #222;
+  background-color: #555;
   border: 2px solid#eeeeee;
 
 }

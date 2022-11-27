@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  list-style: none;
   box-sizing: border-box;
 }
 
@@ -152,7 +151,16 @@
 
 /* 일정이 있는날 */
 .event {
-  border-bottom: 2px solid #eeeeee;
+  border-bottom: 3px solid #444444 !important;
+}
+.dark-theme .event {
+  border-bottom: 3px solid #EEEEEE !important;
+}
+.in_event {
+  border-bottom: 3px solid #4444447F;
+}
+.dark-theme .in_event {
+  border-bottom: 3px solid #EEEEEE7F;
 }
 
 /* 날짜 띄우기 */
@@ -234,10 +242,33 @@
   color: black;
   float: left;
   width: 25vw;
-  padding: 30px;
+  padding: 30px 10px;
   /* border: 1px solid black; */
+}
+
+#listcontents>div {
+  display: flex;
+  justify-content: space-between;
+}
+#listcontents {
+  margin: 5px 0;
 }
 
 .active {
   color: #308dcf;
+}
+
+.item_name {
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.item_detail {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.startDate, 
+.endDate {
+  width: 80% !important;
 }

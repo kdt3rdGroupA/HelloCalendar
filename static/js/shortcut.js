@@ -25,7 +25,6 @@ const addLink = (link, name, id) => {
   }
   let linkName = create('div');
   linkName.innerText = name;
-  
   linkBtn.append(linkName);
   linkBtn.addEventListener('click', () => {
     window.open(link, '_blank');

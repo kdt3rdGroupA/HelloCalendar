@@ -5,6 +5,15 @@
 } */
 .todoTab {
   position: absolute;
+  top: 20vh;
+
+  width: 10px;
+  height: 10px;
+}
+.todoTab {
+  width: 60vw;
+  height: 10vw;
+  position: relative;
   margin: 1rem 0 1rem 0;
   top: 3rem;
   left: 95vw;

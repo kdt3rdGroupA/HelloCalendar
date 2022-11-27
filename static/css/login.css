@@ -62,7 +62,6 @@ body {
 }
 
 /* 구글 로그인 */
-
 #googleLogin {
   vertical-align: middle;
 }
@@ -150,4 +149,30 @@ img#treesImg {
   font-size: 12px;
   width: 200px;
   display: block;
+}
+
+#login_footer {
+  display: flex;
+  margin-top: 1rem;
+}
+#login_footer .signupBtn{
+  width: 6rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 1rem;
+  border: 0;
+  background-color: #00d2fc;
+  margin: 5px;
+}
+#login_footer .resetPw{
+  height: 2rem;
+  width: 8rem;
+  line-height: 2rem;
+  border-radius: 1rem;
+  background-color: #00d2fc;
+  margin: 5px;
+}
+#login_footer a {
+  color: black;
+  text-decoration: none;
 }

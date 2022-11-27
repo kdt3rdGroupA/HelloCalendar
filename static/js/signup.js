@@ -1,3 +1,6 @@
+const URL = "http://localhost";
+const PORT = 8001;
+
 const id = document.querySelector("#id");
 const pw = document.querySelector("#pw");
 const name = document.querySelector("#name");
@@ -83,6 +86,7 @@ function register() {
     email.style.borderColor = "black";
   }
 
+  // email 인증코드 유효성 검사
   if (!emailcode.checkValidity() && emailcode.classList.contains("show")) {
     warningEmailcode.style.display = "block";
     warningEmailcode.textContent = "❗️인증코드를 입력해 주세요";
@@ -91,6 +95,24 @@ function register() {
     warningEmailcode.style.display = "none";
     emailcode.style.borderColor = "black";
   }
+
+  axios({
+    method: 'POST',
+    url: '/login/signup',
+    params: {
+      name: name.value,
+      userid: id.value,
+      pw: pw.value,
+      emailAuthNum: emailcode.value
+    }
+  }).then(result => {
+    let data = result.data;
+    if (data.result == true) {
+      
+      location.replace(`${URL}:${PORT}/login`);
+    } 
+    //나중에할것 오류경우에따라 data에 오류경우 담아서 받고 alert 뛰우기
+  });
 }
 
 // 이메일 인증 코드창 띄우기
@@ -139,3 +161,53 @@ for (let i = 0; i < inputs.length; i++) {
     }
   });
 }
+
+// 아이디 중복 검사
+document.querySelector("#idSignup .idBtn").addEventListener("click", () => {
+  if (!id.checkValidity()) {
+    return 0;
+  }
+  axios({
+    method: "POST",
+    url: "/login/idcheck",
+    params: { userid: id.value },
+  }).then((result) => {
+    console.log(result);
+    let data = result.data;
+    console.log("여기서 CSS, 회원가입 버튼 로직 설정하시면 됩니다");
+    //  응답 -> result.data = {result:"", msg="", data={}}
+    //    result:
+    //      true: 로그인, 회원가입 성공
+    //      false: 로그인, 회원가입 실패
+    //    msg:
+    //      result에관한 이유(ex : 아이디 겹침, 로그인성공, ...)
+    //    data:
+    //      요청성공(result : true) 이후 보내지는 정보(로그인정보)
+    //      별다른 데이터 전송이 필요없으면 null
+    //      응답이 필요한 data가 있으면 알려주세요
+    if (data.result) {
+      warningId.style.display = "block";
+      warningId.textContent = "✅ 사용가능한 아이디입니다.";
+      warningId.style.color = "black";
+    } else {
+      warningId.style.display = "block";
+      warningId.textContent = "❗️중복된 아이디입니다.";
+    }
+  });
+});
+
+// 인증 이메일 받기
+document.querySelector("#idSignup .emailBtn").addEventListener("click", () => {
+  console.log(email.value);
+  if (!email.checkValidity()) {
+    return 0;
+  }
+  axios({
+    method: "POST",
+    url: "/login/emailAuth",
+    params: { email: email.value },
+  }).then((result) => {
+    //let data = result.data;
+    console.log("여기서 CSS, 회원가입 버튼 로직 설정하시면 됩니다");
+  });
+});

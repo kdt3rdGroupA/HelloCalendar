@@ -2,34 +2,280 @@ body {
   margin: 0;
   /* background-color: blanchedalmond; */
   /* color: black; */
-  overflow: hidden;
-  font-family: 'Noto Sans', sans-serif;
+  overflow-x: hidden;
+  font-family: "Noto Sans", sans-serif;
+}
+.hide {
+  opacity: 0 !important;
+  z-index: -1 !important;
+  transition: 0.3s;
+}
+:not(.hide) {
+  transition: 0.5s;
 }
 
+/* 헤더 */
 nav {
   display: flex;
+  /* position: relative; */
   justify-content: space-between;
   margin: 0 20px;
 }
 
+.btn-toggle {
+  /* height: 50px;
+  width: 50px;
+  border-radius: 100%; */
+  border:none;
+  background-color:transparent;
+  }
+
+  .btn-toggle > img {
+    height: 45px;
+    width: 45px;
+  }
+
 .headerLogo {
-  font-family: 'Amiko', sans-serif;
-  font-size: 25px;
+  font-family: "Amiko", sans-serif;
+  font-size: 40px;
   background: linear-gradient(to right top, #003efa, #00d2fc);
   color: transparent;
   -webkit-background-clip: text;
+  margin-top: 30px;
+  margin-left: -20%;
 }
-
 .headerContent {
   display: flex;
 }
-
 .headerContent h3 {
-  font-family: 'Amiko', sans-serif;
+  font-family: "Amiko", sans-serif;
   padding-left: 30px;
+}
+#nav_user_info {
+  text-align: center;
+}
+#nav_user_info .userName {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+}
+#nav_user_info .userEmail {
+  font-size: 0.6rem;
+  color: gray;
+}
+#logout {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
 }
 
 .searchBar {
   text-align: center;
   margin: 50px 0;
 }
+
+/*다크모드 실험*/
+
+body {
+  --text-color: #222;
+  --bkg-color: #fff;
+}
+body.dark-theme {
+  --text-color: rgba(238, 238, 238, 0.854);
+  --bkg-color: #121212ce;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212ce;
+  }
+  body.light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212ce;
+  }
+  body.light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+}
+/* 중복되는 코드 -> 확인하고 삭제하기 */
+
+body {
+  background: var(--bkg-color);
+}
+/* 중복되는 코드 -> 확인하고 삭제하기 */
+
+h2,
+h3,
+a,
+div,
+input.input {
+  color: var(--text-color);
+}
+
+/* 홈페이지도구 */
+#home_tools {
+  width: 60vw;
+  margin: 0 auto;
+}
+.searchBar {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 50px 0 10px 0;
+}
+#search_text {
+  width: 50vw;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  border-radius: 1.2rem 0 0 1.2rem;
+  padding: 0 0 0 2rem;
+  background-color: lightgray;
+  border: 0;
+  font-size: 1.2rem;
+}
+#search_btn {
+  width: 5rem;
+  height: 2.4rem;
+  border-radius: 0 1.2rem 1.2rem 0;
+  border: 0;
+  background-color: skyblue;
+  color: white;
+  cursor: pointer;
+}
+#search_btn:hover {
+  background-color: royalblue;
+  transition: 0.5s;
+}
+#search_btn:not(:hover) {
+  transition: 0.5s;
+}
+#shortcut {
+  display: flex;
+  user-select: none; 
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#shortcut > * {
+  margin: 0 5px 10px 5px;
+  cursor: pointer;
+}
+#shortcut .link {
+  height: 2rem;
+  border: 0;
+  border-radius: 1rem;
+  background-color: lightgray;
+  padding: 0 8px;
+}
+#shortcut .link:hover {
+  border: 1px solid black;
+}
+#shortcut .link .shortcuts {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+.dark-theme #shortcut .link {
+  background-color: gray;
+}
+.dark-theme #shortcut .link:hover {
+  border: 1px solid white;
+}
+.link_mark {
+  font-weight: 600;
+  margin: 0 5px 0 0;
+  color: royalblue;
+}
+
+/* 모달 */
+#forms {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+#forms > div {
+  position: absolute;
+  width: 40vw;
+  /* height: 30vh; */
+  left: 30vw;
+  top: 20px;
+  min-width: 300px;
+  z-index: 2;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 1.2rem;
+  padding: 1rem 1rem 3rem 1rem;
+}
+#forms > div input {
+  border-bottom: 3px solid gray;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  margin: 10px 0;
+  height: 2rem;
+  line-height: 2rem;
+  width: 100%;
+  font-size: 1rem;
+  background-color: inherit;
+}
+#forms .buttons {
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: 10px;
+  width: 87%;
+}
+#forms .submit {
+  height: 2rem;
+  border-radius: 1rem;
+  padding: 0 7px;
+  background-color: skyblue;
+  color: white;
+  border: 0;
+}
+#forms .close {
+  height: 2rem;
+  border-radius: 1rem;
+  padding: 0 7px;
+  background-color: lightgray;
+  color: white;
+  border: 0;
+}
+.dark-theme #forms > div {
+  background-color: #222;
+  border: 2px solid#eeeeee;
+
+}
+.dark-theme #forms > div input {
+  border-bottom: 3px solid #eeeeee;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  color: #eeeeee;
+}
+#forms .link_setting .shortcuts {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 5px;
+}
+
+/* #shortcut .link>* {
+  overflow: hidden;
+  height: 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: lightgray;
+} */

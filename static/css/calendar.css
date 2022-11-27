@@ -1,8 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
 
-header {
+/* header { */
+/*캘린더 css : 현승님 버전*/
+/* header {
   width: 100vw;
   height: 3rem;
-  /* background-color: #111111; */
   text-align: center;
 }
 .calendar {
@@ -25,4 +32,212 @@ header {
 }
 .Sat {
   color: blue;
+}
+*/
+/* } */
+
+/* 달력 css: 새 버전 */
+/* Calendar */
+.calendarRap {
+  display: flex;
+  justify-content: center;
+  font-family: "Amiko", sans-serif;
+  padding: 0 1.4rem;
+  margin-top: 1.4rem;
+  /* width: 31.5rem; */
+}
+
+/* SUN ~ SAT */
+.dateHead>div {
+  opacity: 0.8;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 700;
+  width: 2.5rem;
+  margin: 0 1rem;
+}
+
+/* SUN font color */
+.dateHeadSun {
+  color: red;
+}
+
+/* SAT font color */
+.dateHeadSat {
+  color: blue;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 1px;
+}
+
+/* 
+.grid div {
+  font-size: 1rem;
+} */
+
+/* 날짜 */
+.dateBoard div {
+  font-weight: bold;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 1rem 1rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 2rem;
+  user-select: none;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
+/* .noColor {
+  background: #eee;
+} */
+
+/* 버튼 및 xx년 xx월 */
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+}
+
+/* 좌우 버튼 */
+.calendarBtn {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 3px solid rgba(0, 0, 0, 0.61);
+  border-width: 3px 3px 0 0;
+  cursor: pointer;
+}
+.dark-theme .calendarBtn {
+  border: 3px solid #eeeeee;
+  border-width: 3px 3px 0 0;
+}
+
+/* 지난 달 보기 */
+.calPrevDay {
+  transform: rotate(-135deg);
+  margin-top: 5px;
+}
+
+/* 다음 달 보기 */
+.nextDay {
+  transform: rotate(45deg);
+  margin-top: 5px;
+}
+
+/* ---- */
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+.dateHead {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  height: 20px;
+}
+
+.dateTitle {
+  font-size: 20px;
+}
+
+/* 달력 */
+
+.calendarContent {
+  width: 50vw;
+}
+
+/* 일정이 있는날 */
+.event {
+  border-bottom: 2px solid #eeeeee;
+}
+
+/* 날짜 띄우기 */
+.dayWrap {
+  text-align: center;
+  padding: 20px 0 0 0;
+}
+
+.nowDay {
+  font-size: 20px;
+  font-weight: bold;
+}
+.nowDate {
+  font-size: 70px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+/* 일정 input 부분 */
+.scheculeWrap {
+  padding: 0;
+}
+
+.scheduleTitle {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 100;
+  margin: 0 0 10px 0;
+}
+
+.input {
+  width: 50%;
+  margin-right: 20px;
+  height: auto;
+  line-height: normal;
+  padding: 0.8em 0.5em 0 0;
+  font-family: inherit;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px dashed #ddaf35;
+  border-radius: 0;
+  outline-style: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.inputBtn {
+  cursor: pointer;
+  font-size: 10px;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  background-color: skyblue;
+  border: none;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.inputBtn:hover {
+  background-color: royalblue;
+  color: #ffffff;
+}
+
+.list > div {
+  font-size: 10px;
+  width: 60%;
+  float: left;
+  color: #ddaf35;
+}
+
+.list > .checked {
+  color: #ffffff;
+  text-decoration: line-through;
+}
+
+.scheduleContent {
+  color: black;
+  float: left;
+  width: 25vw;
+  padding: 30px;
+  /* border: 1px solid black; */
+}
+
+.active {
+  color: #308dcf;
 }

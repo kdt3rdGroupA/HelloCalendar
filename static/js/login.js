@@ -60,29 +60,6 @@ for (let i = 0; i < inputs.length; i++) {
   });
 }
 
-//Google Login API
-//로그인 정보를 가져오기 위한 handleCredentialResponse 함수 생성
-function handleCredentialResponse(response) {
-  // decodeJwtResponse() is a custom function defined by you
-  // to decode the credential response.
-  const responsePayload = parseJwt(response.credential);
-
-  console.log("ID: " + responsePayload.sub);
-  console.log('Full Name: ' + responsePayload.name);
-  console.log('Given Name: ' + responsePayload.given_name);
-  console.log('Family Name: ' + responsePayload.family_name);
-  console.log("Image URL: " + responsePayload.picture);
-  console.log("Email: " + responsePayload.email);
-
-  //index로 이동
-  window.location = '/';
-
-
-  //****구현해야하는 기능****
-  //구글 로그인 성공하여 index 페이지로 올 경우,로그인(class= "headerLogin")이 유저 프로필(class="gUserProfile")로 바뀜
-  //유저 프로필은 구글 프로필 이미지(static/js/login.js ->   responsePayload.picture)
-  };
-
 //로그인 정보를 변환하기 위한 parseJWT 함수 생성
 function parseJwt (token) {
     var base64Url = token.split('.')[1];

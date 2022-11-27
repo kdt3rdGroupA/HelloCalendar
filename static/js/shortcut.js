@@ -1,8 +1,8 @@
-function shortcuts(){
-  console.log('click favicon');
-
-  
-}
+const noFavicon = tag => {
+  let flexSpace = create('div');
+  addClass(flexSpace, "flex_space");
+  img.parentNode.prepend(flexSpace);
+};
 
 const addLink = (link, name, id) => {
   let linkDiv = create('div');
@@ -10,13 +10,19 @@ const addLink = (link, name, id) => {
   let linkBtn = create('div');
   addClass(linkBtn, 'shortcuts');
   
+  let isNoFavicon = false;
   if (link.indexOf(".com")>0) {
     let faviconImg = create('img');
     faviconImg.setAttribute('onerror', 'style.display="none"');
     let faviconLink = link.slice(0, link.indexOf('.com')+4)+'/favicon.ico';
     faviconImg.src = faviconLink;
     linkBtn.append(faviconImg);
-  } 
+  } else {
+    let linkMark = create('div');
+    addClass(linkMark, "link_mark");
+    linkMark.innerText = name.slice(0, 1).toUpperCase();
+    linkBtn.append(linkMark);
+  }
   let linkName = create('div');
   linkName.innerText = name;
   

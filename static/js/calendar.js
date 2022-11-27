@@ -207,7 +207,9 @@ function showDay() {
 function clickStart() {
   for (let i = 1; i <= pageYear[first.getMonth()]; i++) {
     tdGroup[i] = document.getElementById(i);
-    print(i);
+    if (tdGroup[i] == null) {
+      return 0;
+    }
     tdGroup[i].addEventListener("click", changeToday);
     // console.log(keyValue);
   }
@@ -216,6 +218,9 @@ function clickStart() {
 // 날짜 클릭시 css 변경하기 위한 함수
 function changeToday(e) {
   for (let i = 1; i <= pageYear[first.getMonth()]; i++) {
+    if (tdGroup[i] == null) {
+      break;
+    }
     if (tdGroup[i].classList.contains("active")) {
       tdGroup[i].classList.remove("active");
     }
@@ -294,15 +299,13 @@ function addSchedule() {
   
   // axios({
   //   method: 'POST',
-  //   url: '/calendar',
+  //   url: '/calendar/add',
   //   params: null
   // }).then(result => {
   //   if (result.data.data == null) {
   //     return 0;
   //   }
-  //   let data = Array.from(result.data.data);
-
-  //   data.forEach
+    
   // });
 
   listdiv.textContent = " - " + input.value;

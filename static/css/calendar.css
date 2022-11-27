@@ -87,6 +87,7 @@
   cursor: pointer;
   text-align: center;
   font-size: 2rem;
+  user-select: none;
   /* display: flex;
   flex-direction: column;
   align-items: center; */
@@ -172,11 +173,14 @@
 
 /* 일정 input 부분 */
 .scheculeWrap {
-  padding: 0 0 0 40px;
+  padding: 0;
 }
 
 .scheduleTitle {
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1rem;
   font-weight: 100;
   margin: 0 0 10px 0;
 }

@@ -166,9 +166,11 @@ input.input {
 #shortcut {
   display: flex;
   user-select: none; 
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 #shortcut > * {
-  margin: 0 5px;
+  margin: 0 5px 10px 5px;
   cursor: pointer;
 }
 #shortcut .link {
@@ -192,6 +194,11 @@ input.input {
 .dark-theme #shortcut .link:hover {
   border: 1px solid white;
 }
+.link_mark {
+  font-weight: 600;
+  margin: 0 5px 0 0;
+  color: royalblue;
+}
 
 /* 모달 */
 #forms {
@@ -202,7 +209,7 @@ input.input {
 #forms > div {
   position: absolute;
   width: 40vw;
-  height: 30vh;
+  /* height: 30vh; */
   left: 30vw;
   top: 20px;
   min-width: 300px;
@@ -210,7 +217,7 @@ input.input {
   background-color: white;
   border: 2px solid black;
   border-radius: 1.2rem;
-  padding: 1rem;
+  padding: 1rem 1rem 3rem 1rem;
 }
 #forms > div input {
   border-bottom: 3px solid gray;
@@ -250,6 +257,7 @@ input.input {
 .dark-theme #forms > div {
   background-color: #222;
   border: 2px solid#eeeeee;
+
 }
 .dark-theme #forms > div input {
   border-bottom: 3px solid #eeeeee;

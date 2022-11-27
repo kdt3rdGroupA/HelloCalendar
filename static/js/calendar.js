@@ -216,6 +216,7 @@ axios({
   params: null
 }).then(result => {
   if (result.data.result == false) {
+    makeCalendar(new Date());
     return 0;
   }
   events = result.data.data;

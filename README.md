@@ -1,42 +1,51 @@
-# calendar
-calendar
+# HELLO CALENDAR
+웹 브라우저 첫 화면에서
 
-# 멤버
+Calendar를 통한 일정 관리와 
 
----
+TodoList를 한 번에 관리하기 위한   ‘HELLO CALENDAR’   
 
-<aside>
+
+
+## 개발기간
+2022.11.16 - 2022.11.28
+
+
+
+## 멤버
+
 📌 **천현승 (👑팀장)**
 
 Email:  cchs12123@gmail.com
 
 GitHub:  [HS-1000](https://github.com/HS-1000)
 
-</aside>
 
-<aside>
+
+
 📌 **남궁수정**
 
 Email:  nksj98@naver.com
 
 GitHub:  [NamKungSujeong](https://github.com/NamKungSujeong)
 
-</aside>
 
-<aside>
+
 📌 **최대훈**
 
 Email:  chleo77@naver.com
 
 GitHub:  [choi00105](https://github.com/choi00105)
 
-</aside>
 
-<aside>
+
 📌 **김재란**
 
 Email:  devjaeran@gmail.com
 
 GitHub:  [gitjaeran](https://github.com/gitjaeran)
 
-</aside>
+
+
+
+## 사이트맵

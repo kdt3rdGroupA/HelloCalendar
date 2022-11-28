@@ -6,7 +6,6 @@
 .todoTabs {
   position: absolute;
   top: 25vh;
-
   width: 10px;
   height: auto;
 }
@@ -16,8 +15,8 @@
 
 .todoTab {
   position: absolute;
-  /* margin: 1rem 0 1rem 0; */
-  /* top: 1rem; */
+  margin: 1rem 0 1rem 0;
+  top: 3rem;
   left: 70vw;
   /* background-color: yellow; */
 }
@@ -52,7 +51,7 @@
 
 /* 메모의 크기, 색상 설정 */
 .todoTabBusiness {
-  position: absolute;
+  /* position: absolute; */
   width: 400px;
   height: 400px;
   text-align: center;

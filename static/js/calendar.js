@@ -276,7 +276,7 @@ const addCalendar = () => {
     if (!data.result) {
       return 0;
     }
-    events.push(addData);
+    events.push(result.data.data);
     makeCalendar(new Date(year, month - 1, day));
     addClass(selector("#forms .calendar_add"), "hide");
   });

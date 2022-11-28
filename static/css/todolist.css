@@ -93,12 +93,25 @@
   z-index: 10;
   height: 2rem;
   line-height: 2rem;
-  color: white;
+  color: black;
   background-color: inherit;
   position: sticky;
   bottom: 1rem;
   left: 0;
   border-radius: 0.5rem;
-  border: 1px solid #AAAAAAAA;
+  border: 2px solid #aaaaaaaa;
   padding-left: 1rem;
+  position: relative;
+  top: 20px;
+}
+
+tr > th {
+  font-size: 30px;
+  margin: 10px;
+  text-align: center;
+}
+
+tr {
+  position: relative;
+  left: 30px;
 }

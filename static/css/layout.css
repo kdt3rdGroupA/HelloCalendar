@@ -10,7 +10,7 @@ body {
   z-index: -1 !important;
   transition: 0.3s;
 }
-:not(.hide) {
+#forms :not(.hide) {
   transition: 0.5s;
 }
 
@@ -313,5 +313,3 @@ input.input {
   justify-content: space-between;
   margin: 10px 5px;
 }
-
-

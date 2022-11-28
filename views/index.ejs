@@ -127,7 +127,7 @@
       </div>
 
       <!-- 캘린더: 새 버전-->
-      <div class="calendarRap">
+      <div class="calendarRap" draggable="false">
         <div class="scheduleContent">
           <div class="dayWrap">
             <div id="nowDay" class="nowDay"></div>
@@ -165,27 +165,20 @@
 
     <!-- TodoList -->
     <div class="todoTabs">
-      <div class="tabBtn">
-        <button class="openTabBtn" onclick="openTodo();">To Do</button>
-      </div>
-
+      <button class="openTabBtn" onclick="openTodo();">To Do</button>
       <div class="todoTab todoTabBusiness noshow">
         <button class="closeTabBtn inputBtn" onclick="cloesTodo();">X</button>
         <table class="table">
           <thead>
             <tr>
-              <th>Todo</th>
               <th></th>
+              <th>📌 Todo List 📌</th>
               <th></th>
             </tr>
           </thead>
-          <tbody name="">
-            
-            
-          </tbody>
+          <tbody name=""></tbody>
         </table>
-        <input type="text" id="todoInput" placeholder="Enter로입력" />
-        
+        <input type="text" id="todoInput" placeholder="Enter로 입력" />
       </div>
 
       <!-- <div class="todoTab todoTabPrivate">

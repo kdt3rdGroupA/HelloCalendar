@@ -6,39 +6,28 @@ function handleMouseDown(event) {
   const classList = el.classList;
 
   if (!classList.contains("hold")) {
-    // 공을 클릭했을 때, 마우스 커서의 XY좌표
+    // 메모를 클릭했을 때, 마우스 커서의 XY좌표
     const mouseX = event.clientX;
     const mouseY = event.clientY;
 
-    // 선택한 공의 XY좌표 (왼쪽 상단 모서리 기준)
+    // 선택한 메모의 XY좌표 (왼쪽 상단 모서리 기준)
     const memoPos = el.getBoundingClientRect();
     const memoX = memoPos.x;
     const memoY = memoPos.y;
 
-    // 선택한 공 안에 있는 마우스 커서의 XY좌표
+    // 선택한 메모 안에 있는 마우스 커서의 XY좌표
     const gapX = mouseX - memoX;
     const gapY = mouseY - memoY;
 
     el.setAttribute("gap-x", gapX);
     el.setAttribute("gap-y", gapY);
 
-    // 선택한 공을 맨 앞으로 가지고 오기
-    // const maxPriority =
-    //   (memos.length > 0
-    //     ? Math.max.apply(
-    //         null,
-    //         Array.from(memos).map((todoTab) => todoTab.getAttribute("priority"))
-    //       )
-    //     : 9999) + 1;
-    // el.setAttribute("priority", maxPriority);
-    // el.style["z-index"] = maxPriority;
-
-    // 선택한 공에 'hold' class를 추가
+    // 선택한 메모에 'hold' class를 추가
     classList.add("hold");
   }
 }
 
-// 공 움직임 이벤트 핸들러
+// 메모 움직임 이벤트 핸들러
 function handleMouseMove(event) {
   // event.preventDefault();
 
@@ -48,21 +37,21 @@ function handleMouseMove(event) {
     const mouseX = event.clientX;
     const mouseY = event.clientY;
 
-    // 선택한 공 안에 있는 마우스 커서의 XY좌표
+    // 선택한 메모 안에 있는 마우스 커서의 XY좌표
     const gapX = el.getAttribute("gap-x");
     const gapY = el.getAttribute("gap-y");
 
-    // 마우스 커서의 위치에 따른 공의 XY좌표
+    // 마우스 커서의 위치에 따른 메모의 XY좌표
     const memoX = mouseX - gapX;
     const memoY = mouseY - gapY;
 
-    // 공의 위치를 변경
+    // 메모의 위치를 변경
     el.style.left = memoX + "px";
     el.style.top = memoY + "px";
   }
 }
 
-// 공 놓기 이벤트 핸들러
+// 메모 놓기 이벤트 핸들러
 function handleMouseUp(event) {
   // event.preventDefault();
 
@@ -79,7 +68,7 @@ function handleMouseUp(event) {
 const memos = document.querySelectorAll(".todoTab");
 
 memos.forEach(function (todoTab, idx) {
-  // 공의 우선순위 설정
+  // 메모의 우선순위 설정
   let priority = todoTab.getAttribute("priority");
   if (!priority) {
     priority = idx + 1;
@@ -87,7 +76,7 @@ memos.forEach(function (todoTab, idx) {
   }
   todoTab.style["z-index"] = priority;
 
-  // 공 선택 이벤트 바인딩
+  // 메모 선택 이벤트 바인딩
   todoTab.addEventListener("mousedown", handleMouseDown);
 });
 
@@ -96,13 +85,11 @@ memos.forEach(function (todoTab, idx) {
 document.addEventListener("mousemove", handleMouseMove);
 document.addEventListener("mouseup", handleMouseUp);
 
-
 // 초기 입력값 당일 날짜 되게
 // const nowDate = new Date().toISOString().substring(0, 10);
 
 // document.getElementById('startline').value = nowDate;
 // document.getElementById('deadline').value = nowDate;
-
 
 const tbody = document.querySelector("tbody");
 
@@ -111,50 +98,49 @@ function todoSubmit() {
   console.log("등록 클릭");
 
   const form = document.forms["todoForm"];
-	const inputTask = document.querySelector('#task').value;
-	console.log(inputTask.length);
+  const inputTask = document.querySelector("#task").value;
+  console.log(inputTask.length);
   // console.dir(form);
   console.log(form);
   console.log(form.business.checked); // boolean 으로 나옴
   // console.log(typeof(form.business.value)); // -> string -> boolean 변환?
-if(inputTask=='' || inputTask.length > 100){
-	alert('올바른 내용을 입력해 주세요.');
-	inputReset();
-
-}else{
-  axios({
-    method: "POST",
-    url: "/todo/add",
-    data: {
-      //form 에서 가는거 5갸
-      priority: form.priority.value,
-      startline: form.startline.value,
-      deadline: form.deadline.value,
-      task: form.task.value,
-      business: form.business.checked,
-    },
-  })
-    .then((res) => {
-      console.log(res);
-      console.log(res.data);
-      return res.data;
+  if (inputTask == "" || inputTask.length > 100) {
+    alert("올바른 내용을 입력해 주세요.");
+    inputReset();
+  } else {
+    axios({
+      method: "POST",
+      url: "/todo/add",
+      data: {
+        //form 에서 가는거 5갸
+        priority: form.priority.value,
+        startline: form.startline.value,
+        deadline: form.deadline.value,
+        task: form.task.value,
+        business: form.business.checked,
+      },
     })
-    .then((data) => {
-      console.log(data);
-      let outBusiness;
-      let outComplete;
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        return res.data;
+      })
+      .then((data) => {
+        console.log(data);
+        let outBusiness;
+        let outComplete;
 
-      if (!data.business) {
-        outBusiness = "사적"; //business false 면 사적
-      } else outBusiness = "공적";
-      if (data.complete) {
-        outComplete = true;
-      } else outComplete = false;
+        if (!data.business) {
+          outBusiness = "사적"; //business false 면 사적
+        } else outBusiness = "공적";
+        if (data.complete) {
+          outComplete = true;
+        } else outComplete = false;
 
-      console.log(outBusiness);
-      console.log(data.complete);
-      console.log(outComplete);
-      const html = `
+        console.log(outBusiness);
+        console.log(data.complete);
+        console.log(outComplete);
+        const html = `
 				<tr id="tr_${data.id}" class="">
 					<td>${outBusiness}</td>
 					<td>${data.priority}</td>
@@ -165,10 +151,10 @@ if(inputTask=='' || inputTask.length > 100){
 					<td><button type="button" class="btnDelete" onclick="todoDelete(this, ${data.id})">삭제</button></td>
 				</tr>`;
 
-      tbody.insertAdjacentHTML("beforeend", html);
-      inputReset();
-    });
-	}
+        tbody.insertAdjacentHTML("beforeend", html);
+        inputReset();
+      });
+  }
 }
 
 // todoSubmit(); // 불러오기만(get?) 하는 함수 만들어서 실행하면 새로고침 안해도 될까?
@@ -265,3 +251,4 @@ function openTodo() {
   todoTab.classList.remove("noshow");
   openBtn.classList.add("noshow");
 }
+

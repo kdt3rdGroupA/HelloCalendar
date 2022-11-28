@@ -171,55 +171,51 @@
 
     <!-- TodoList -->
     <div class="todoTabs">
-      <div class="todoTab todoTabBusiness noshow">
+      <button class="openTabBtn inputBtn" onclick="openTodo();">to<br>do</button>
 
+      <div class="todoTab todoTabBusiness noshow">
+        <button class="closeTabBtn" onclick="cloesTodo();">X</button>
         <table class="table">
           <thead>
             <tr>
-              <th>공적</th>
+              <th>공/사</th>
               <th>우선순위</th>
               <th>todo</th>
             </tr>
           </thead>
           <tbody name="">
-            <% for (let i = 0; i < data.length; i++) { %> <% let cnt = 0; %>
 
-            <tr
-              id="tr_<%= data[i].id %>"
-              class="<%= (data[i].complete ? 'complete' : '')%> row"
-            >
-              <!-- 공적 -->
-              <% if(data[i].business){ %> <% cnt++; %> <% console.log(cnt); %>
-              <td></td>
-              <td><%= data[i].priority %></td>
+            <% for (let i = 0; i < data.length; i++) { %>
+              <% let cnt = 0; %>
 
-              <td><%= data[i].task %></td>
-              <td>
-                <button
-                  type="button"
-                  class="btnComplete"
-                  onclick="complete('<%= data[i].id %>')"
-                >
-                  <%= data[i].complete ? '취소' : '완료' %>
-                </button>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btnDelete"
-                  onclick="todoDelete(this, '<%= data[i].id %>')"
-                >
-                  삭제
-                </button>
-              </td>
-            </tr>
-            <% if(cnt == 1) {break;} %> <% } %> <% } %>
-          </tbody>
+              <tr id="tr_<%= data[i].id %>" 
+                class="<%= (data[i].complete ? 'complete' : '')%> row">
+                
+                <!-- 공적 -->
+                <% if(!data[i].business){ %><td>🎈</td>
+                  <% }else {%> <td>💼</td>
+                <% } %>
+          
+                
+                <td><% if(data[i].priority==3){ %>⭐⭐⭐
+              <% }else if(data[i].priority==2){ %>⭐⭐
+              <% }else { %>⭐  
+              <% } %></td>
+
+                <td><%= data[i].task %></td>
+                <td><button type="button" class="btnComplete 
+                  " onclick="complete('<%= data[i].id %>')"><%= data[i].complete ? '취소' : '완료' %></button></td> 
+                <td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
+              </tr>
+
+            <% } %>
+        </tbody>
+
         </table>
         <a href="/todo">...todo 전체보기</a>
       </div>
 
-      <div class="todoTab todoTabPrivate">
+      <!-- <div class="todoTab todoTabPrivate">
 
       <img src="/static/img/briefcase.png" class="businessImg" />
       <div class="todoTab todoTabPrivate noshow">
@@ -231,29 +227,11 @@
               <th>todo</th>
             </tr>
           </thead>
-          <tbody name="">
-            <% for (let i = 0; i < data.length; i++) { %>
-              <tr id="tr_<%= data[i].id %>" 
-                class="<%= (data[i].complete ? 'complete' : '')%> row">
-                
-                <!-- 공적 -->
-                <% if(!data[i].business){ %>
-                  
-                <td></td>
-                <td><%= data[i].priority %></td>
-              
-                <td><%= data[i].task %></td>
-                <td><button type="button" class="btnComplete 
-                  " onclick="complete('<%= data[i].id %>')"><%= data[i].complete ? '취소' : '완료' %></button></td> 
-                <td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
-              </tr>
-            <% } %>
-            <% } %>
-        </tbody>        
+          
         </table>
         <a href="/todo">...todo 전체보기</a>
       </div>
-    </div>
+    </div> -->
     <div id="forms">
       <div class="link_add hide">
         <h3>바로가기 추가</h3>
@@ -357,5 +335,23 @@
 
     <!-- JS: darkmode -->
     <script src="../static/js/darkmode.js"></script>
+    <script>
+
+      const todoTab = document.querySelector('.todoTabBusiness');
+      const openBtn = document.querySelector('.openTabBtn');
+      const closeBtn = document.querySelector('.closeTabBtn');
+
+
+      function cloesTodo() {
+        todoTab.classList.add("noshow");
+        openBtn.classList.remove("noshow");
+
+      }
+      function openTodo() {
+        todoTab.classList.remove("noshow");
+        openBtn.classList.add("noshow");
+
+      }
+    </script>
   </body>
 </html>

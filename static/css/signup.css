@@ -22,6 +22,32 @@ body {
   font-family: "Pretendard-Regular";
 }
 
+#signupContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#signupContents {
+  min-width: 276px;
+  min-height: 560px;
+  width: 30vw;
+  height: 80vh;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 10px 10px 30px #045c6d;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#signup {
+  margin-left: 30px;
+}
+
 #titleSignup {
   margin-bottom: 10px;
   font-size: 40px;
@@ -32,12 +58,14 @@ body {
 #idSignup {
   display: flex;
   flex-direction: column;
+  justify-content: first baseline;
 }
 
 #idSignup input {
-  border: 2px solid black;
-  border-radius: 20px;
-  width: 180px;
+  border: none;
+  border-bottom: 2px solid black;
+
+  width: 55%;
   height: 35px;
   padding-left: 20px;
   margin-top: 20px;

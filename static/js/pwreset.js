@@ -1,13 +1,13 @@
 const d = document;
-const print = (target, dir=false) => {
-dir ? console.dir(target) : console.log(target);
-}
-const selector = (target, from=d) => {
+const print = (target, dir = false) => {
+  dir ? console.dir(target) : console.log(target);
+};
+const selector = (target, from = d) => {
   return from.querySelector(target);
-}
-const selectorAll = (target, from=d) => {
+};
+const selectorAll = (target, from = d) => {
   return from.querySelectorAll(target);
-}
+};
 const addClass = function (element, classStr) {
   element.classList.add(classStr);
 };
@@ -29,38 +29,47 @@ const create = function (tagStr) {
   return d.createElement(tagStr);
 };
 
-selector("#get_auth_num").addEventListener('click', () => {
+selector("#get_auth_num").addEventListener("click", () => {
   if (!selector("#email").checkValidity()) {
+    document.querySelector("#email").style.borderColor = "red";
+    document.querySelector(".warningEmail").style.display = "block";
+    document.querySelector(".warningEmail").textContent =
+      "❗️이메일을 바르게 입력해 주세요";
     return 0;
   }
+  document.querySelector("#email").style.borderColor = "black";
+  document.querySelector(".warningEmail").style.display = "none";
   axios({
-    method: 'POST',
+    method: "POST",
     url: "/login/emailAuth",
-    params: { email: selector("#email").value}
-  }).then(result => {
+    params: { email: selector("#email").value },
+  }).then((result) => {
     let data = result.data;
     if (data.result) {
       selector("#email").disabled = true;
       selector("#authNum").disabled = false;
     }
-  })
+  });
 });
-selector("#authNum").addEventListener('keydown', () => {
+selector("#authNum").addEventListener("keydown", () => {
   if (selector("#authNum").value.length > 3) {
     selector("#pw").disabled = false;
   }
 });
 
-selector("#submit").addEventListener('click', () => {
+selector("#submit").addEventListener("click", () => {
   if (!selector("#pw").checkValidity()) {
     alert("비밀번호는 6자리 이상");
     return 0;
   }
   axios({
-    method: 'POST',
-    url: '/login/pwreset',
-    params: { emailAuthNum: selector("#authNum").value, pw: selector("#pw").value}
-  }).then(result => {
+    method: "POST",
+    url: "/login/pwreset",
+    params: {
+      emailAuthNum: selector("#authNum").value,
+      pw: selector("#pw").value,
+    },
+  }).then((result) => {
     let data = result.data;
     if (!data.result) {
       alert("비밀번호 재설정 실패");

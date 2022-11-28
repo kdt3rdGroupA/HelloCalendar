@@ -118,12 +118,15 @@ function todoSubmit() {
 
   const form = document.forms["todoForm"];
 	const inputTask = document.querySelector('#task').value;
+	console.log(inputTask.length);
   // console.dir(form);
   console.log(form);
   console.log(form.business.checked); // boolean 으로 나옴
   // console.log(typeof(form.business.value)); // -> string -> boolean 변환?
-if(inputTask==''){
-	alert('할일에 내용을 입력해 주세요.')
+if(inputTask=='' || inputTask.length > 100){
+	alert('올바른 내용을 입력해 주세요.');
+	inputReset();
+
 }else{
   axios({
     method: "POST",

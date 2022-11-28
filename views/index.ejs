@@ -17,6 +17,7 @@
 
     <!-- css: todolist -->
     <link rel="stylesheet" href="../static/css/todolist.css" />
+    <link rel="stylesheet" href="../static/css/todo.css" />
 
     <!-- css: shortcut -->
     <link rel="stylesheet" href="../static/css/shortcut.css" />
@@ -151,29 +152,76 @@
 
     <!-- TodoList -->
     <div class="todoTabs">
-      <div class="todoTab todoTabBusiness ">
-        <a href="/todo">todo 전체보기</a>
+      <div class="todoTab todoTabBusiness">
         <table class="table">
           
           <thead>
             <tr>
               <th>공적</th>
+              <th>우선순위</th>
+              <th>todo</th>
             </tr>
           </thead>
-          
+          <tbody name="">
+            <% for (let i = 0; i < data.length; i++) { %>
+              <% let cnt = 0; %>
+
+              <tr id="tr_<%= data[i].id %>" 
+                class="<%= (data[i].complete ? 'complete' : '')%> row">
+                
+                <!-- 공적 -->
+                <% if(data[i].business){ %>
+                  <% cnt++; %>
+                  <% console.log(cnt); %>
+                <td></td>
+                <td><%= data[i].priority %></td>
+              
+                <td><%= data[i].task %></td>
+                <td><button type="button" class="btnComplete 
+                  " onclick="complete('<%= data[i].id %>')"><%= data[i].complete ? '취소' : '완료' %></button></td> 
+                <td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
+              </tr>
+            <% if(cnt == 1) {break;} %>
+
+            <% } %>
+
+            <% } %>
+        </tbody>
         </table>
+        <a href="/todo">...todo 전체보기</a>
+
       </div>
       <div class="todoTab todoTabPrivate">
-        <a href="/todo">todo 전체보기</a>
         <table class="table">
           <thead>
             <tr>
               <th>사적</th>
+              <th>우선순위</th>
+              <th>todo</th>
             </tr>
           </thead>
-
+          <tbody name="">
+            <% for (let i = 0; i < data.length; i++) { %>
+              <tr id="tr_<%= data[i].id %>" 
+                class="<%= (data[i].complete ? 'complete' : '')%> row">
+                
+                <!-- 공적 -->
+                <% if(!data[i].business){ %>
+                  
+                <td></td>
+                <td><%= data[i].priority %></td>
+              
+                <td><%= data[i].task %></td>
+                <td><button type="button" class="btnComplete 
+                  " onclick="complete('<%= data[i].id %>')"><%= data[i].complete ? '취소' : '완료' %></button></td> 
+                <td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
+              </tr>
+            <% } %>
+            <% } %>
+        </tbody>
           
         </table>
+        <a href="/todo">...todo 전체보기</a>
 
       </div>
     </div>

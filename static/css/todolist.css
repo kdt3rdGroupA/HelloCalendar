@@ -15,7 +15,8 @@
 
 .todoTab {
   position: absolute;
-  margin: 1rem 0 1rem 0;
+  /* margin: 1rem 0 1rem 0; */
+  padding: 1rem;
   top: 3rem;
   left: 70vw;
   /* background-color: yellow; */
@@ -26,6 +27,8 @@
 }
 .table {
   width: 80%;
+  height: 300px;
+  margin-bottom: 50px;
 }
 .todoTab tr {
   display: flex;
@@ -41,7 +44,7 @@
   width: 50px;
   position: absolute;
 
-  left: 85vw;
+  left: 90vw;
 
   font-size: 16px;
   writing-mode: vertical-rl;
@@ -93,7 +96,7 @@
   z-index: 10;
   height: 2rem;
   line-height: 2rem;
-  color: white;
+  color: black;
   background-color: inherit;
   position: sticky;
   bottom: 1rem;
@@ -101,4 +104,8 @@
   border-radius: 0.5rem;
   border: 1px solid #AAAAAAAA;
   padding-left: 1rem;
+}
+
+.btn {
+  cursor: pointer;
 }

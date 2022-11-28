@@ -127,7 +127,7 @@
       </div>
 
       <!-- 캘린더: 새 버전-->
-      <div class="calendarRap">
+      <div class="calendarRap stopDragging">
         <div class="scheduleContent">
           <div class="dayWrap">
             <div id="nowDay" class="nowDay"></div>
@@ -169,14 +169,14 @@
         <button class="openTabBtn" onclick="openTodo();">To Do</button>
       </div>
 
-      <div class="todoTab todoTabBusiness noshow">
+      <div class="todoTab todoTabBusiness noshow ">
         <button class="closeTabBtn inputBtn" onclick="cloesTodo();">X</button>
         <table class="table">
-          <thead>
+          <thead class="stopDragging">
             <tr>
               <th>Todo</th>
               <th></th>
-              <th></th>
+              <th>삭제</th>
             </tr>
           </thead>
           <tbody name="">
@@ -256,8 +256,8 @@
         /><br />
         <input type="text" class="calendarDetail" required placeholder="memo" />
         <div class="buttons">
-          <button type="button" class="submit">추가</button>
-          <button type="button" class="close">닫기</button>
+          <button type="button" class="btn submit">추가</button>
+          <button type="button" class="btn close">닫기</button>
         </div>
       </div>
       <div class="hide editCalendar">
@@ -286,9 +286,9 @@
         <input type="text" class="calendarDetail" required placeholder="memo" />
         <div class="hide" id="calendarTargetKey"></div>
         <div class="buttons">
-          <button type="button" class="edit">수정</button>
-          <button type="button" class="remove">삭제</button>
-          <button type="button" class="close">닫기</button>
+          <button type="button" class="btn edit">수정</button>
+          <button type="button" class="btn remove">삭제</button>
+          <button type="button" class="btn close">닫기</button>
         </div>
       </div>
     </div>
@@ -309,19 +309,5 @@
 
     <!-- JS: darkmode -->
     <script src="../static/js/darkmode.js"></script>
-    <script>
-      const todoTab = document.querySelector(".todoTabBusiness");
-      const openBtn = document.querySelector(".openTabBtn");
-      const closeBtn = document.querySelector(".closeTabBtn");
-
-      function cloesTodo() {
-        todoTab.classList.add("noshow");
-        openBtn.classList.remove("noshow");
-      }
-      function openTodo() {
-        todoTab.classList.remove("noshow");
-        openBtn.classList.add("noshow");
-      }
-    </script>
   </body>
 </html>

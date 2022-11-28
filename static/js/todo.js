@@ -252,3 +252,16 @@ function todoDelete(obj, id) {
       obj.closest(`#tr_${id}`).remove();
     });
 }
+
+const todoTab = document.querySelector(".todoTabBusiness");
+const openBtn = document.querySelector(".openTabBtn");
+const closeBtn = document.querySelector(".closeTabBtn");
+
+function cloesTodo() {
+  todoTab.classList.add("noshow");
+  openBtn.classList.remove("noshow");
+}
+function openTodo() {
+  todoTab.classList.remove("noshow");
+  openBtn.classList.add("noshow");
+}

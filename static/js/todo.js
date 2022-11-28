@@ -1,5 +1,5 @@
 function handleMouseDown(event) {
-  event.preventDefault();
+  // event.preventDefault();
 
   const memos = document.querySelectorAll(".todoTab");
   const el = event.target;
@@ -40,7 +40,7 @@ function handleMouseDown(event) {
 
 // 공 움직임 이벤트 핸들러
 function handleMouseMove(event) {
-  event.preventDefault();
+  // event.preventDefault();
 
   const el = document.querySelector(".todoTab.hold");
   if (el) {
@@ -64,7 +64,7 @@ function handleMouseMove(event) {
 
 // 공 놓기 이벤트 핸들러
 function handleMouseUp(event) {
-  event.preventDefault();
+  // event.preventDefault();
 
   const el = document.querySelector(".todoTab.hold");
   if (el) {

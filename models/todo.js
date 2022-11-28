@@ -13,26 +13,16 @@ const Todo = (Sequelize, DataTypes) => {
         allowNull: false,
       },
       task : {
-        type: DataTypes.STRING(50)
+        type: DataTypes.STRING(100)
       },
       priority : {
         type: DataTypes.INTEGER
       },
-      startline: {
-        type: DataTypes.STRING(20)
-      },
-      deadline: {
-        type: DataTypes.STRING(20)
-      },
       complete: {
-        type: DataTypes.BOOLEAN
-      },
-      business: {
         type: DataTypes.BOOLEAN
       }
     }, {
       tableName: 'todo',
-
       freezeTableName: true,
       timestamps: false,
       indexes: [
@@ -52,5 +42,4 @@ const Todo = (Sequelize, DataTypes) => {
   );
   return model;
 };
-
 module.exports = Todo;

@@ -174,57 +174,18 @@
         <table class="table">
           <thead>
             <tr>
-              <th>공/사</th>
-              <th>우선순위</th>
-              <th>todo</th>
+              <th>Todo</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody name="">
-            <% for (let i = 0; i < data.length; i++) { %> <% let cnt = 0; %>
-
-            <tr
-              id="tr_<%= data[i].id %>"
-              class="<%= (data[i].complete ? 'complete' : '')%> row"
-            >
-              <!-- 공적 -->
-              <% if(!data[i].business){ %>
-              <td>🎈</td>
-              <% }else {%>
-              <td>💼</td>
-              <% } %>
-
-              <td>
-                <% if(data[i].priority==3){ %>⭐⭐⭐ <% }else
-                if(data[i].priority==2){ %>⭐⭐ <% }else { %>⭐ <% } %>
-              </td>
-
-              <td><%= data[i].task %></td>
-              <td>
-                <button
-                  type="button"
-                  class="btnComplete"
-                  onclick="complete('<%= data[i].id %>')"
-                >
-                  <%= data[i].complete ? '취소' : '완료' %>
-                </button>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btnDelete"
-                  onclick="todoDelete(this, '<%= data[i].id %>')"
-                >
-                  삭제
-                </button>
-              </td>
-            </tr>
-
-            <% } %>
-
+            
+            
           </tbody>
         </table>
-        <a class="todolink" href="/todo">...todo 등록하기</a>
-
+        <input type="text" id="todoInput" placeholder="Enter로입력" />
+        
       </div>
 
       <!-- <div class="todoTab todoTabPrivate">

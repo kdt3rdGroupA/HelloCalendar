@@ -135,7 +135,6 @@ exports.signup = (req, res) => {
   let emailAuthInputHash = crypto.createHash('sha512').update(emailAuthAddress+emailAuthNum).digest('hex');
   if (req.session.emailAuthHash != emailAuthInputHash) {
     res.send({result:false, msg:"이메일 인증에 문제가 있습니다", data:null});
-    req.session.destroy();
     return 0;
   }
   // 이메일 인증
@@ -204,7 +203,6 @@ exports.pwReset = (req, res) => {
     .digest("hex");
   if (req.session.emailAuthHash != emailAuthInputHash) {
     res.send({result:false, msg:"이메일 인증에 문제가 있습니다", data:null});
-    req.session.destroy();
     return 0;
   }
   let salt = crypto.pseudoRandomBytes(128).toString("base64");

@@ -24,6 +24,9 @@
     <!-- css: shortcut -->
     <link rel="stylesheet" href="../static/css/shortcut.css" />
 
+    <!-- css: scroll -->
+    <link rel="stylesheet" href="../static/css/scroll.css" />
+
     <!-- Google icon : setting, add, stop, edit -->
     <link
       rel="stylesheet"
@@ -167,7 +170,7 @@
       </div>
 
       <div class="todoTab todoTabBusiness noshow">
-        <button class="closeTabBtn" onclick="cloesTodo();">X</button>
+        <button class="closeTabBtn inputBtn" onclick="cloesTodo();">X</button>
         <table class="table">
           <thead>
             <tr>
@@ -217,9 +220,11 @@
             </tr>
 
             <% } %>
+
           </tbody>
         </table>
         <a class="todolink" href="/todo">...todo 등록하기</a>
+
       </div>
 
       <!-- <div class="todoTab todoTabPrivate">

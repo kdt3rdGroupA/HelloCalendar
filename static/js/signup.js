@@ -13,6 +13,9 @@ const warningName = document.querySelector(".warningName");
 const warningEmail = document.querySelector(".warningEmail");
 const warningEmailcode = document.querySelector(".warningEmailcode");
 
+let idCheck = false;
+let emailAuthClick = false;
+
 // 유효성 검사 정규 표현식  변수 선언
 const validityId = /^[a-z0-9](?=.*\d).{4,12}$/;
 const validityPw = /^(?=.*[a-zA-Z0-9])((?=.*\d)|(?=.*\W)).{6,20}$/;
@@ -85,7 +88,15 @@ function register() {
     warningEmail.style.display = "none";
     email.style.borderColor = "black";
   }
-
+  if (!idCheck) {
+    console.log(idCheck);
+    alert("ID 중복검사를 진행하세요");
+    return 0;
+  }
+  if (!emailAuthClick) {
+    alert("이메일 인증이 필요합니다");
+    return 0;
+  }
   // email 인증코드 유효성 검사
   if (!emailcode.checkValidity() && emailcode.classList.contains("show")) {
     warningEmailcode.style.display = "block";
@@ -108,9 +119,12 @@ function register() {
   }).then(result => {
     let data = result.data;
     if (data.result == true) {
-      
+      idCheck = false;
+      emailAuthClick = false;
       location.replace(`${URL}:${PORT}/login`);
-    } 
+    } else {
+      alert(data.msg);      
+    }
     //나중에할것 오류경우에따라 data에 오류경우 담아서 받고 alert 뛰우기
   });
 }
@@ -189,9 +203,11 @@ document.querySelector("#idSignup .idBtn").addEventListener("click", () => {
       warningId.style.display = "block";
       warningId.textContent = "✅ 사용가능한 아이디입니다.";
       warningId.style.color = "black";
+      idCheck = true;
     } else {
       warningId.style.display = "block";
       warningId.textContent = "❗️중복된 아이디입니다.";
+      idCheck = false;
     }
   });
 });
@@ -208,6 +224,7 @@ document.querySelector("#idSignup .emailBtn").addEventListener("click", () => {
     params: { email: email.value },
   }).then((result) => {
     //let data = result.data;
+    emailAuthClick = true;
     console.log("여기서 CSS, 회원가입 버튼 로직 설정하시면 됩니다");
   });
 });

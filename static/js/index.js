@@ -75,6 +75,7 @@ const userInfo = document.querySelector("#nav_user_info");
 const toggle = document.querySelector(".toggle");
 let toggleImg = document.querySelector(".toggleImg");
 
+userInfo == null ? null :
 userInfo.addEventListener("click", () => {
   if (toggle.classList.contains("hide")) {
     toggle.classList.remove("hide");
@@ -84,3 +85,65 @@ userInfo.addEventListener("click", () => {
     toggleImg.setAttribute("src", "../static/img/down.png");
   }
 });
+
+const addTodo = (data) => {
+  console.log(555, data);
+  let todoTr = create('tr');
+  let todoName = create('td');
+  todoName.innerText = data.task;
+  let space = create('td');
+  let deleteBtn = create('div');
+  deleteBtn.innerHTML = `<span class="material-symbols-outlined">cancel</span>`;
+  deleteBtn.addEventListener('click', () => {
+    axios({
+      method: 'POST',
+      url: '/del',
+      params: {id: data.id}
+    }).then(result => {
+      let data = result.data;
+      if (data.result == false) {
+        return 0;
+      }
+      todoTr.remove();
+    });
+  }); 
+  todoTr.append(todoName);
+  todoTr.append(space);
+  todoTr.append(deleteBtn);
+  selector(".todoTabs .table").append(todoTr);
+}
+
+axios({
+  method: 'POST',
+  url: '/refresh',
+  params: null
+}).then(result => {
+  let todos = result.data.data;
+  todos.forEach(element => {
+    addTodo(element);
+  });
+});
+
+selector('#todoInput').addEventListener('keydown', event => {
+  if (event.code != "Enter") {
+    return 0;
+  }
+  if (!selector('#todoInput').value.length) {
+    return 0;
+  }
+  axios({
+    method: 'POST',
+    url: '/add',
+    params: {
+      task: selector('#todoInput').value
+    }
+  }).then(result => {
+    console.log(result);
+    addTodo({
+      task: selector('#todoInput').value,
+      id: result.data.data.id
+    });
+    selector('#todoInput').value = "";
+  });
+});
+

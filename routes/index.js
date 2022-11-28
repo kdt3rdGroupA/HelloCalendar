@@ -9,10 +9,12 @@ const router = express.Router();
 // GET 
 router.get('/', controller.index); // get
 
-// router.post('/add', controller.add); //  post
+router.post('/add', controller.add); //  post
 
 router.patch('/complete', controllerTodo.complete); //  patch
 
-router.delete('/del', controllerTodo.del); //  delete
+router.post('/del', controller.del); //  delete
+
+router.post('/refresh', controller.refresh); // refresh
 
 module.exports = router;

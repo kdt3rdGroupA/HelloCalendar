@@ -65,7 +65,7 @@
   </head>
   <body>
     <!-- header: 바로가기, 로고, 설명서, 로그인-->
-    <header>
+    <header class="stopDragging">
       <nav>
         <!-- 다크모드 버튼 -->
         <button class="btn-toggle">
@@ -110,7 +110,7 @@
 
     <main>
       <!-- 검색바 -->
-      <div id="home_tools">
+      <div id="home_tools" class="stopDragging">
         <div class="searchBar">
           <input type="text" id="search_text" placeholder="Google" autofocus />
           <button id="search_btn">Search</button>
@@ -129,7 +129,6 @@
       <!-- 캘린더: 새 버전-->
 
       <div class="calendarRap stopDragging">
-
         <div class="scheduleContent">
           <div class="dayWrap">
             <div id="nowDay" class="nowDay"></div>
@@ -167,13 +166,11 @@
 
     <!-- TodoList -->
     <div class="todoTabs">
-
       <div class="tabBtn">
         <button class="openTabBtn" onclick="openTodo();">To Do</button>
       </div>
 
-      <div class="todoTab todoTabBusiness noshow ">
-
+      <div class="todoTab todoTabBusiness noshow">
         <button class="closeTabBtn inputBtn" onclick="cloesTodo();">X</button>
         <table class="table">
           <thead class="stopDragging">

@@ -12,7 +12,7 @@ const Todo = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      task : {
+      text : {
         type: DataTypes.STRING(50)
       },
       priority : {

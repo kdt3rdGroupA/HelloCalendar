@@ -18,7 +18,7 @@ exports.index = (req, res) => {
 
 	models.Todo.findAll(
 		{
-			// limit: 5,
+			limit: 6,
       order:[ 	// 중요도 순 내림차순 정렬 & 공적이 사적보다 먼저오게 정렬
 				['priority', 'DESC'],
 				['business', 'DESC']
@@ -43,7 +43,7 @@ exports.index = (req, res) => {
 }else {
 	models.Todo.findAll(
 		{
-			// limit: 5,
+			limit: 6,
 
 			order:[ 	// 중요도 순 내림차순 정렬 & 공적이 사적보다 먼저오게 정렬
 				['priority', 'DESC'],

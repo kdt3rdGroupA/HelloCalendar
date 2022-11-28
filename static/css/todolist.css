@@ -8,7 +8,7 @@
   top: 20vh;
 
   width: 10px;
-  height: 10px;
+  height: auto;
 }
 /* .todoTab { */
   /* width: 60vw; */
@@ -46,11 +46,21 @@ img.businessImg {
   box-shadow: 0 0 10px 0 darkgray;
 }
 
+.openTabBtn {
+  position: absolute;
+  left: 96vw;
+  font-size: 16px;
+  writing-mode: vertical-rl;
+  
+}
 /* 메모의 크기, 색상 설정 */
 .todoTabBusiness {
-  width: 200px;
-  height: 200px;
-  background-color: lightblue;
+  width: 400px;
+  height: auto;
+  text-align: center;
+  /* background-color: lightblue; */
+  background-color: rgba(175,218,232,0.9);
+
 }
 .todoTabPrivate {
   position: absolute;
@@ -58,6 +68,12 @@ img.businessImg {
   width: 300px;
   height: 300px;
   background-color: lightpink;
+}
+.closeTabBtn {
+  margin-left: 250px;
+  background-color: lightblue;
+  border: 0;
+  padding: 10px;
 }
 
 /* img.businessImg {

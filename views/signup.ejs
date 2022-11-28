@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="/static/css/layout.css" />
     <link rel="stylesheet" href="/static/css/login.css" />
     <link rel="stylesheet" href="/static/css/signup.css" />
+
+    <!-- css : mediaQuery -->
+    <link rel="stylesheet" href="../static/css/mediaQuery.css" />
     <!-- 영어 font: Maven Pro, Noto Sans, Amiko -->
     <link
       href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&family=Maven+Pro:wght@400;500;600&family=Noto+Sans:wght@300;400;500&display=swap"
@@ -27,9 +30,9 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div id="loginContainer">
-      <div id="loginContents">
-        <div id="login">
+    <div id="signupContainer">
+      <div id="signupContents">
+        <div id="signup">
           <div id="titleSignup">회원가입</div>
           <!-- 자체 회원가입 -->
           <form name="form_signup">
@@ -45,7 +48,7 @@
               />
               <div class="warningName warning"></div>
               <!-- 아이디 -->
-              <div>
+              <div class="withBtn">
                 <input
                   type="text"
                   id="id"
@@ -70,7 +73,7 @@
               />
               <div class="warningPw warning"></div>
               <!-- 이메일 -->
-              <div>
+              <div class="withBtn">
                 <input
                   type="email"
                   id="email"
@@ -100,13 +103,6 @@
             Sign up
           </button>
           <p>이미 회원이신가요? <a href="/login">로그인</a></p>
-        </div>
-        <div id="illustration">
-          <img
-            id="treesImg"
-            src="/static/img/ice-rink.jpg"
-            alt="christmas-trees"
-          />
         </div>
       </div>
     </div>

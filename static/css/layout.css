@@ -19,58 +19,82 @@ nav {
   display: flex;
   /* position: relative; */
   justify-content: space-between;
-  margin: 0 20px;
+  margin: 10px 20px;
 }
 
 .btn-toggle {
   /* height: 50px;
   width: 50px;
   border-radius: 100%; */
-  border:none;
-  background-color:transparent;
-  }
+  border: none;
+  background-color: transparent;
+}
 
-  .btn-toggle > img {
-    height: 45px;
-    width: 45px;
-  }
+.btn-toggle > img {
+  height: 45px;
+  width: 45px;
+}
 
 .headerLogo {
   font-family: "Amiko", sans-serif;
   font-size: 40px;
-  background: linear-gradient(to right top, #003efa, #00d2fc) ; 
+  background: linear-gradient(to right top, #003efa, #00d2fc);
   color: transparent;
   -webkit-background-clip: text;
-  margin-top: 30px;
-  margin-left: -20%;
+  /* margin-top: 30px; */
+  /* margin-left: -20%; */
 }
+
+.logo {
+  text-align: center;
+}
+
 .headerContent {
   display: flex;
 }
+
+.headerContent h3 a {
+  text-decoration: none;
+  position: relative;
+  top: 15px;
+}
+
 .headerContent h3 {
   font-family: "Amiko", sans-serif;
   padding-left: 30px;
 }
+
 #nav_user_info {
   text-align: center;
+  position: relative;
+  top: 7px;
+  cursor: pointer;
 }
+
+#nav_user_info h3 {
+  padding: 0;
+}
+
 #nav_user_info .userName {
   margin-bottom: 0;
   font-size: 1.2rem;
 }
+
 #nav_user_info .userEmail {
   font-size: 0.6rem;
   color: gray;
 }
+
 #logout {
   font-size: 1rem;
   margin-top: 0.5rem;
   cursor: pointer;
 }
 
-.searchBar {
-  text-align: center;
-  margin: 50px 0;
+img.toggleImg {
+  width: 15px;
+  height: 15px;
+  margin-left: 3px;
 }
 
 /*다크모드 실험*/
@@ -135,10 +159,11 @@ input.input {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin: 50px 0 10px 0;
+  margin: 40px 0 10px 0;
 }
+
 #search_text {
-  width: 50vw;
+  width: 40vw;
   height: 2.4rem;
   line-height: 2.4rem;
   border-radius: 1.2rem 0 0 1.2rem;
@@ -147,6 +172,7 @@ input.input {
   border: 0;
   font-size: 1.2rem;
 }
+
 #search_btn {
   width: 5rem;
   height: 2.4rem;
@@ -165,9 +191,10 @@ input.input {
 }
 #shortcut {
   display: flex;
-  user-select: none; 
+  user-select: none;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-left: 10%;
 }
 #shortcut > * {
   margin: 0 5px 10px 5px;
@@ -258,7 +285,7 @@ input.input {
   height: 2rem;
   border-radius: 1rem;
   padding: 0 7px;
-  background-color: #FF00007F;
+  background-color: #ff00007f;
   color: white;
   border: 0;
 }
@@ -273,7 +300,6 @@ input.input {
 .dark-theme #forms > div {
   background-color: #555;
   border: 2px solid#eeeeee;
-
 }
 .dark-theme #forms > div input {
   border-bottom: 3px solid #eeeeee;

@@ -5,7 +5,9 @@
 } */
 .todoTabs {
   position: absolute;
+  display: flex;
   top: 20vh;
+  justify-content: flex-end;
 
   width: 10px;
   height: auto;
@@ -49,6 +51,7 @@ img.businessImg {
 .openTabBtn {
   position: absolute;
   left: 96vw;
+  /* margin-left: 20px; */
   font-size: 16px;
   writing-mode: vertical-rl;
   
@@ -74,6 +77,8 @@ img.businessImg {
   background-color: lightblue;
   border: 0;
   padding: 10px;
+  font-size: 16px;
+  color: black;
 }
 
 /* img.businessImg {

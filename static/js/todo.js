@@ -92,19 +92,23 @@ memos.forEach(function (todoTab, idx) {
 });
 
 // 마우스 이벤트 바인딩
-document.addEventListener("mousemove", handleMouseMove);
-document.addEventListener("mouseup", handleMouseUp);
+// document.addEventListener("mousemove", handleMouseMove);
+// document.addEventListener("mouseup", handleMouseUp);
 
-const businessImg = document.querySelector(".businessImg");
-const privateTodo = document.querySelector(".todoTabPrivate");
-businessImg.addEventListener("click", () => {
-  if (privateTodo.classList.contains("noshow")) {
-    privateTodo.classList.remove("noshow");
-  }
-});
+// const businessImg = document.querySelector(".businessImg");
+// const privateTodo = document.querySelector(".todoTabPrivate");
+// businessImg.addEventListener("click", () => {
+//   if (privateTodo.classList.contains("noshow")) {
+//     privateTodo.classList.remove("noshow");
+//   }
+// });
 
 // 초기 입력값 당일 날짜 되게
-const nowDate = new Date().toISOString().substring(0, 10);
+// const nowDate = new Date().toISOString().substring(0, 10);
+
+// document.getElementById('startline').value = nowDate;
+// document.getElementById('deadline').value = nowDate;
+
 
 const tbody = document.querySelector("tbody");
 
@@ -113,11 +117,14 @@ function todoSubmit() {
   console.log("등록 클릭");
 
   const form = document.forms["todoForm"];
+	const inputTask = document.querySelector('#task').value;
   // console.dir(form);
   console.log(form);
   console.log(form.business.checked); // boolean 으로 나옴
   // console.log(typeof(form.business.value)); // -> string -> boolean 변환?
-
+if(inputTask==''){
+	alert('할일에 내용을 입력해 주세요.')
+}else{
   axios({
     method: "POST",
     url: "/todo/add",
@@ -164,6 +171,7 @@ function todoSubmit() {
       tbody.insertAdjacentHTML("beforeend", html);
       inputReset();
     });
+	}
 }
 
 // todoSubmit(); // 불러오기만(get?) 하는 함수 만들어서 실행하면 새로고침 안해도 될까?
@@ -220,7 +228,7 @@ function complete(id) {
       return res.data;
     })
     .then((data) => {
-      console.log("변경되면 1 아님 0", data); // 변경되면 1 아님 0
+      console.log("변경되면 1 아님 0", data); //
     });
 }
 
@@ -246,12 +254,4 @@ function todoDelete(obj, id) {
       // closest() 메서드 obj: 삭제버튼 자기자신의 조상 중 찾아감
       obj.closest(`#tr_${id}`).remove();
     });
-}
-
-function inputReset() {
-  document.getElementById("startline").value = nowDate;
-  document.getElementById("deadline").value = nowDate;
-  // document.getElementById('deadline').value = new Date();
-  document.getElementById("task").value = "";
-  console.log("입력 리셋됨");
 }

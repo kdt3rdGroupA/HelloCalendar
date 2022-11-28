@@ -5,7 +5,9 @@
 } */
 .todoTabs {
   position: absolute;
+
   top: 25vh;
+
 
   width: 10px;
   height: auto;
@@ -34,7 +36,9 @@
 .openTabBtn {
   width: 50px;
   position: absolute;
+
   left: 85vw;
+
   font-size: 16px;
   writing-mode: vertical-rl;
   cursor: pointer;
@@ -66,6 +70,8 @@
   background-color: lightblue;
   border: 0;
   padding: 10px;
+  font-size: 16px;
+  color: black;
 }
 
 .todolink {

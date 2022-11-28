@@ -61,16 +61,25 @@
     width: 90vw;
     padding: 20px;
     margin-top: 20px;
+    border: none;
   }
   .dayWrap {
-    width: 40vw;
-    height: 25vh;
+    width: 40%;
+    height: 25%;
     background-color: #00d2fc75;
     border-radius: 10px;
     margin: 0 50px;
   }
   .scheculeWrap {
     width: 50vw;
+    border-left: 2px dotted lightgray;
+    padding: 0 20px;
+  }
+
+  .openTabBtn {
+    position: absolute;
+    font-size: 16px;
+    writing-mode: vertical-rl;
   }
 }
 
@@ -92,9 +101,11 @@
     align-items: center;
     width: 90vw;
     padding: 30px;
+    border: none;
   }
   .dayWrap {
-    width: 40vw;
+    width: 50%;
+    height: 50%;
     background-color: #00d2fc75;
     border-radius: 50%;
     text-align: center;
@@ -104,5 +115,6 @@
     flex-direction: column;
     margin-top: 50px;
     width: 70vw;
+    border: none;
   }
 }

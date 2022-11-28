@@ -138,15 +138,6 @@
               <span class="material-symbols-outlined">add</span>
               <span>일정추가하기</span>
             </div>
-            <div class="inputWrap">
-              <input
-                type="text"
-                placeholder="write here"
-                id="input"
-                class="input"
-              />
-              <button type="button" id="inputBtn" class="inputBtn">등록</button>
-            </div>
             <div id="listcontents" class="listcontents"></div>
           </div>
         </div>
@@ -174,7 +165,9 @@
 
     <!-- TodoList -->
     <div class="todoTabs">
-      <button class="openTabBtn inputBtn" onclick="openTodo();">to<br>do</button>
+      <div class="tabBtn">
+        <button class="openTabBtn" onclick="openTodo();">To Do</button>
+      </div>
 
       <div class="todoTab todoTabBusiness noshow">
         <button class="closeTabBtn inputBtn" onclick="cloesTodo();">X</button>
@@ -187,40 +180,51 @@
             </tr>
           </thead>
           <tbody name="">
+            <% for (let i = 0; i < data.length; i++) { %> <% let cnt = 0; %>
 
-            <% for (let i = 0; i < data.length; i++) { %>
-              <% let cnt = 0; %>
+            <tr
+              id="tr_<%= data[i].id %>"
+              class="<%= (data[i].complete ? 'complete' : '')%> row"
+            >
+              <!-- 공적 -->
+              <% if(!data[i].business){ %>
+              <td>🎈</td>
+              <% }else {%>
+              <td>💼</td>
+              <% } %>
 
-              <tr id="tr_<%= data[i].id %>" 
-                class="<%= (data[i].complete ? 'complete' : '')%> row">
-                
-                <!-- 공적 -->
-                <% if(!data[i].business){ %><td>🎈</td>
-                  <% }else {%> <td>💼</td>
-                <% } %>
-          
-                
-                <td><% if(data[i].priority==3){ %>⭐⭐⭐
-              <% }else if(data[i].priority==2){ %>⭐⭐
-              <% }else { %>⭐  
-              <% } %></td>
+              <td>
+                <% if(data[i].priority==3){ %>⭐⭐⭐ <% }else
+                if(data[i].priority==2){ %>⭐⭐ <% }else { %>⭐ <% } %>
+              </td>
 
-                <td><%= data[i].task %></td>
-                <td><button type="button" class="btnComplete 
-                  " onclick="complete('<%= data[i].id %>')"><%= data[i].complete ? '취소' : '완료' %></button></td> 
-                <td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
-              </tr>
+              <td><%= data[i].task %></td>
+              <td>
+                <button
+                  type="button"
+                  class="btnComplete"
+                  onclick="complete('<%= data[i].id %>')"
+                >
+                  <%= data[i].complete ? '취소' : '완료' %>
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btnDelete"
+                  onclick="todoDelete(this, '<%= data[i].id %>')"
+                >
+                  삭제
+                </button>
+              </td>
+            </tr>
 
             <% } %>
-              
-            
 
-        </tbody>
-        
+          </tbody>
         </table>
-        <% if(data.length > 5){ %> <span>and more...</span>
-          <% } %>
-        <a href="/todo">todo 전체보기</a>
+        <a class="todolink" href="/todo">...todo 등록하기</a>
+
       </div>
 
       <!-- <div class="todoTab todoTabPrivate">
@@ -240,6 +244,7 @@
         <a href="/todo">...todo 전체보기</a>
       </div>
     </div> -->
+    </div>
     <div id="forms">
       <div class="link_add hide">
         <h3>바로가기 추가</h3>
@@ -339,26 +344,22 @@
     <!-- ToDo 기능 구현 내용 -->
 
     <script src="../static/js/todo.js"></script>
-	  <!-- <script src="../static/js/todo.js"></script>	 -->
+    <!-- <script src="../static/js/todo.js"></script>	 -->
 
     <!-- JS: darkmode -->
     <script src="../static/js/darkmode.js"></script>
     <script>
-
-      const todoTab = document.querySelector('.todoTabBusiness');
-      const openBtn = document.querySelector('.openTabBtn');
-      const closeBtn = document.querySelector('.closeTabBtn');
-
+      const todoTab = document.querySelector(".todoTabBusiness");
+      const openBtn = document.querySelector(".openTabBtn");
+      const closeBtn = document.querySelector(".closeTabBtn");
 
       function cloesTodo() {
         todoTab.classList.add("noshow");
         openBtn.classList.remove("noshow");
-
       }
       function openTodo() {
         todoTab.classList.remove("noshow");
         openBtn.classList.add("noshow");
-
       }
     </script>
   </body>

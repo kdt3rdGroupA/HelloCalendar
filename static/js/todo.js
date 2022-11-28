@@ -92,16 +92,10 @@ memos.forEach(function (todoTab, idx) {
 });
 
 // 마우스 이벤트 바인딩
-// document.addEventListener("mousemove", handleMouseMove);
-// document.addEventListener("mouseup", handleMouseUp);
 
-// const businessImg = document.querySelector(".businessImg");
-// const privateTodo = document.querySelector(".todoTabPrivate");
-// businessImg.addEventListener("click", () => {
-//   if (privateTodo.classList.contains("noshow")) {
-//     privateTodo.classList.remove("noshow");
-//   }
-// });
+document.addEventListener("mousemove", handleMouseMove);
+document.addEventListener("mouseup", handleMouseUp);
+
 
 // 초기 입력값 당일 날짜 되게
 // const nowDate = new Date().toISOString().substring(0, 10);

@@ -1,16 +1,24 @@
+/* 메모가 자유자재로 움직일 수 있도록 position을 'absolute'로 설정 */
+
+/* .todoTabs {
+  top: 30vh;
+} */
 .todoTabs {
   position: absolute;
-  top : 20vh;
+  top: 20vh;
 
   width: 10px;
   height: 10px;
 }
-.todoTab {
-  width: 60vw;
-  height: 14vw;
+/* .todoTab { */
+  /* width: 60vw; */
+  /* height: 14vw; */
+img.businessImg {
+  width: 50px;
+  height: 50px;
   position: relative;
   margin: 1rem 0 1rem 0;
-  top: 1rem;
+  top: 3rem;
   left: 95vw;
   background-color: lightgray;
   background-color: rgba(180,180,180,0.8);
@@ -18,7 +26,41 @@
 
   /* border-radius: 50%; */
 }
-.todoTab:hover {
-  left : 40vw;
-  transition: 1s;
+
+.todoTab {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: 1rem 0 1rem 0;
+  /* top: 1rem; */
+  left: 70vw;
+  /* background-color: yellow; */
 }
+
+.noshow {
+  display: none;
+}
+
+.todoTab:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 darkgray;
+}
+
+/* 메모의 크기, 색상 설정 */
+.todoTabBusiness {
+  width: 200px;
+  height: 200px;
+  background-color: lightblue;
+}
+.todoTabPrivate {
+  position: absolute;
+  top: 100px;
+  width: 300px;
+  height: 300px;
+  background-color: lightpink;
+}
+
+/* img.businessImg {
+  width: 50px;
+  height: 50px;
+} */

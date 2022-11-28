@@ -34,8 +34,7 @@ const URL = "http://localhost";
 const PORT = 8001;
 let logout = selector("#logout");
 if (logout != null) {
-
-  selector("#logout").addEventListener('click', () => {
+  selector("#logout").addEventListener("click", () => {
     axios({
       method: "POST",
       url: "/login/logout",
@@ -70,3 +69,18 @@ selector("#search_btn").addEventListener("click", () => {
   return 1;
 });
 
+// 로그아웃 토글로 띄우기
+
+const userInfo = document.querySelector("#nav_user_info");
+const toggle = document.querySelector(".toggle");
+let toggleImg = document.querySelector(".toggleImg");
+
+userInfo.addEventListener("click", () => {
+  if (toggle.classList.contains("hide")) {
+    toggle.classList.remove("hide");
+    toggleImg.setAttribute("src", "../static/img/up.png");
+  } else {
+    toggle.classList.add("hide");
+    toggleImg.setAttribute("src", "../static/img/down.png");
+  }
+});

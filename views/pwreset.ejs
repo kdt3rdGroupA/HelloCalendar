@@ -1,47 +1,74 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>비밀번호 설정</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>비밀번호 설정</title>
 
-  <!-- Axios CDN -->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <!-- 영어 font: Maven Pro, Noto Sans, Amiko -->
-  <link
-  href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&family=Maven+Pro:wght@400;500;600&family=Noto+Sans:wght@300;400;500&display=swap"
-  rel="stylesheet" />
-  <!-- favicon -->
-  <link rel="icon" type="image/png" href="../static/img/favicon.png" />
-  <!-- CSS -->
-  <link rel="stylesheet" href="../static/css/pwreset.css">
-</head>
-<body>
-  <div id="main_container">
-    <div id="title">Password Reset</div>
-    <div>
-      <input type="email" id="email" placeholder="Email" autofocus required>
-      <button id="get_auth_num">인증번호받기</button>        
-    </div>
-    <div>
-      <input type="text" id="authNum" placeholder="인증번호" required disabled="true">
-    </div>
-    <div>
-      <input type="password" id="pw" placeholder="새 패스워드" min="6" required disabled="true">
-      <button id="submit">패스워드 변경</button>
-    </div>
-    <div id="result" class="hide">
-      <h3 id="id"></h3>
-      <h3 id="new_pw"></h3>
-    </div>
-    <div id="home_btn">
-      <button><a href="/">Go Home</a></button>
+    <!-- Axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 영어 font: Maven Pro, Noto Sans, Amiko -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&family=Maven+Pro:wght@400;500;600&family=Noto+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="../static/img/favicon.png" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/pwreset.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="title">Password Reset</div>
+      <div id="mainContainer">
+        <div>
+          <div>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              autofocus
+              required
+            />
+            <div class="warningEmail warning"></div>
+          </div>
+          <button id="get_auth_num">인증번호받기</button>
+        </div>
+        <div>
+          <input
+            type="text"
+            id="authNum"
+            placeholder="인증번호"
+            required
+            disabled="true"
+          />
+          <div class="warningauthNum warning"></div>
+        </div>
+        <div>
+          <div>
+            <input
+              type="password"
+              id="pw"
+              placeholder="새 패스워드"
+              min="6"
+              required
+              disabled="true"
+            />
+          </div>
+          <button id="submit">패스워드 변경</button>
+        </div>
+        <div id="result" class="hide">
+          <h3 id="id"></h3>
+          <h3 id="new_pw"></h3>
+        </div>
+        <div id="home_btn">
+          <button id="goLogin"><a href="/login">로그인 하러가기</a></button>
+          <div><a href="/">홈 화면</a>으로 가기</div>
+        </div>
+      </div>
     </div>
 
-    
-  </div>
-
-  <script src="../static/js/pwreset.js"></script>
-</body>
+    <script src="../static/js/pwreset.js"></script>
+  </body>
 </html>

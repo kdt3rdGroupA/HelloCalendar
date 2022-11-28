@@ -2,38 +2,43 @@ const Todo = (Sequelize, DataTypes) => {
   const model = Sequelize.define(
     "todo",
     {
-      id : {
+      id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
-      key_id : {
+      key_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      text : {
-        type: DataTypes.STRING(50)
+      task: {
+        type: DataTypes.STRING(50),
       },
-      priority : {
-        type: DataTypes.STRING(10)
+      priority: {
+        type: DataTypes.STRING(10),
       },
       deadline: {
-        type: DataTypes.STRING(20)
-      }
-    }, {
-      tableName: 'todo',
+        type: DataTypes.STRING(20),
+      },
+    },
+    {
+      tableName: "todo",
       freezeTableName: true,
       timestamps: false,
-      indexes: [{
-        name: "key_id",
-        using: 'BTREE',
-        fields: [{
+      indexes: [
+        {
           name: "key_id",
-          collate: 'utf8_general_ci',
-          order: 'DESC'
-        }]
-      }]
+          using: "BTREE",
+          fields: [
+            {
+              name: "key_id",
+              collate: "utf8_general_ci",
+              order: "DESC",
+            },
+          ],
+        },
+      ],
     }
   );
   return model;

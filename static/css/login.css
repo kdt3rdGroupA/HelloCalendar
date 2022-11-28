@@ -35,22 +35,22 @@ body {
 }
 
 #loginContents {
-  width: 60%;
-  height: 90%;
+  min-width: 276px;
+  min-height: 500px;
+  width: 30vw;
+  height: 60vh;
   background-color: white;
   border-radius: 20px;
   box-shadow: 10px 10px 30px #045c6d;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
 /******* 로그인창 부분 *******/
 
 #login {
-  width: 50%;
-  height: 80%;
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,33 +61,6 @@ body {
   margin: 0 0 30px 0;
 }
 
-/* 구글 로그인 */
-#googleLogin {
-  vertical-align: middle;
-}
-
-img#googleLogo {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
-
-button#google {
-  background-color: white;
-  border: 2px solid black;
-  border-radius: 20px;
-  width: 200px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-button#google:hover {
-  background-color: rgb(238, 236, 236);
-}
-
 /* 자체 로그인 */
 
 #idLogin {
@@ -96,8 +69,8 @@ button#google:hover {
 }
 
 #idLogin input {
-  border: 2px solid black;
-  border-radius: 20px;
+  border: none;
+  border-bottom: 2px solid black;
   width: 180px;
   height: 35px;
   padding-left: 20px;
@@ -127,23 +100,6 @@ button#google:hover {
   background-color: #79dcefc1;
 }
 
-/********* 일러스트 부분 ********/
-
-#illustration {
-  width: 50%;
-  height: 90%;
-}
-
-img#treesImg {
-  width: 95%;
-  height: 100%;
-  border-radius: 20px;
-}
-
-.divide {
-  margin-top: 20px;
-}
-
 .warning {
   color: red;
   font-size: 12px;
@@ -154,8 +110,9 @@ img#treesImg {
 #login_footer {
   display: flex;
   margin-top: 1rem;
+  text-align: center;
 }
-#login_footer .signupBtn{
+#login_footer .signupBtn {
   width: 6rem;
   height: 2rem;
   line-height: 2rem;
@@ -164,7 +121,7 @@ img#treesImg {
   background-color: #00d2fc;
   margin: 5px;
 }
-#login_footer .resetPw{
+#login_footer .resetPw {
   height: 2rem;
   width: 8rem;
   line-height: 2rem;

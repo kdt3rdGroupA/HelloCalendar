@@ -38,7 +38,7 @@ nav {
 .headerLogo {
   font-family: "Amiko", sans-serif;
   font-size: 40px;
-  background: linear-gradient(to right top, #003efa, #00d2fc);
+  background: linear-gradient(to right top, #003efa, #00d2fc) ; 
   color: transparent;
   -webkit-background-clip: text;
   margin-top: 30px;

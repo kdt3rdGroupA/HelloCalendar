@@ -3,8 +3,8 @@ const nowDate = new Date().toISOString().substring(0, 10);
 
 // GET /index
 exports.index = (req, res) => {
-	// let isLogin = req.session.isLogin;
-	let isLogin = Boolean(req.session.cookie._expires);
+	// let isLogin = Boolean(req.session.cookie._expires);
+  let isLogin = req.session.isLogin;
 	let userName;
 	let userId;
 	console.log('===== isLogin t/f ===> ',isLogin); 
@@ -18,7 +18,8 @@ exports.index = (req, res) => {
 
 	models.Todo.findAll(
 		{
-			order:[ 	// 중요도 순 내림차순 정렬 & 공적이 사적보다 먼저오게 정렬
+			// limit: 5,
+      order:[ 	// 중요도 순 내림차순 정렬 & 공적이 사적보다 먼저오게 정렬
 				['priority', 'DESC'],
 				['business', 'DESC']
 			],
@@ -27,19 +28,23 @@ exports.index = (req, res) => {
 		
 	).then(result => {
     // console.log('sel one 찾은 결과', result); //db 읽어온거 
-    res.render('todo', 
+    res.render('index', 
 		{
 			data: result, 
 			title: `${userName}님의 전체 ToDo 리스트`,
 			name: `${userName}`, 
 			nowDate: `${nowDate}`,
-			isLogin: `${isLogin}`,
+			isLogin: true,
+      email: req.session.data.email,
+
 		});
 		
   });
 }else {
 	models.Todo.findAll(
 		{
+			// limit: 5,
+
 			order:[ 	// 중요도 순 내림차순 정렬 & 공적이 사적보다 먼저오게 정렬
 				['priority', 'DESC'],
 				['business', 'DESC']
@@ -48,57 +53,22 @@ exports.index = (req, res) => {
 			
 		}
 	).then(result => {		
-		res.render('todo', 
+		res.render('index', 
 		{
+			isLogin: false,
+
 			data: result,
 			title: '전체 ToDo 리스트',
 			name: '환영합니다!', 
 			nowDate: `${nowDate}`,
-			isLogin: `${isLogin}`,
+      
+
 
 		});
 		
   });
 }
 	console.log('=====index의 랜더======세션값=========\n',req.session); 
-};
-
-
-exports.add = (req, res) => {	// 새로운 ToDo 항목 추가하기
-	let isLogin = Boolean(req.session.cookie._expires);
-
-	console.log('===========세션값=========\n',req.session); //undefined
-	if(isLogin){
-		models.Todo.create({
-			key_id: req.session.data.id, 
-
-			task: req.body.task,
-			priority: req.body.priority,
-			startline: req.body.startline,
-			deadline: req.body.deadline,
-			complete: req.body.complete,
-			business: req.body.business,
-
-		}).then((result)=> {
-			console.log('add 결과 ', result);
-			res.send(result);
-		});
-	}else {
-		models.Todo.create({
-			key_id: 99, //임시  로그인 값 99번
-
-			task: req.body.task,
-			priority: req.body.priority,
-			startline: req.body.startline,
-			deadline: req.body.deadline,
-			complete: req.body.complete,
-			business: req.body.business,
-
-		}).then((result)=> {
-			console.log('add 결과 ', result);
-			res.send(result);
-		});
-	}
 };
 
 exports.complete = (req, res) => {	// 선택한 ToDo 항목 완료하기

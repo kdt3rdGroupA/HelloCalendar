@@ -1,7 +1,6 @@
 // 초기 입력값 당일 날짜 되게
 const nowDate = new Date().toISOString().substring(0, 10);
-document.getElementById('startline').value = nowDate;
-document.getElementById('deadline').value = nowDate;
+
 
 const tbody = document.querySelector('tbody');
 

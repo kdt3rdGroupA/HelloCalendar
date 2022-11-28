@@ -131,6 +131,9 @@ selector('#todoInput').addEventListener('keydown', event => {
   if (!selector('#todoInput').value.length) {
     return 0;
   }
+  if (event.isComposing) {
+    return 0;
+  }
   axios({
     method: 'POST',
     url: '/add',
@@ -145,5 +148,6 @@ selector('#todoInput').addEventListener('keydown', event => {
     });
     selector('#todoInput').value = "";
   });
+  
 });
 

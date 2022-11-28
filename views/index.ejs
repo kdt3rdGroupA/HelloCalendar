@@ -171,7 +171,8 @@
 
     <!-- TodoList -->
     <div class="todoTabs">
-      <div class="todoTab todoTabBusiness">
+      <div class="todoTab todoTabBusiness noshow">
+
         <table class="table">
           <thead>
             <tr>
@@ -217,7 +218,11 @@
         </table>
         <a href="/todo">...todo 전체보기</a>
       </div>
+
       <div class="todoTab todoTabPrivate">
+
+      <img src="/static/img/briefcase.png" class="businessImg" />
+      <div class="todoTab todoTabPrivate noshow">
         <table class="table">
           <thead>
             <tr>
@@ -228,38 +233,23 @@
           </thead>
           <tbody name="">
             <% for (let i = 0; i < data.length; i++) { %>
-            <tr
-              id="tr_<%= data[i].id %>"
-              class="<%= (data[i].complete ? 'complete' : '')%> row"
-            >
-              <!-- 공적 -->
-              <% if(!data[i].business){ %>
-
-              <td></td>
-              <td><%= data[i].priority %></td>
-
-              <td><%= data[i].task %></td>
-              <td>
-                <button
-                  type="button"
-                  class="btnComplete"
-                  onclick="complete('<%= data[i].id %>')"
-                >
-                  <%= data[i].complete ? '취소' : '완료' %>
-                </button>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btnDelete"
-                  onclick="todoDelete(this, '<%= data[i].id %>')"
-                >
-                  삭제
-                </button>
-              </td>
-            </tr>
-            <% } %> <% } %>
-          </tbody>
+              <tr id="tr_<%= data[i].id %>" 
+                class="<%= (data[i].complete ? 'complete' : '')%> row">
+                
+                <!-- 공적 -->
+                <% if(!data[i].business){ %>
+                  
+                <td></td>
+                <td><%= data[i].priority %></td>
+              
+                <td><%= data[i].task %></td>
+                <td><button type="button" class="btnComplete 
+                  " onclick="complete('<%= data[i].id %>')"><%= data[i].complete ? '취소' : '완료' %></button></td> 
+                <td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
+              </tr>
+            <% } %>
+            <% } %>
+        </tbody>        
         </table>
         <a href="/todo">...todo 전체보기</a>
       </div>
@@ -361,7 +351,9 @@
     <script src="../static/js/shortcut.js"></script>
 
     <!-- ToDo 기능 구현 내용 -->
-    <!-- <script src="../static/js/todo.js"></script>	 -->
+
+    <script src="../static/js/todo.js"></script>
+	  <!-- <script src="../static/js/todo.js"></script>	 -->
 
     <!-- JS: darkmode -->
     <script src="../static/js/darkmode.js"></script>

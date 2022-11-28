@@ -1,6 +1,5 @@
 const express = require("express");
 const session = require("express-session");
-const bodyParser = require("body-parser");
 const app = express();
 const http = require("http").Server(app);
 
@@ -19,19 +18,22 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  if (req.session.isLogin == true) {
+const indexRouter = require("./routes/index");
+app.use("/", indexRouter);
 
-    res.render("index", {
-      isLogin: true,
-      name: req.session.data.name,
-      email: req.session.data.email,
-    });
+// app.get("/", (req, res) => {
+//   if (req.session.isLogin == true) {
 
-  } else {
-    res.render("index", { isLogin: false });
-  }
-});
+//     res.render("index", {
+//       isLogin: true,
+//       name: req.session.data.name,
+//       email: req.session.data.email,
+//     });
+
+//   } else {
+//     res.render("index", { isLogin: false });
+//   }
+// });
 
 // login과 관련된 인증들
 const loginRouter = require("./routes/login");

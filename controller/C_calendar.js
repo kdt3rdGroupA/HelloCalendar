@@ -32,7 +32,8 @@ exports.addSchedule = (req, res) => {
     startDate: data.startDate,
     endDate: data.endDate
   }).then(result => {
-    res.send({result:true, msg:"일정추가완료", data:null});
+    console.log(result);
+    res.send({result:true, msg:"일정추가완료", data:result.dataValues});
   });
 };
 exports.editSchedule = (req, res) => {

@@ -5,12 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>todo페이지</title>
-		<style>
-			.complete{
-				text-decoration: line-through;
-				opacity: 0.5;
-			}
-		</style>
     <!-- favicon -->
     <link rel="icon" type="image/png" href="../static/img/favicon.png" />
     <!-- css: layout -->
@@ -19,6 +13,7 @@
     <link rel="stylesheet" href="../static/css/calendar.css" />
     <!-- css: todolist -->
     <link rel="stylesheet" href="../static/css/todolist.css" />
+    <link rel="stylesheet" href="../static/css/todo.css" />
     <!-- 한국어 font: IBM Plex Sans, 프리텐다 -->
     <!--눈누 폰트는 헤더에 안 들어감-->
     <!-- 영어 font: Maven Pro, Noto Sans, Amiko -->
@@ -37,7 +32,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
-		<h1><%= title %></h1>
+		<a class="deleteUnderline" href="/"><h3 class="headerLogo">HELLO CALENDAR</h3></a>
+		<h3 class=""><%= title %></h3>
 		<fieldset>
 		<legend>Welcome <%= name %></legend>
 		<form class="todoForm" name="todoForm">
@@ -52,7 +48,7 @@
 				시작<input type="date" class="form-control" id="startline" max="<%= nowDate %>">
 				~끝<input type="date" class="form-control" id="deadline" min="<%= nowDate %>">
 				<input type="text" class="formElement" id="task" name="task" placeholder="새로운 할 일">
-				<button type="button" class="todoSubmit" onclick="todoSubmit(); location.reload(true)">등록</button>
+				<button type="button" class="todoSubmit" onclick="todoSubmit(); location.reload(true);">등록</button>
 			</div>
 		</form>
 		</fieldset>
@@ -86,12 +82,8 @@
 							<td><button type="button" class="btnDelete" onclick="todoDelete(this, '<%= data[i].id %>')">삭제</button></td>
 						</tr>
 					<% } %>
-					<!-- tr에 complete class 넣으면 투명도 0.5+삭선 -->
-					<!-- <td class="'(list[i].complete ? 'complete' : 'notcomplete') + '">' + list[i].startdate + '</td>-->
-					
 			</tbody>
 		</table>
-		<a href="/">home</a>
 	</body>
 	
     <!-- JS: index -->
@@ -102,5 +94,6 @@
 	<!-- <script src="../static/js/calendar.js"></script> -->
 	<!-- ToDo 기능 구현 내용 -->
 	<script src="../static/js/todo.js"></script>	
+	<script src="../static/js/nowDate.js"></script>	
 
 </html>

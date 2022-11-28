@@ -31,9 +31,9 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
     />
-    <link 
-      rel="stylesheet" 
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" 
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
     />
 
     <!-- 한국어 font: IBM Plex Sans, 프리텐다 -->
@@ -60,7 +60,9 @@
     <header>
       <nav>
         <!-- 다크모드 버튼 -->
-        <button class="btn-toggle"><img src="../static/img/day-and-night.png"></button>
+        <button class="btn-toggle">
+          <img src="../static/img/day-and-night.png" />
+        </button>
 
         <div class="flex_space"></div>
 
@@ -152,9 +154,9 @@
 
     <!-- TodoList -->
     <div class="todoTabs">
-      <div class="todoTab todoTabBusiness">
+      <div class="todoTab todoTabBusiness noshow">
+
         <table class="table">
-          
           <thead>
             <tr>
               <th>공적</th>
@@ -191,7 +193,11 @@
         <a href="/todo">...todo 전체보기</a>
 
       </div>
+
       <div class="todoTab todoTabPrivate">
+
+      <img src="/static/img/briefcase.png" class="businessImg" />
+      <div class="todoTab todoTabPrivate noshow">
         <table class="table">
           <thead>
             <tr>
@@ -218,10 +224,10 @@
               </tr>
             <% } %>
             <% } %>
-        </tbody>
-          
+        </tbody>        
         </table>
         <a href="/todo">...todo 전체보기</a>
+
 
       </div>
     </div>
@@ -230,7 +236,13 @@
         <h3>바로가기 추가</h3>
         <hr />
         <input type="text" class="linkName" placeholder="Name" required /><br />
-        <input type="text" class="linkUrl" placeholder="URL" max="199" required /><br />
+        <input
+          type="text"
+          class="linkUrl"
+          placeholder="URL"
+          max="199"
+          required
+        /><br />
         <div class="buttons">
           <button type="button" class="submit">추가</button>
           <button type="button" class="close">닫기</button>
@@ -247,7 +259,6 @@
       <div class="hide"></div>
     </div>
 
-
     <!-- JS: calendar -->
     <script src="../static/js/calendar.js"></script>
 
@@ -258,10 +269,9 @@
     <script src="../static/js/shortcut.js"></script>
 
     <!-- ToDo 기능 구현 내용 -->
-	  <script src="../static/js/todo.js"></script>	
+    <script src="../static/js/todo.js"></script>
 
     <!-- JS: darkmode -->
     <script src="../static/js/darkmode.js"></script>
-
   </body>
 </html>

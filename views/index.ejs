@@ -174,7 +174,7 @@
       <button class="openTabBtn inputBtn" onclick="openTodo();">to<br>do</button>
 
       <div class="todoTab todoTabBusiness noshow">
-        <button class="closeTabBtn" onclick="cloesTodo();">X</button>
+        <button class="closeTabBtn inputBtn" onclick="cloesTodo();">X</button>
         <table class="table">
           <thead>
             <tr>
@@ -209,10 +209,15 @@
               </tr>
 
             <% } %>
-        </tbody>
+              
+            
 
+        </tbody>
+        
         </table>
-        <a href="/todo">...todo 전체보기</a>
+        <% if(data.length > 5){ %> <span>and more...</span>
+          <% } %>
+        <a href="/todo">todo 전체보기</a>
       </div>
 
       <!-- <div class="todoTab todoTabPrivate">

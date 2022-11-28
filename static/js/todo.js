@@ -23,15 +23,15 @@ function handleMouseDown(event) {
     el.setAttribute("gap-y", gapY);
 
     // 선택한 공을 맨 앞으로 가지고 오기
-    const maxPriority =
-      (memos.length > 0
-        ? Math.max.apply(
-            null,
-            Array.from(memos).map((todoTab) => todoTab.getAttribute("priority"))
-          )
-        : 9999) + 1;
-    el.setAttribute("priority", maxPriority);
-    el.style["z-index"] = maxPriority;
+    // const maxPriority =
+    //   (memos.length > 0
+    //     ? Math.max.apply(
+    //         null,
+    //         Array.from(memos).map((todoTab) => todoTab.getAttribute("priority"))
+    //       )
+    //     : 9999) + 1;
+    // el.setAttribute("priority", maxPriority);
+    // el.style["z-index"] = maxPriority;
 
     // 선택한 공에 'hold' class를 추가
     classList.add("hold");

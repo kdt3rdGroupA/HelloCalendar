@@ -21,9 +21,12 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right top, #436be4, #00d2fc);
+  /* background: linear-gradient(to right top, #436be4, #00d2fc); */
   font-family: "Pretendard-Regular";
   font-family: "Noto Sans", sans-serif;
+  background-image: url(/static/img/bg1-1.jpg);
+  background-size: 1500px 800px;
+  backdrop-filter: blur(5px);
 }
 
 #loginContainer {
@@ -41,11 +44,13 @@ body {
   height: 60vh;
   background-color: white;
   border-radius: 20px;
-  box-shadow: 10px 10px 30px #045c6d;
+  box-shadow: 10px 10px 30px rgba(136, 127, 127, 0.636);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  /* position: relative;
+  left: 150px; */
 }
 
 /******* 로그인창 부분 *******/

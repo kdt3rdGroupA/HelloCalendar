@@ -1,6 +1,4 @@
 function handleMouseDown(event) {
-  // event.preventDefault();
-
   const memos = document.querySelectorAll(".todoTab");
   const el = event.target;
   const classList = el.classList;
@@ -29,8 +27,6 @@ function handleMouseDown(event) {
 
 // 메모 움직임 이벤트 핸들러
 function handleMouseMove(event) {
-  // event.preventDefault();
-
   const el = document.querySelector(".todoTab.hold");
   if (el) {
     // 움직이는 마우스 커서의 XY좌표
@@ -53,8 +49,6 @@ function handleMouseMove(event) {
 
 // 메모 놓기 이벤트 핸들러
 function handleMouseUp(event) {
-  // event.preventDefault();
-
   const el = document.querySelector(".todoTab.hold");
   if (el) {
     // 움직이면 적용된 속성 및 class를 삭제
@@ -85,12 +79,6 @@ memos.forEach(function (todoTab, idx) {
 document.addEventListener("mousemove", handleMouseMove);
 document.addEventListener("mouseup", handleMouseUp);
 
-// 초기 입력값 당일 날짜 되게
-// const nowDate = new Date().toISOString().substring(0, 10);
-
-// document.getElementById('startline').value = nowDate;
-// document.getElementById('deadline').value = nowDate;
-
 const tbody = document.querySelector("tbody");
 
 function todoSubmit() {
@@ -100,7 +88,6 @@ function todoSubmit() {
   const form = document.forms["todoForm"];
   const inputTask = document.querySelector("#task").value;
   console.log(inputTask.length);
-  // console.dir(form);
   console.log(form);
   console.log(form.business.checked); // boolean 으로 나옴
   // console.log(typeof(form.business.value)); // -> string -> boolean 변환?
@@ -186,17 +173,10 @@ function complete(id) {
     //미완료 -> 완료 ---->버튼은 완료 -> 취소
     // if(!(test)){ //미완료 -> 완료
     chgBtn.innerHTML = cencel;
-    // trow.classList.add("complete");
   } else {
     chgBtn.innerHTML = comp;
-    // trow.classList.remove("complete");
   }
   console.log("tr class complete 후 ", test); // null이면 notcomplete -> 제일 위 값이 선택되어야 하는거 아닌가?
-
-  // const btndis = document.getElementsByClassName('.btnComplete');
-  // btndis.disabled = true; // 버튼 잠그기 왜 안먹혀
-
-  // console.log('후',Boolean(complete));
 
   axios({
     method: "PATCH",
@@ -207,11 +187,10 @@ function complete(id) {
     },
   })
     .then((res) => {
-      // console.log(res.data);
       return res.data;
     })
     .then((data) => {
-      console.log("변경되면 1 아님 0", data); //
+      console.log("변경되면 1 아님 0", data);
     });
 }
 
@@ -251,4 +230,3 @@ function openTodo() {
   todoTab.classList.remove("noshow");
   openBtn.classList.add("noshow");
 }
-

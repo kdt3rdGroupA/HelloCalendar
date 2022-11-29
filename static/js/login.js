@@ -29,14 +29,13 @@ function login() {
 
   // 로그인 요청
   axios({
-    method: 'POST',
-    url: '/login',
+    method: "POST",
+    url: "/login",
     params: {
       userid: id.value,
-      pw: pw.value
-    }
-  })
-  .then(result => {
+      pw: pw.value,
+    },
+  }).then((result) => {
     let data = result.data;
     if (data.result) {
       location.replace(`${URL}:${PORT}`);
@@ -50,7 +49,6 @@ function login() {
 
 // enter 전송
 let inputs = document.querySelectorAll(".input");
-// console.log(inputs);
 for (let i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener("keypress", function (event) {
     if (event.keyCode === 13) {
@@ -61,12 +59,17 @@ for (let i = 0; i < inputs.length; i++) {
 }
 
 //로그인 정보를 변환하기 위한 parseJWT 함수 생성
-function parseJwt (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+function parseJwt(token) {
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
 
-    return JSON.parse(jsonPayload);
-};
+  return JSON.parse(jsonPayload);
+}

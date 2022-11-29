@@ -39,11 +39,6 @@ app.use("/", indexRouter);
 const loginRouter = require("./routes/login");
 app.use("/login", loginRouter);
 
-// todo 관련
-
-const todoRouter = require('./routes/todo');
-app.use('/todo', todoRouter); 
-
 // 일정 관련
 const calendarRouter = require('./routes/calendar');
 app.use('/calendar', calendarRouter);

@@ -236,17 +236,22 @@ selector(".scheduleTitle").addEventListener("click", () => {
 });
 selector("#forms .calendar_add .close").addEventListener("click", () => {
   addClass(selector("#forms .calendar_add"), "hide");
+  clearInput();
+
 });
 selector("#forms .calendar_add .submit").addEventListener("click", () => {
   addCalendar();
+  clearInput();
+
 });
 let addInputs = selectorAll("#forms .calendar_add input");
 addInputs.forEach((element) => {
-  element.addEventListener("keydown", (event) => {
+  element.addEventListener("keypress", (event) => {
     if (event.code != "Enter") {
       return 0;
     }
     addCalendar();
+    clearInput();
   });
 });
 const addCalendar = () => {
@@ -291,7 +296,7 @@ selector("#forms .editCalendar .edit").addEventListener("click", () => {
 });
 let edits = selectorAll("#forms .editCalendar input");
 edits.forEach((element) => {
-  element.addEventListener("keydown", (event) => {
+  element.addEventListener("keypress", (event) => {
     if (event.code != "Enter") {
       return 0;
     }
@@ -367,3 +372,9 @@ const editCalendar = () => {
     addClass(selector("#forms .editCalendar"), "hide");
   });
 };
+function clearInput() {
+  let clearinput = document.querySelectorAll('.calendar_add input');
+  for (let i = 0; i < clearinput.length; i++) {
+    clearinput[i].value = '';
+  }
+}

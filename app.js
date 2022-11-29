@@ -25,14 +25,6 @@ app.use("/", indexRouter);
 const loginRouter = require("./routes/login");
 app.use("/login", loginRouter);
 
-<<<<<<< HEAD
-=======
-// todo 관련
-
-const todoRouter = require("./routes/todo");
-app.use("/todo", todoRouter);
-
->>>>>>> 5a760033261234627317e24af79225522ffcce80
 // 일정 관련
 const calendarRouter = require("./routes/calendar");
 app.use("/calendar", calendarRouter);
@@ -43,11 +35,6 @@ app.use("/shortcut", shortcutRouter);
 
 // parse application/json
 app.use(express.json());
-
-// manual 페이지 새창에 랜더
-app.get("/manual", (req, res) => {
-  res.render("manual");
-});
 
 // 404 Page
 app.get("*", (req, res) => {

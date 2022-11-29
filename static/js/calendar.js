@@ -315,7 +315,7 @@ selector("#forms .editCalendar .edit").addEventListener("click", () => {
 });
 let edits = selectorAll("#forms .editCalendar input");
 edits.forEach((element) => {
-  element.addEventListener("keydown", (event) => {
+  element.addEventListener("keypress", (event) => {
     if (event.code != "Enter") {
       return 0;
     }
@@ -392,6 +392,7 @@ const editCalendar = () => {
     addClass(selector("#forms .editCalendar"), "hide");
   });
 };
+
 // 일정추가의 모든 input태그 초기화
 function clearInput() {
   let clearinput = document.querySelectorAll(".calendar_add input");

@@ -75,7 +75,7 @@ exports.add = (req, res) => {	// 새로운 ToDo 항목 추가하기
 			task: req.body.task,
 			priority: req.body.priority,
 			startline: req.body.startline,
-			deadline: req.body.deadline,
+			// deadline: req.body.deadline,
 			complete: req.body.complete,
 			business: req.body.business,
 
@@ -90,7 +90,7 @@ exports.add = (req, res) => {	// 새로운 ToDo 항목 추가하기
 			task: req.body.task,
 			priority: req.body.priority,
 			startline: req.body.startline,
-			deadline: req.body.deadline,
+			// deadline: req.body.deadline,
 			complete: req.body.complete,
 			business: req.body.business,
 

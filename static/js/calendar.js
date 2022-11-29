@@ -294,7 +294,7 @@ selector("#forms .editCalendar .edit").addEventListener("click", () => {
 });
 let edits = selectorAll("#forms .editCalendar input");
 edits.forEach((element) => {
-  element.addEventListener("keydown", (event) => {
+  element.addEventListener("keypress", (event) => {
     if (event.code != "Enter") {
       return 0;
     }
@@ -370,10 +370,3 @@ const editCalendar = () => {
     addClass(selector("#forms .editCalendar"), "hide");
   });
 };
-
-function clearInput() {
-  let clearinput = document.querySelectorAll(".calendar_add input");
-  for (let i = 0; i < clearinput.length; i++) {
-    clearinput[i].value = "";
-  }
-}

@@ -18,9 +18,6 @@ const Todo = (Sequelize, DataTypes) => {
       priority: {
         type: DataTypes.STRING(10),
       },
-      // deadline: {
-      //   type: DataTypes.STRING(20),
-      // },
     },
     {
       tableName: "todo",

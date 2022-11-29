@@ -2,8 +2,6 @@ const models = require("../models");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const emailKey = require("../authinfo/emailkey");
-// const session = require("express-session");
-// const { user } = require("../authinfo/emailkey");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -61,7 +59,6 @@ exports.pwResetPage = (req, res) => {
 };
 exports.pwChangePage = (req, res) => {
   console.log(null);
-  // res.render("pwchange");
 };
 exports.login = (req, res) => {
   // data-> {userid: ,pw: }
@@ -90,26 +87,26 @@ exports.login = (req, res) => {
       req.session.data = {
         id: userInfo.id,
         name: userInfo.name,
-        email: userInfo.email
+        email: userInfo.email,
       };
-    sessionTemp.cookie.expires = new Date(Date.now() + 72 * 3600000);
-    let linkes = [];
-    models.Shortcut.findAll({
-      where: {
-        key_id: userInfo.id
-      }
-    }).then(result => {
-      let resultArray = Array.from(result);
-      resultArray.forEach(element => {
-        linkes.push(element.dataValues);
-      })
-    })
-    res.send({
-      result: true,
-      msg: `${userInfo.name}님 환영합니다`,
-      data: userInfo,
-      link: linkes
-    });
+      sessionTemp.cookie.expires = new Date(Date.now() + 72 * 3600000);
+      let linkes = [];
+      models.Shortcut.findAll({
+        where: {
+          key_id: userInfo.id,
+        },
+      }).then((result) => {
+        let resultArray = Array.from(result);
+        resultArray.forEach((element) => {
+          linkes.push(element.dataValues);
+        });
+      });
+      res.send({
+        result: true,
+        msg: `${userInfo.name}님 환영합니다`,
+        data: userInfo,
+        link: linkes,
+      });
     } else {
       res.send({ result: false, msg: "잘못된 비밀번호", data: null });
     }
@@ -122,39 +119,51 @@ exports.signup = (req, res) => {
     where: {
       userid: data.userid,
     },
-  })
-  .then(result => {
-  if (result != null) {
-    res.send({result:false, msg:"사용할 수 없는 아이디입니다", data:null});
-    return 0;
-  }
-  // 아이디 중복 검사
-  // 프론트에서 아이디 검사를 받지 않으면 submit 제한
-  let emailAuthAddress = req.session.emailAuthAddress;
-  let emailAuthNum = data.emailAuthNum;
-  let emailAuthInputHash = crypto.createHash('sha512').update(emailAuthAddress+emailAuthNum).digest('hex');
-  if (req.session.emailAuthHash != emailAuthInputHash) {
-    res.send({result:false, msg:"이메일 인증에 문제가 있습니다", data:null});
-    return 0;
-  }
-  // 이메일 인증
-  // 프론트에서 이메일 인증 버튼을 누르지 않으면 submit 제한
-  // 유효성검사 끝, 데이터베이스 입력
-  let salt = crypto.pseudoRandomBytes(128).toString('base64');
-  let hashPW = crypto.createHash('sha512').update(data.pw+salt).digest('hex');
-  models.Login.create({
-    userid : data.userid,
-    name : data.name,
-    email : emailAuthAddress,
-    salt : salt,
-    hash_pw : hashPW
-  })
-  .then(result => {
-    req.session.isLogin = false;
-    res.send({result:true, msg:"회원가입 완료!", data:null});
+  }).then((result) => {
+    if (result != null) {
+      res.send({
+        result: false,
+        msg: "사용할 수 없는 아이디입니다",
+        data: null,
+      });
+      return 0;
+    }
+    // 아이디 중복 검사
+    // 프론트에서 아이디 검사를 받지 않으면 submit 제한
+    let emailAuthAddress = req.session.emailAuthAddress;
+    let emailAuthNum = data.emailAuthNum;
+    let emailAuthInputHash = crypto
+      .createHash("sha512")
+      .update(emailAuthAddress + emailAuthNum)
+      .digest("hex");
+    if (req.session.emailAuthHash != emailAuthInputHash) {
+      res.send({
+        result: false,
+        msg: "이메일 인증에 문제가 있습니다",
+        data: null,
+      });
+      return 0;
+    }
+    // 이메일 인증
+    // 프론트에서 이메일 인증 버튼을 누르지 않으면 submit 제한
+    // 유효성검사 끝, 데이터베이스 입력
+    let salt = crypto.pseudoRandomBytes(128).toString("base64");
+    let hashPW = crypto
+      .createHash("sha512")
+      .update(data.pw + salt)
+      .digest("hex");
+    models.Login.create({
+      userid: data.userid,
+      name: data.name,
+      email: emailAuthAddress,
+      salt: salt,
+      hash_pw: hashPW,
+    }).then((result) => {
+      req.session.isLogin = false;
+      res.send({ result: true, msg: "회원가입 완료!", data: null });
+    });
   });
-});
-}
+};
 exports.logout = (req, res) => {
   req.session.destroy();
   res.send({ result: true, msg: "로그아웃 완료", data: null });
@@ -202,7 +211,11 @@ exports.pwReset = (req, res) => {
     .update(emailAuthAddress + emailAuthNum)
     .digest("hex");
   if (req.session.emailAuthHash != emailAuthInputHash) {
-    res.send({result:false, msg:"이메일 인증에 문제가 있습니다", data:null});
+    res.send({
+      result: false,
+      msg: "이메일 인증에 문제가 있습니다",
+      data: null,
+    });
     return 0;
   }
   let salt = crypto.pseudoRandomBytes(128).toString("base64");
@@ -220,17 +233,19 @@ exports.pwReset = (req, res) => {
         email: emailAuthAddress,
       },
     }
-  )
-  .then(() => {
-  models.Login.findOne({
-    where: {
-      email: req.session.emailAuthAddress
-    }
-  })
-  .then(result => {
-    let userInfo = result.dataValues;
-    res.send({result : true, msg : "비밀번호 재설정 완료", data:{id: userInfo.userid}});
-  })
+  ).then(() => {
+    models.Login.findOne({
+      where: {
+        email: req.session.emailAuthAddress,
+      },
+    }).then((result) => {
+      let userInfo = result.dataValues;
+      res.send({
+        result: true,
+        msg: "비밀번호 재설정 완료",
+        data: { id: userInfo.userid },
+      });
+    });
   });
 };
 exports.pwChange = (req, res) => {
@@ -240,8 +255,7 @@ exports.pwChange = (req, res) => {
     where: {
       id: req.session.id,
     },
-  })
-  .then((result) => {
+  }).then((result) => {
     let userInfo = result.dataValues;
     let inputPwHash = crypto
       .createHash("sha512")
@@ -270,4 +284,4 @@ exports.pwChange = (req, res) => {
       res.send({ result: true, msg: "비밀번호 업데이트 완료", data: null });
     });
   });
-}
+};

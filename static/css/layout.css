@@ -1,14 +1,11 @@
 body {
   margin: 0;
-  /* background-color: blanchedalmond; */
-  /* color: black; */
   overflow-x: hidden;
   font-family: "Noto Sans", sans-serif;
 }
 
-.stopDragging
-{
-  -ms-user-select: none; 
+.stopDragging {
+  -ms-user-select: none;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -26,15 +23,11 @@ body {
 /* 헤더 */
 nav {
   display: flex;
-  /* position: relative; */
   justify-content: space-between;
   margin: 10px 20px;
 }
 
 .btn-toggle {
-  /* height: 50px;
-  width: 50px;
-  border-radius: 100%; */
   border: none;
   background-color: transparent;
 }
@@ -50,8 +43,6 @@ nav {
   background: linear-gradient(to right top, #003efa, #00d2fc);
   color: transparent;
   -webkit-background-clip: text;
-  /* margin-top: 30px; */
-  /* margin-left: -20%; */
 }
 
 .logo {
@@ -245,7 +236,6 @@ input.input {
 #forms > div {
   position: absolute;
   width: 40vw;
-  /* height: 30vh; */
   left: 30vw;
   top: 20px;
   min-width: 300px;

@@ -9,11 +9,9 @@
 /* Calendar */
 .calendarRap {
   display: flex;
-  /* justify-content: center; */
   font-family: "Amiko", sans-serif;
   padding: 0 2rem;
   margin-top: 1.4rem;
-  /* width: 31.5rem; */
 }
 
 /* SUN ~ SAT */
@@ -41,11 +39,6 @@
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1px;
 }
-
-/* 
-.grid div {
-  font-size: 1rem;
-} */
 
 /* 날짜 */
 .dateBoard div {

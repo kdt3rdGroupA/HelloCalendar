@@ -1,17 +1,11 @@
 /* 메모가 자유자재로 움직일 수 있도록 position을 'absolute'로 설정 */
 
-/* .todoTabs {
-  top: 30vh;
-} */
 .todoTabs {
   position: absolute;
   top: 25vh;
   width: 10px;
   height: auto;
 }
-/* .todoTab { */
-/* width: 60vw; */
-/* height: 14vw; */
 
 .todoTab {
   position: absolute;
@@ -19,7 +13,6 @@
   padding: 1rem;
   top: 3rem;
   left: 70vw;
-  /* background-color: yellow; */
 }
 
 .noshow {
@@ -62,11 +55,9 @@
 
 /* 메모의 크기, 색상 설정 */
 .todoTabBusiness {
-  /* position: absolute; */
   width: 400px;
   height: 400px;
   text-align: center;
-  /* background-color: lightblue; */
   background-color: rgba(175, 218, 232, 0.9);
   overflow-y: scroll;
 }
@@ -84,11 +75,6 @@
   position: relative;
   top: 330px;
 }
-
-/* img.businessImg {
-  width: 50px;
-  height: 50px;
-} */
 
 #todoInput {
   width: 90%;

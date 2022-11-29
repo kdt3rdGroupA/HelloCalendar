@@ -12,26 +12,7 @@ CREATE TABLE user_login_key (
 );
   -- salt, hash_pw -> 각각 유저 암호화된 id, pw라고 이해
 -- INSERT INTO user_login_key(userid, name, email, salt, hash_pw) VALUES ("test", "test", "test@naver.com", )
--- CREATE TABLE todo (
---   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
---   key_id INT NOT NULL,
---   text VARCHAR(50),
---   priority VARCHAR(10),
---   deadline VARCHAR(20),
---   INDEX key_id (key_id)
--- );
-  -- 예전버전의 todo테이블
--- CREATE TABLE todo (
---   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
---   key_id INT NOT NULL,
---   task VARCHAR(50),
---   priority INT,
---   startline VARCHAR(20),
---   deadline VARCHAR(20),
---   complete BOOLEAN,
---   business BOOLEAN,
---   INDEX key_id (key_id)
--- );
+
 CREATE TABLE todo (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   key_id INT NOT NULL,

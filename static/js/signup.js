@@ -97,6 +97,7 @@ function register() {
     alert("이메일 인증이 필요합니다");
     return 0;
   }
+
   // email 인증코드 유효성 검사
   if (!emailcode.checkValidity() && emailcode.classList.contains("show")) {
     warningEmailcode.style.display = "block";
@@ -108,24 +109,23 @@ function register() {
   }
 
   axios({
-    method: 'POST',
-    url: '/login/signup',
+    method: "POST",
+    url: "/login/signup",
     params: {
       name: name.value,
       userid: id.value,
       pw: pw.value,
-      emailAuthNum: emailcode.value
-    }
-  }).then(result => {
+      emailAuthNum: emailcode.value,
+    },
+  }).then((result) => {
     let data = result.data;
     if (data.result == true) {
       idCheck = false;
       emailAuthClick = false;
       location.replace(`${URL}:${PORT}/login`);
     } else {
-      alert(data.msg);      
+      alert(data.msg);
     }
-    //나중에할것 오류경우에따라 data에 오류경우 담아서 받고 alert 뛰우기
   });
 }
 
@@ -167,7 +167,6 @@ function idBtn() {
 
 //enter 전송
 let inputs = document.querySelectorAll(".input");
-// console.log(inputs);
 for (let i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener("keypress", function (event) {
     if (event.keyCode === 13) {
@@ -223,7 +222,6 @@ document.querySelector("#idSignup .emailBtn").addEventListener("click", () => {
     url: "/login/emailAuth",
     params: { email: email.value },
   }).then((result) => {
-    //let data = result.data;
     emailAuthClick = true;
     console.log("여기서 CSS, 회원가입 버튼 로직 설정하시면 됩니다");
   });

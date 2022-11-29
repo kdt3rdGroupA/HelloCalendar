@@ -1,14 +1,5 @@
 /* 로그인 화면 */
 
-/* #loginContents {
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 10px 10px 30px #045c6d;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  } */
-
 /* 회원가입 */
 @media (max-width: 900px) {
   div.warning {
@@ -50,7 +41,6 @@
     font-family: "Amiko", sans-serif;
     padding: 0 1.4rem;
     margin-top: 1.4rem;
-    /* width: 31.5rem; */
   }
   .calendarContent {
     width: 90vw;

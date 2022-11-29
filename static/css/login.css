@@ -21,7 +21,6 @@
 body {
   margin: 0;
   padding: 0;
-  /* background: linear-gradient(to right top, #436be4, #00d2fc); */
   font-family: "Pretendard-Regular";
   font-family: "Noto Sans", sans-serif;
   background-image: url(/static/img/bg1-1.jpg);
@@ -50,8 +49,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* position: relative;
-  left: 150px; */
 }
 
 /******* 로그인창 부분 *******/

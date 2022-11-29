@@ -29,6 +29,7 @@ const create = function (tagStr) {
   return d.createElement(tagStr);
 };
 
+// 인증이메일 발송 요청
 selector("#get_auth_num").addEventListener("click", () => {
   if (!selector("#email").checkValidity()) {
     document.querySelector("#email").style.borderColor = "red";
@@ -51,12 +52,14 @@ selector("#get_auth_num").addEventListener("click", () => {
     }
   });
 });
+// 인증번호가 입력되면 인증번호제출버튼 사용가능
 selector("#authNum").addEventListener("keydown", () => {
   if (selector("#authNum").value.length > 3) {
     selector("#pw").disabled = false;
   }
 });
 
+// 비밀번호 재설정 요청
 selector("#submit").addEventListener("click", () => {
   if (!selector("#pw").checkValidity()) {
     alert("비밀번호는 6자리 이상");

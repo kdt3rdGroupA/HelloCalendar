@@ -1,5 +1,7 @@
 const URL = "http://localhost";
 const PORT = 8001;
+
+// 로그인 상태라면 로그아웃 버튼에 로그아웃요청 이벤트리스너
 let logout = selector("#logout");
 if (logout != null) {
   selector("#logout").addEventListener("click", () => {
@@ -12,6 +14,7 @@ if (logout != null) {
   });
 }
 
+// Enter, 클릭으로 구글 검색
 selector(".searchBar").addEventListener("keydown", (event) => {
   // print(event, true);
   if (event.code != "Enter") {
@@ -38,7 +41,6 @@ selector("#search_btn").addEventListener("click", () => {
 });
 
 // 로그아웃 토글로 띄우기
-
 const userInfo = document.querySelector("#nav_user_info");
 const toggle = document.querySelector(".toggle");
 let toggleImg = document.querySelector(".toggleImg");
@@ -55,13 +57,14 @@ userInfo == null
       }
     });
 
+// todo리스트에 입력받은 정보 추가
 const addTodo = (data) => {
-  console.log(555, data);
   let todoTr = create("tr");
   let todoName = create("td");
   todoName.innerText = data.task;
   let space = create("td");
   let deleteBtn = create("div");
+  // todo리스트 내부 삭제버튼
   deleteBtn.innerHTML = `<span class="material-symbols-outlined">cancel</span>`;
   deleteBtn.addEventListener("click", () => {
     axios({
@@ -82,6 +85,7 @@ const addTodo = (data) => {
   selector(".todoTabs .table").append(todoTr);
 };
 
+// 최초1회 todo정보 가져오기, 표시
 axios({
   method: "POST",
   url: "/refresh",
@@ -93,6 +97,7 @@ axios({
   });
 });
 
+// Enter로 todo입력
 selector("#todoInput").addEventListener("keydown", (event) => {
   if (event.code != "Enter") {
     return 0;

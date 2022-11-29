@@ -1,4 +1,4 @@
-// 캘린더 js : 현승님 버전
+// javascript 문법을 간소화 시키기위해 정의됨
 const d = document;
 const print = (target, dir = false) => {
   dir ? console.dir(target) : console.log(target);
@@ -29,8 +29,8 @@ const clearClass = function (element) {
 const create = function (tagStr) {
   return d.createElement(tagStr);
 };
-// 달력 생성
 
+// 달력 생성
 // 변수 선언
 var dayList = [
   "Sunday",
@@ -43,16 +43,24 @@ var dayList = [
 ];
 var leapYear = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var notLeapYear = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+// 월별일수: 더 직관적으로 접근하기위해 인덱스를 1 shift
 var pageYear;
+// 출력되는 달력이 윤년인가 아닌가
 let day, month, year, weekday, keyDay;
+// keyDay : "yyyy-mm-dd" 형식의 문자열
+
+// date 기준으로 화면에 달력표시
 const makeCalendar = (date) => {
-  // date: Date()
+  // date: Date() 객체
+  // data로부터 정보 저장
   year = date.getFullYear();
   year % 4 == 0 ? (pageYear = leapYear) : (pageYear = notLeapYear);
   month = date.getMonth() + 1;
   day = date.getDate();
   weekday = date.getDay();
   let dateTemp = new Date(year, month - 1, day);
+  
+  // 달력 위쪽 텍스트 수정
   selector(".dateTitle").innerText = `${year}년 ${month}월`;
 
   // 켈린더 파트
@@ -60,11 +68,13 @@ const makeCalendar = (date) => {
   monthFirstWeekday < 0 ? (monthFirstWeekday += 7) : null;
   let dateBoard = selector(".dateBoard");
   dateBoard.innerHTML = "";
+  // 달력 1행 1일전까지 빈칸 채우기
   for (let i = 0; i < monthFirstWeekday; i++) {
     let dayDiv = create("div");
     addClass(dayDiv, "noColor");
     dateBoard.append(dayDiv);
   }
+  // 1일부터 말일까지 채우기
   for (let i = 0; i < pageYear[month]; i++) {
     let dayDiv = create("div");
     addClass(dayDiv, "date");
@@ -81,6 +91,7 @@ const makeCalendar = (date) => {
     }
     dayDiv.id = key;
     dayDiv.innerText = i + 1;
+    // 날자에 리스너 추가 -> 달력옆 일정칸의 변화
     dayDiv.addEventListener("click", () => {
       dateTemp.setDate(i + 1);
       displaySchedule(dateTemp);
@@ -94,6 +105,7 @@ const makeCalendar = (date) => {
     i + 1 == day ? addClass(dayDiv, "active") : null;
     dateBoard.append(dayDiv);
   }
+  // 달력 마지막줄 남는 날 채우기
   let leftSpace = 7 - ((monthFirstWeekday + pageYear[month]) % 7);
   for (let i = 0; i < leftSpace; i++) {
     let dayDiv = create("div");
@@ -102,18 +114,22 @@ const makeCalendar = (date) => {
   }
 
   // 일정파트
+  // 일정표시함수
   displaySchedule(date);
+  // 달력에 일정정보 표시함수
   displayScheduleOnCalendar();
 };
 
 // 일정파트 표시함수
 const displaySchedule = (date) => {
+  // 일정블록에서 날자, 요일 표시
   selector("#nowDay").innerText = dayList[date.getDay()];
   selector("#nowDate").innerText = date.getDate();
-
+  // 일정을 일정블록에서 출력
   keyDay = date2key(date);
   printSchedule(keyDay);
 };
+// Date 객체를 "yyyy-mm-dd"형식으로 변환
 const date2key = (date) => {
   let month = String(date.getMonth() + 1);
   month.length == 1 ? (month = "0" + month) : null;
@@ -242,6 +258,7 @@ selector("#forms .calendar_add .submit").addEventListener("click", () => {
   addCalendar();
   clearInput();
 });
+// 모달에서 Enter로 입력
 let addInputs = selectorAll("#forms .calendar_add input");
 addInputs.forEach((element) => {
   element.addEventListener("keypress", (event) => {
@@ -252,6 +269,7 @@ addInputs.forEach((element) => {
     clearInput();
   });
 });
+// 입력한 일정정보를 DB에 저장
 const addCalendar = () => {
   let startDate = selector("#forms .calendar_add .startDate").value;
   let endDate = selector("#forms .calendar_add .endDate").value;
@@ -261,9 +279,10 @@ const addCalendar = () => {
     alert("날짜를 확인해 주세요");
     return 0;
   }
-  if (!calendarName.length) {
+  if (!calendarName.trim().length) {
     return 0;
   }
+  // 입력이 비었거나 날자가 잘못된경우 예외처리
   let addData = {
     name: calendarName,
     detail: calendarDetail,
@@ -286,9 +305,11 @@ const addCalendar = () => {
 };
 
 // 일정 삭제, 수정
+// 취소버튼
 selector("#forms .editCalendar .close").addEventListener("click", () => {
   addClass(selector("#forms .editCalendar"), "hide");
 });
+// Enter로 수정
 selector("#forms .editCalendar .edit").addEventListener("click", () => {
   editCalendar();
 });
@@ -301,6 +322,7 @@ edits.forEach((element) => {
     editCalendar();
   });
 });
+// 수정버튼
 selector("#forms .editCalendar .remove").addEventListener("click", () => {
   axios({
     method: "POST",
@@ -314,7 +336,6 @@ selector("#forms .editCalendar .remove").addEventListener("click", () => {
     if (!data.result) {
       return 0;
     }
-    // let eventIndex = 0;
     for (let i = 0; i < events.length; i++) {
       if (
         events[i].id ==
@@ -337,9 +358,10 @@ const editCalendar = () => {
     alert("날짜를 확인해 주세요");
     return 0;
   }
-  if (!calendarName.length) {
+  if (!calendarName.trim().length) {
     return 0;
   }
+  // 입력과 마찬가지로 예외처리
   let editData = {
     calendarKey: selector("#forms .editCalendar #calendarTargetKey").innerText,
     newData: {
@@ -370,3 +392,11 @@ const editCalendar = () => {
     addClass(selector("#forms .editCalendar"), "hide");
   });
 };
+
+// 일정추가의 모든 input태그 초기화
+function clearInput() {
+  let clearinput = document.querySelectorAll(".calendar_add input");
+  for (let i = 0; i < clearinput.length; i++) {
+    clearinput[i].value = "";
+  }
+}

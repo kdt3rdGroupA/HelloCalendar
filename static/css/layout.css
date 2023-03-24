@@ -111,7 +111,7 @@ body.dark-theme {
 @media (prefers-color-scheme: dark) {
   /* defaults to dark theme */
   body {
-    --text-color: #eee;
+    --text-color: #555555;
     --bkg-color: #121212ce;
   }
   body.light-theme {
@@ -127,7 +127,7 @@ body {
 @media (prefers-color-scheme: dark) {
   /* defaults to dark theme */
   body {
-    --text-color: #eee;
+    --text-color: #555555;
     --bkg-color: #121212ce;
   }
   body.light-theme {
